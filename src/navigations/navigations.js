@@ -7,6 +7,11 @@ import HomeScreen from "../screens/Home/HomeScreen";
 import ContactScreen from "../screens/Contact/ContactScreen";
 import NotificationScreen from "../screens/Notification/NotificationScreen";
 import AccountScreen from "../screens/Account/AccountScreen";
+import HomeIcon from "../../assets/svg/HomeIcon";
+import ContactIcon from "../../assets/svg/ContactIcon";
+import NotificationIcon from "../../assets/svg/NotificationIcon";
+import AddIcon from "../../assets/svg/AddIcon";
+import AccountIcon from "../../assets/svg/AccountIcon";
 
 export const home = {
   index: 1,
@@ -15,9 +20,7 @@ export const home = {
   options: {
     ...screenBottomOption,
     headerTitle: () => <Text>{STRINGS.home}</Text>,
-    tabBarIcon: ({ color, size }) => (
-      <Icon name="home" size={size} color={color} />
-    ),
+    tabBarIcon: ({ color, size }) => <HomeIcon size={size} color={color} />,
   },
 };
 
@@ -28,9 +31,7 @@ export const contact = {
   options: {
     ...screenBottomOption,
     headerTitle: () => <Text>{STRINGS.contact}</Text>,
-    tabBarIcon: ({ color, size }) => (
-      <Icon name="phone-square" size={size} color={color} />
-    ),
+    tabBarIcon: ({ color, size }) => <ContactIcon size={size} color={color} />,
   },
 };
 
@@ -41,9 +42,7 @@ export const add = {
   options: {
     ...screenBottomOption,
     headerTitle: () => <Text>{STRINGS.add}</Text>,
-    tabBarIcon: ({ color, size }) => (
-      <Icon name="plus" size={size} color={color} />
-    ),
+    tabBarIcon: ({ color, size }) => <AddIcon size={size} color={color} />,
   },
 };
 
@@ -55,7 +54,7 @@ export const notification = {
     ...screenBottomOption,
     headerTitle: () => <Text>{STRINGS.notification}</Text>,
     tabBarIcon: ({ color, size }) => (
-      <Icon name="bell-o" size={size} color={color} />
+      <NotificationIcon size={size} color={color} />
     ),
   },
 };
@@ -68,7 +67,7 @@ export const account = {
     ...screenBottomOption,
     headerTitle: () => <Text>{STRINGS.account}</Text>,
     tabBarIcon: ({ color, size }) => (
-      <Icon name="user-o" size={size} color={color} />
+      <AccountIcon size={size} color={color} />
     ),
   },
 };

@@ -1,4 +1,5 @@
-export const main = "#1876d1";
+export const main = "#EA3637";
+;
 export const textDisabledColor = "#ccc";
 export const todayBackgroundColor = "#ffaf";
 export const todayTextColor = main;

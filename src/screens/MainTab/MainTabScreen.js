@@ -4,6 +4,9 @@ import * as SCREENS_NAME from "../../constants/screensName";
 import { Text, TouchableOpacity, View } from "react-native";
 import * as COLORS from "../../constants/colors";
 import AddIcon from "../../../assets/svg/AddIcon";
+import { EventProvider } from "react-native-outside-press";
+
+import ContentDrawer from "../../components/ContentDrawer/ContentDrawer";
 const Tab = createBottomTabNavigator();
 function MainTabScreen() {
   const navigations = Object.values(NAVIGATIONS)
@@ -20,8 +23,11 @@ function MainTabScreen() {
     });
   return (
     <View className="flex flex-col justify-end h-full relative">
-      <View className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}>
-        <TouchableOpacity onPress={()=>{}}>
+      <ContentDrawer />
+      <View
+        className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}
+      >
+        <TouchableOpacity onPress={() => {}}>
           <AddIcon color={COLORS.main} />
         </TouchableOpacity>
       </View>

@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as ROUTES from "./src/routes/routes";
 import { Provider } from "react-redux";
 import store from "./src/store/store";
-import { StatusBar } from "expo-status-bar";
+import { EventProvider } from "react-native-outside-press";
 
 const Stack = createStackNavigator();
 
@@ -20,14 +20,15 @@ function App() {
   ));
 
   return (
-    <Provider store={store}>
-      <StatusBar hidden={true} />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialRoute}>
-          {screens}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <EventProvider>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName={initialRoute}>
+            {screens}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </EventProvider>
   );
 }
 

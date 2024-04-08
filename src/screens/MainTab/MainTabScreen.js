@@ -1,14 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as NAVIGATIONS from "../../components/navigations/navigations";
 import * as SCREENS_NAME from "../../constants/screensName";
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import * as COLORS from "../../constants/colors";
 import AddIcon from "../../../assets/svg/AddIcon";
-import { EventProvider } from "react-native-outside-press";
-
+import { useSelector } from "react-redux";
 import ContentDrawer from "../../components/ContentDrawer/ContentDrawer";
+
 const Tab = createBottomTabNavigator();
 function MainTabScreen() {
+  const { show } = useSelector((state) => state.contentDrawer);
   const navigations = Object.values(NAVIGATIONS)
     .sort((a, b) => a.index - b.index)
     .map((navigation, index) => {
@@ -23,7 +24,7 @@ function MainTabScreen() {
     });
   return (
     <View className="flex flex-col justify-end h-full relative">
-      <ContentDrawer />
+      {show && <ContentDrawer />}
       <View
         className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}
       >

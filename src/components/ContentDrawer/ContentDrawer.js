@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View, Animated, StyleSheet } from "react-native";
 import OutsidePressHandler from "react-native-outside-press";
+import { toggleContentDrawer } from "../../store/contentDrawer/contentDrawerSlice";
+import { useDispatch } from "react-redux";
 
 function ContentDrawer() {
+  const dispatch = useDispatch();
   const [slideAnim] = useState(new Animated.Value(-256));
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -18,8 +20,8 @@ function ContentDrawer() {
       toValue: -256,
       duration: 500,
       useNativeDriver: true,
-    }).start(()=>{
-        console.log('do something')
+    }).start(() => {
+      dispatch(toggleContentDrawer());
     });
   };
 

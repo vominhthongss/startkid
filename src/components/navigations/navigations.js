@@ -3,7 +3,6 @@ import { screenBottomOption } from "../../constants/options";
 import * as SCREENS_NAME from "../../constants/screensName";
 import * as STRINGS from "../../constants/strings";
 import * as COLORS from "../../constants/colors";
-import * as SIZES from "../../constants/size";
 import AccountScreen from "../../screens/Account/AccountScreen";
 import HomeScreen from "../../screens/Home/HomeScreen";
 import ContactScreen from "../../screens/Contact/ContactScreen";
@@ -23,18 +22,12 @@ export const home = {
   options: {
     ...screenBottomOption,
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.homeDes} </Text>
+      <Text className="text-xl font-semibold" style={{ color: COLORS.main }}>
+        {STRINGS.homeDes}
+      </Text>
     ),
-    //color
-    // headerStyle: {
-    //   backgroundColor: 'red'
-    // },
-    headerLeft: () => (
-      <Drawer size={20} color={COLORS.nonePrimary}/>
-    ),
-    headerRight: () => (
-      <Alert size={20} color={COLORS.noneSecondary} />
-    ),
+    headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
+    headerRight: () => <Alert size={25} color={COLORS.noneSecondary} />,
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
@@ -55,12 +48,10 @@ export const contact = {
   options: {
     ...screenBottomOption,
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.contactDes}</Text>
+      <Text className="text-xl font-semibold">{STRINGS.contactDes}</Text>
     ),
-    headerLeft: () => (
-      <Drawer size={20} color={COLORS.nonePrimary}/>
-    ),
- 
+    headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
+
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
@@ -81,12 +72,10 @@ export const notification = {
   options: {
     ...screenBottomOption,
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.notification}</Text>
+      <Text className="text-xl font-semibold">{STRINGS.notification}</Text>
     ),
-    headerLeft: () => (
-      <Drawer size={20} color={COLORS.nonePrimary}/>
-    ),
- 
+    headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
+
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
@@ -109,11 +98,9 @@ export const account = {
       backgroundColor: COLORS.main,
     },
     headerTitle: () => (
-      <Text className="text-lg font-bold text-white">{STRINGS.account}</Text>
+      <Text className="text-xl font-semibold text-white">{STRINGS.account}</Text>
     ),
-    headerLeft: () => (
-      <Drawer size={20} color={COLORS.noneBasic}/>
-    ),
+    headerLeft: () => <Drawer size={25} color={COLORS.noneBasic} />,
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;

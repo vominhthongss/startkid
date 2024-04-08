@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as NAVIGATIONS from "../../components/navigations/navigations";
 import * as SCREENS_NAME from "../../constants/screensName";
-import * as SIZES from "../../constants/size";
 import { Text, TouchableOpacity, View } from "react-native";
 import * as COLORS from "../../constants/colors";
 import AddIcon from "../../../assets/svg/AddIcon";

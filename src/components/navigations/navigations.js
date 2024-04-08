@@ -13,6 +13,8 @@ import AccountIcon from "../../../assets/svg/AccountIcon";
 import ContactIcon from "../../../assets/svg/ContactIcon";
 import NotificationIcon from "../../../assets/svg/NotificationIcon";
 import { useIsFocused } from "@react-navigation/native";
+import Drawer from "../Drawer/Drawer";
+import Alert from "../Alert/Alert";
 
 export const home = {
   index: 1,
@@ -21,19 +23,17 @@ export const home = {
   options: {
     ...screenBottomOption,
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.home} </Text>
+      <Text className="text-lg font-bold">{STRINGS.homeDes} </Text>
     ),
     //color
     // headerStyle: {
     //   backgroundColor: 'red'
     // },
-    //left
     headerLeft: () => (
-      <Text className="text-lg font-bold">Insert icon </Text>
+      <Drawer size={20} color={COLORS.nonePrimary}/>
     ),
-    //right
     headerRight: () => (
-      <Text className="text-lg font-bold">Insert icon </Text>
+      <Alert size={20} color={COLORS.noneSecondary} />
     ),
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
@@ -55,13 +55,17 @@ export const contact = {
   options: {
     ...screenBottomOption,
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.contact}</Text>
+      <Text className="text-lg font-bold">{STRINGS.contactDes}</Text>
     ),
+    headerLeft: () => (
+      <Drawer size={20} color={COLORS.nonePrimary}/>
+    ),
+ 
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className={`pt-3 -ml-[${SIZES.centerBottom}px]`}>
+        <View className={`pt-3 -ml-[32px]`}>
           <ContactIcon size={size} color={iconColor} />
           <Text style={{ color: iconColor }}>{SCREENS_NAME.contact}</Text>
         </View>
@@ -79,11 +83,15 @@ export const notification = {
     headerTitle: () => (
       <Text className="text-lg font-bold">{STRINGS.notification}</Text>
     ),
+    headerLeft: () => (
+      <Drawer size={20} color={COLORS.nonePrimary}/>
+    ),
+ 
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className={`pt-3 ml-[${SIZES.centerBottom+2}px]`}>
+        <View className={`pt-3 ml-[32px]`}>
           <NotificationIcon size={size} color={iconColor} />
           <Text style={{ color: iconColor }}>{SCREENS_NAME.notification}</Text>
         </View>
@@ -97,8 +105,14 @@ export const account = {
   component: AccountScreen,
   options: {
     ...screenBottomOption,
+    headerStyle: {
+      backgroundColor: COLORS.main,
+    },
     headerTitle: () => (
-      <Text className="text-lg font-bold">{STRINGS.account}</Text>
+      <Text className="text-lg font-bold text-white">{STRINGS.account}</Text>
+    ),
+    headerLeft: () => (
+      <Drawer size={20} color={COLORS.noneBasic}/>
     ),
     tabBarIcon: ({ color, size }) => {
       const isFocused = useIsFocused();

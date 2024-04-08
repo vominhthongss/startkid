@@ -1,5 +1,9 @@
 export const backTitle = "Trở lại";
 export const home = "Trang chủ";
+export const homeDes = "Mầm Non Ngôi Sao Nhỏ";
 export const contact = "Danh bạ";
+export const contactDes = "Danh bạ";
 export const notification = "Thông báo";
+export const notificationDes = "Thông báo";
 export const account = "Tài khoản";
+export const accountDes = "Tài khoản";

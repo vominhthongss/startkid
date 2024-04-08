@@ -21,7 +21,7 @@ function MainTabScreen() {
     });
   return (
     <View className="flex flex-col justify-end h-full relative">
-      <View className={`absolute shadow z-10 -ml-[${SIZES.centerBottom}px] bottom-[28px] left-1/2 transform -translate-x-1/2`}>
+      <View className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}>
         <TouchableOpacity onPress={()=>{}}>
           <AddIcon color={COLORS.main} />
         </TouchableOpacity>

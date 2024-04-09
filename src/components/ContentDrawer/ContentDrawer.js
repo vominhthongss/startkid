@@ -43,7 +43,7 @@ function ContentDrawer() {
             handlePressOutside();
           }}>
           <View className="bg-white w-full h-[95%] rounded-r-3xl">
-            //TODO content is here !
+            {/* TODO */}
           </View>
         </OutsidePressHandler>
       </Animated.View>

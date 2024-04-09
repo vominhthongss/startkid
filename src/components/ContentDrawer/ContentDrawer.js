@@ -27,25 +27,24 @@ function ContentDrawer() {
 
   return (
     <View
-      className="absolute z-50 top-0 border h-full w-full"
+      className="absolute z-50 h-full w-full"
       style={{
         backgroundColor: "rgba(217, 217, 217, 0.5)",
-      }}
-    >
+      }}>
       <Animated.View
         style={[
           {
             transform: [{ translateX: slideAnim }],
           },
-        ]}
-      >
+        ]}>
         <OutsidePressHandler
-          className="h-full w-64 bg-white"
+          className="h-full w-64 flex flex-col justify-end"
           onOutsidePress={() => {
             handlePressOutside();
-          }}
-        >
-          <Text className="p-10">Content here</Text>
+          }}>
+          <View className="bg-white w-full h-[95%] rounded-r-3xl">
+            //TODO content is here !
+          </View>
         </OutsidePressHandler>
       </Animated.View>
     </View>

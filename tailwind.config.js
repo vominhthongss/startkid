@@ -8,7 +8,11 @@ module.exports = {
     "./src/navigations/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        main: "#0A6843",
+      },
+    },
   },
   plugins: [],
 };

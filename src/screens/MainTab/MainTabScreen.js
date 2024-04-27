@@ -61,7 +61,7 @@ function MainTabScreen({ opened }) {
             <Animated.View style={[styles.item]}>
               <View style={styles.backgroundCircle}>
                 <TouchableOpacity
-                  style={[styles.popupButton]}
+                  className="w-14 h-14 mt-5 ml-5"
                   onPress={handlePopupButtonPress}
                 >
                   <ButtonPopupTop color={COLORS.main} />
@@ -69,7 +69,7 @@ function MainTabScreen({ opened }) {
               </View>
               <Text>Dặn thuốc</Text>
             </Animated.View>
-            <View style={styles.rowContainer}>
+            <View className="mt-5 flex-row">
               <Animated.View
                 style={[
                   styles.item,
@@ -85,9 +85,9 @@ function MainTabScreen({ opened }) {
                   },
                 ]}
               >
-                <View style={styles.backgroundCircle}>
+                <View className="bg-white w-17 h-17 rounded-full">
                   <TouchableOpacity
-                    style={[styles.popupButton]}
+                    className="w-14 h-12 mt-6 ml-5"
                     onPress={handlePopupButtonPress}
                   >
                     <ButtonPopupLeft color={COLORS.main} />
@@ -110,23 +110,24 @@ function MainTabScreen({ opened }) {
                   },
                 ]}
               >
-                <View style={styles.popupContainer}>
-                  <View style={styles.backgroundCircle}>
-                    <TouchableOpacity
-                      style={[styles.popupButton]}
-                      onPress={handlePopupButtonPress}
-                    >
-                      <ButtonPopupRight color={COLORS.main} />
-                    </TouchableOpacity>
-                  </View>
-                  <Text className="text-center">Xin nghỉ</Text>
+                <View className="bg-white w-17 h-17 rounded-full">
+                  <TouchableOpacity
+                    className="w-14 h-14 mt-4 ml-5"
+                    onPress={handlePopupButtonPress}
+                  >
+                    <ButtonPopupRight color={COLORS.main} />
+                  </TouchableOpacity>
                 </View>
+                <Text className="text-center">Xin nghỉ</Text>
               </Animated.View>
             </View>
           </View>
         )}
         <TouchableOpacity onPress={() => setShowIcons(!showIcons)}>
-          <AddIcon color={COLORS.main} style={{ transform: [{ rotate: showIcons ? '90deg' : '0deg' }] }}/>
+          <AddIcon
+            color={COLORS.main}
+            style={{ transform: [{ rotate: showIcons ? "90deg" : "0deg" }] }}
+          />
         </TouchableOpacity>
       </View>
       <Tab.Navigator initialRouteName={SCREENS_NAME.home}>
@@ -137,30 +138,6 @@ function MainTabScreen({ opened }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  
-  popupContainer: {
-    justifyContent: "space-between",
-  },
-
-  popupButton: {
-    backgroundColor: COLORS.primary,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginTop: 20,
-    marginLeft: 17,
-  },
-
-  rowContainer: {
-    paddingTop: 20,
-    flexDirection: "row",
-  },
-
   backgroundCircle: {
     backgroundColor: "white",
     width: 70,
@@ -169,7 +146,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
   },
-
 });
 
 export default MainTabScreen;

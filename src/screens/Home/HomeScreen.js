@@ -5,7 +5,14 @@ import BottomArrowIcon from "../../../assets/svg/BottomArrowIcon";
 import { FlatGrid } from "react-native-super-grid";
 import { menus } from "../../constants/menus";
 import { posts } from "../../mock/posts";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useDispatch } from "react-redux";
+import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
 function HomeScreen() {
+  const dispatch = useDispatch();
+  const handleOpenSwipeUp = () => {
+    dispatch(turnOnSwipeUpDrawer());
+  };
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row items-center px-10 border-2 border-main w-[95%] h-28 mx-auto mt-3 rounded-lg">
@@ -25,10 +32,13 @@ function HomeScreen() {
         itemDimension={90}
         data={menus}
         renderItem={({ item }) => (
-          <View className="flex flex-col items-center">
-            {item.icon}
-            <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null}>
+            <View className="flex flex-col items-center">
+              {item.icon}
+              <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       />
 

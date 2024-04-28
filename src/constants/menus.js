@@ -33,5 +33,6 @@ export const menus = [
   {
     icon: <ICONS.LearnMoreIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.learMore,
+    showSwipeUpDrawer: true,
   },
 ];

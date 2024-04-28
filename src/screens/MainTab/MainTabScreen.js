@@ -11,6 +11,7 @@ import { Animated } from "react-native";
 import ButtonPopupLeft from "../../../assets/svg/ButtonPopupLeft";
 import ButtonPopupTop from "../../../assets/svg/ButtonPopupTop";
 import ButtonPopupRight from "../../../assets/svg/ButtonPopupRight";
+import SwipeUpDrawer from "../../components/SwipeUpDrawer/SwipeUpDrawer";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +40,8 @@ function MainTabScreen() {
   return (
     <View className="flex flex-col justify-end h-full relative">
       {show && <ContentDrawer />}
+      <SwipeUpDrawer/>
+
       <View
         className="w-full h-full absolute z-10"
         style={{

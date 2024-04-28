@@ -15,10 +15,9 @@ function SwipeUpDrawer() {
   return (
     <View
       style={{
-        zIndex: show ? "50" : "0",
         backgroundColor: "rgba(217, 217, 217, 0.5)",
       }}
-      className="absolute  h-full w-full">
+      className={`absolute h-full w-full ${show ? "z-50" : "z-0"}`}>
       <BottomSheet
         onClose={() => {
           dispatch(turnOffSwipeUpDrawer());

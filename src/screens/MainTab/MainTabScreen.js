@@ -40,18 +40,15 @@ function MainTabScreen() {
   return (
     <View className="flex flex-col justify-end h-full relative">
       {show && <ContentDrawer />}
-      <SwipeUpDrawer/>
-
+      <SwipeUpDrawer />
       <View
         className="w-full h-full absolute z-10"
         style={{
           display: showIcons ? "flex" : "none",
           backgroundColor: showIcons ? "rgba(0, 0, 0, 0.25)" : "transparent",
-        }}
-      ></View>
+        }}></View>
       <View
-        className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}
-      >
+        className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}>
         {showIcons && (
           <View>
             <View>
@@ -67,13 +64,11 @@ function MainTabScreen() {
                       },
                     ],
                   },
-                ]}
-              >
+                ]}>
                 <View className="bg-white w-20 h-17 rounded-full justify-center">
                   <TouchableOpacity
                     className="w-14 h-14 mt-5 ml-6"
-                    onPress={handlePopupButtonPress}
-                  >
+                    onPress={handlePopupButtonPress}>
                     <ButtonPopupTop color={COLORS.main} />
                   </TouchableOpacity>
                 </View>
@@ -93,13 +88,11 @@ function MainTabScreen() {
                       },
                     ],
                   },
-                ]}
-              >
+                ]}>
                 <View className="bg-white w-17 h-17 rounded-full">
                   <TouchableOpacity
                     className="w-14 h-12 mt-6 ml-5"
-                    onPress={handlePopupButtonPress}
-                  >
+                    onPress={handlePopupButtonPress}>
                     <ButtonPopupLeft color={COLORS.main} />
                   </TouchableOpacity>
                 </View>
@@ -117,13 +110,11 @@ function MainTabScreen() {
                       },
                     ],
                   },
-                ]}
-              >
+                ]}>
                 <View className="bg-white w-17 h-17 rounded-full">
                   <TouchableOpacity
                     className="w-14 h-14 mt-4 ml-5"
-                    onPress={handlePopupButtonPress}
-                  >
+                    onPress={handlePopupButtonPress}>
                     <ButtonPopupRight color={COLORS.main} />
                   </TouchableOpacity>
                 </View>
@@ -135,8 +126,7 @@ function MainTabScreen() {
         <TouchableOpacity
           onPress={() => setShowIcons(!showIcons)}
           style={{ transform: [{ rotate: showIcons ? "45deg" : "0deg" }] }}
-          className="w-12 h-12"
-        >
+          className="w-12 h-12">
           <AddIcon color={COLORS.main} />
         </TouchableOpacity>
       </View>

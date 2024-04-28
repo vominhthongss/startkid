@@ -1,9 +1,10 @@
-import { ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import AvatarIcon from "../../../assets/svg/AvatarIcon";
 import * as COLORS from "../../constants/colors";
 import BottomArrowIcon from "../../../assets/svg/BottomArrowIcon";
 import { FlatGrid } from "react-native-super-grid";
 import { menus } from "../../constants/menus";
+import { posts } from "../../mock/posts";
 function HomeScreen() {
   return (
     <ScrollView className="bg-white h-full">
@@ -27,6 +28,20 @@ function HomeScreen() {
           <View className="flex flex-col items-center">
             {item.icon}
             <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
+          </View>
+        )}
+      />
+
+      <FlatGrid
+        itemDimension={150}
+        data={posts}
+        renderItem={({ item }) => (
+          <View className="flex flex-col items-center border rounded-lg">
+            <Image
+              className="w-full h-32 object-fill"
+              source={{ uri: item.src }}
+            />
+            <Text>{item.title}</Text>
           </View>
         )}
       />

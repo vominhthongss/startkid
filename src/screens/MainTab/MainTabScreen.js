@@ -47,7 +47,7 @@ function MainTabScreen() {
         }}
       ></View>
       <View
-        className={`absolute z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}
+        className={`absolute shadow z-10 -ml-[30px] bottom-[28px] left-1/2 transform -translate-x-1/2`}
       >
         {showIcons && (
           <View>

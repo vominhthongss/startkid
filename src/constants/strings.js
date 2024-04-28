@@ -8,7 +8,7 @@ export const notificationDes = "Thông báo";
 export const account = "Tài khoản";
 export const accountDes = "Tài khoản";
 
-// Drawer string 
+// Drawer string
 export const parentDiary = "Nhật ký phụ huynh";
 export const messageBeginningDay = "Lời nhắn đầu ngày";
 export const administerMedicine = "Dặn thuốc";
@@ -35,4 +35,15 @@ export const accountDrawer = "Tài khoản";
 
 export const admissions = "Tuyển sinh";
 export const logout = "Đăng xuất";
-// End drawer string 
+// End drawer string
+
+//Menu list
+export const message = "Lời nhắn";
+export const remindMedicine = "Dặn thuốc";
+export const leaveRequest = "Xin nghỉ";
+export const picture = "Album";
+export const com = "Nhận xét";
+export const attend = "Điểm danh";
+export const fee = "Học phí";
+export const learMore = "Xem thêm";
+//End menu list

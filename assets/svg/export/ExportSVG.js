@@ -23,33 +23,49 @@ import { RuleSettingIcon } from "../RuleSettingIcon";
 import { SMSIcon } from "../SMSIcon";
 import { SupportAgentIcon } from "../SupportAgentIcon";
 import { AvatarIcon } from "../AvatarIcon";
+import MessageIcon from "../MessageIcon";
+import RemindMedicineIcon from "../RemindMedicineIcon";
+import PictureIcon from "../PictureIcon";
+import CommentIcon from "../CommentIcon";
+import AttendIcon from "../AttendIcon";
+import FeeIcon from "../FeeIcon";
+import LearnMoreIcon from "../LearnMoreIcon";
+import LeaveRequestIcon from "../LeaveRequestIcon";
 
 const exportSvg = {
-    AccountBalanceWalletIcon,
-    AccountIcon,
-    AddIcon,
-    AlertIcon,
-    AssignmentIndIcon,
-    AvatarIcon,
-    CalendarIcon,
-    ContactIcon,
-    DateRangeIcon,
-    DeveloperGuideIcon,
-    DraftIcon,
-    DrawerIcon,
-    EditNoteIcon,
-    FullCoverageIcon,
-    HomeIcon,
-    LogoutIcon,
-    ManageAccountIcon,
-    NestCameraOutdoorIcon,
-    NotificationIcon,
-    PillIcon,
-    QuickReferenceIcon,
-    RestaurantMenuIcon,
-    RuleSettingIcon,
-    SMSIcon,
-    SupportAgentIcon,
-}
+  AccountBalanceWalletIcon,
+  AccountIcon,
+  AddIcon,
+  AlertIcon,
+  AssignmentIndIcon,
+  AvatarIcon,
+  CalendarIcon,
+  ContactIcon,
+  DateRangeIcon,
+  DeveloperGuideIcon,
+  DraftIcon,
+  DrawerIcon,
+  EditNoteIcon,
+  FullCoverageIcon,
+  HomeIcon,
+  LogoutIcon,
+  ManageAccountIcon,
+  NestCameraOutdoorIcon,
+  NotificationIcon,
+  PillIcon,
+  QuickReferenceIcon,
+  RestaurantMenuIcon,
+  RuleSettingIcon,
+  SMSIcon,
+  SupportAgentIcon,
+  MessageIcon,
+  RemindMedicineIcon,
+  LeaveRequestIcon,
+  PictureIcon,
+  CommentIcon,
+  AttendIcon,
+  FeeIcon,
+  LearnMoreIcon
+};
 
 export default exportSvg;

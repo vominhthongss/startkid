@@ -32,7 +32,6 @@ function MainTabScreen() {
       <View className={`absolute z-10 border h-full w-full`}>
         <CenterButton />
       </View>
-
       <Tab.Navigator initialRouteName={SCREENS_NAME.home}>
         {navigations}
       </Tab.Navigator>

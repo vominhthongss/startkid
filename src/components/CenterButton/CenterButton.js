@@ -1,4 +1,4 @@
-import { Animated, View } from "react-native";
+import { View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 import AddIcon from "../../../assets/svg/AddIcon";
@@ -8,12 +8,6 @@ import { centerButtons } from "../../constants/centerButtons";
 import { FlatGrid } from "react-native-super-grid";
 function CenterButton() {
   const [showIcons, setShowIcons] = useState(false);
-
-  const animation = new Animated.Value(0);
-
-  const handlePopupButtonPress = () => {
-    setShowIcons(!showIcons);
-  };
   return (
     <View className="w-full h-full">
       {showIcons && (

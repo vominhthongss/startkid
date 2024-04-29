@@ -11,7 +11,6 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.message,
-    className: "h-44 flex flex-col justify-end",
   },
   {
     icon: (
@@ -22,7 +21,6 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.remindMedicine,
-    className: "pb-10 h-44",
   },
   {
     icon: (
@@ -33,6 +31,5 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.leaveRequest,
-    className: "h-44 flex flex-col justify-end",
   },
 ];

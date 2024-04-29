@@ -1,12 +1,20 @@
 import { View, Text } from "react-native";
+import { notifications } from "../../mock/notifications";
+import NotificationItem from "../../components/NotificationItem/NotificationItem";
+import { ScrollView } from "react-native-gesture-handler";
 
 function NotificationScreen() {
   return (
-    <View className="flex-1 justify-center items-center">
-      <View className="items-center">
-        <Text className="text-black">Account Screen</Text>
-      </View>
-    </View>
+    <ScrollView className="bg-white">
+      {notifications.map((notification) => (
+        <NotificationItem
+          title={notification.title}
+          thumb={notification.thumb}
+          description={notification.description}
+          dateTime={notification.dateTime}
+        />
+      ))}
+    </ScrollView>
   );
 }
 

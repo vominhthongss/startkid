@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
 
-const LeaveRequestIcon = ({ size, color }) => (
+const LeaveRequestIcon = ({ size, color, otherColor }) => (
   <Svg
     width={size}
     height={size}
@@ -12,7 +12,7 @@ const LeaveRequestIcon = ({ size, color }) => (
       cx="30.5"
       cy="30.5"
       r="30.5"
-      fill={`rgba(${color},0.1)`}
+      fill={`${otherColor ? otherColor : `rgba(${color},0.1)`}`}
     />
     <Mask
       id="mask0_9_372"

@@ -1,8 +1,5 @@
 import { Animated, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import ButtonPopupTop from "../../../assets/svg/ButtonPopupTop";
-import ButtonPopupLeft from "../../../assets/svg/ButtonPopupLeft";
-import ButtonPopupRight from "../../../assets/svg/ButtonPopupRight";
 import { useState } from "react";
 import AddIcon from "../../../assets/svg/AddIcon";
 import * as COLORS from "../../constants/colors";
@@ -18,27 +15,30 @@ function CenterButton() {
     setShowIcons(!showIcons);
   };
   return (
-    <View>
-      
-        <View>
-      
+    <View className="w-full h-full">
       {showIcons && (
-        <View className="-left-1/2">
-          <FlatGrid
-            itemDimension={70}
-            data={centerButtons}
-            renderItem={({ item }) => (
-              <TouchableOpacity className={item.className}>
-                <View className="flex flex-col items-center">
-                  {item.icon}
-                  <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+        <View
+          className="h-full w-full flex flex-row justify-center"
+          style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
+          <View className="absolute bottom-12">
+            <FlatGrid
+              itemDimension={70}
+              data={centerButtons}
+              renderItem={({ item }) => (
+                <TouchableOpacity className={item.className}>
+                  <View className="flex flex-col items-center">
+                    {item.icon}
+                    <Text className="text-white font-bold mt-3">
+                      {item.text}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
       )}
-      <View className="-ml-[30px] -mb-2">
+      <View className="absolute bottom-5 left-1/2 -ml-[26px] shadow">
         <TouchableOpacity
           onPress={() => setShowIcons(!showIcons)}
           style={{ transform: [{ rotate: showIcons ? "45deg" : "0deg" }] }}
@@ -47,8 +47,6 @@ function CenterButton() {
         </TouchableOpacity>
       </View>
     </View>
-    </View>
-    
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle } from "react-native-svg";
 
-const RemindMedicineIcon = ({ size, color }) => (
+const RemindMedicineIcon = ({ size, color, otherColor }) => (
   <Svg
     width={size}
     height={size}
@@ -12,7 +12,7 @@ const RemindMedicineIcon = ({ size, color }) => (
       cx="30.5"
       cy="30.5"
       r="30.5"
-      fill={`rgba(${color},0.1)`}
+      fill={`${otherColor ? otherColor : `rgba(${color},0.1)`}`}
       fill-opacity="0.1"
     />
     <Path

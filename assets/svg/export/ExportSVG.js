@@ -32,6 +32,8 @@ import FeeIcon from "../FeeIcon";
 import LearnMoreIcon from "../LearnMoreIcon";
 import LeaveRequestIcon from "../LeaveRequestIcon";
 import MediaIcon from "../MediaIcon";
+import { SearchIcon } from "../SearchIcon";
+import { CallIcon } from "../CallIcon";
 
 const exportSvg = {
   AccountBalanceWalletIcon,
@@ -68,6 +70,9 @@ const exportSvg = {
   FeeIcon,
   MediaIcon,
   LearnMoreIcon,
+  LearnMoreIcon,
+  SearchIcon,
+  CallIcon
 };
 
 export default exportSvg;

@@ -47,3 +47,7 @@ export const attend = "Điểm danh";
 export const fee = "Học phí";
 export const learMore = "Xem thêm";
 //End menu list
+
+// Contact screen
+export const seacrh = "Tìm kiếm";
+// End Contact screen

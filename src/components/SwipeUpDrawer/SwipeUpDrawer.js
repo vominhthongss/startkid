@@ -25,7 +25,9 @@ function SwipeUpDrawer() {
         sliderMinHeight={0}
         isOpen={false}
         ref={(ref) => (panelRef.current = ref)}>
-        <Text style={{ paddingVertical: 20 }}>Some random content</Text>
+        <View>
+          {/* TODO */}
+          </View>
       </BottomSheet>
     </View>
   );

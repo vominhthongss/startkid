@@ -51,3 +51,5 @@ export const learMore = "Xem thêm";
 // Contact screen
 export const seacrh = "Tìm kiếm";
 // End Contact screen
+
+export const school = "Trường";

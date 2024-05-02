@@ -9,7 +9,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
 import { useNavigation } from "@react-navigation/native";
-import * as SCREENS_NAME from "../../constants/screensName";
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -17,8 +16,11 @@ function HomeScreen() {
   const handleOpenSwipeUp = () => {
     dispatch(turnOnSwipeUpDrawer());
   };
-  const handleGoToScreen = () => {
-    navigation.navigate(SCREENS_NAME.leaveRequest);
+  const handleGoToScreen = (screen) => {
+    if (!screen) {
+      return;
+    }
+    navigation.navigate(screen);
   };
   return (
     <ScrollView className="bg-white h-full">
@@ -40,7 +42,11 @@ function HomeScreen() {
         data={menus}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : handleGoToScreen}>
+            onPress={() =>
+              item.showSwipeUpDrawer
+                ? handleOpenSwipeUp()
+                : handleGoToScreen(item.screen)
+            }>
             <View className="flex flex-col items-center">
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>

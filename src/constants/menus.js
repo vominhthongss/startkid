@@ -1,6 +1,7 @@
 import * as STRINGS from "./strings";
 import ICONS from "../../assets/svg/export/ExportSVG";
 import * as COLORS from "../constants/colors";
+import * as SCREENS_NAME from "../constants/screensName";
 export const menus = [
   {
     icon: <ICONS.MessageIcon size={60} color={COLORS.mainRgba} />,
@@ -13,6 +14,7 @@ export const menus = [
   {
     icon: <ICONS.LeaveRequestIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.leaveRequest,
+    screen: SCREENS_NAME.leaveRequest,
   },
   {
     icon: <ICONS.PictureIcon size={60} color={COLORS.mainRgba} />,

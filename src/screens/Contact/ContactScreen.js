@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, TextInput, FlatList, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 import { contacts } from "../../mock/contacts";
 import { SearchIcon } from "../../../assets/svg/SearchIcon";
 import { CallIcon } from "../../../assets/svg/CallIcon";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 
-const ContactItem = ({ contact  }) => (
-
-  <View className="w-[90%] flex flex-row items-center justify-between rounded-2xl self-center p-2 m-[2%]" style={ styles.shadow }>
+const ContactItem = ({ contact }) => (
+  <View
+    className="w-[90%] flex flex-row items-center justify-between rounded-2xl self-center p-2 m-[2%]"
+    style={styles.shadow}>
     <View className="flex flex-row items-center">
       <Image
-        source={{uri: contact.avatar }}
+        source={{ uri: contact.avatar }}
         className="ml-3 w-16 h-16 rounded-full"
-        onLoad={() => { }}
-        onError={() => { }}
+        onLoad={() => {}}
+        onError={() => {}}
       />
       <View className="ml-6">
         <Text className="text-[#333333] text-lg">{contact.contactName}</Text>
@@ -22,22 +31,22 @@ const ContactItem = ({ contact  }) => (
       </View>
     </View>
     <View className="mr-4">
-      <TouchableOpacity onPress={()=>{}}>
-        <CallIcon/>
+      <TouchableOpacity onPress={() => {}}>
+        <CallIcon />
       </TouchableOpacity>
     </View>
   </View>
 );
 
 const ContactList = ({ contacts }) => {
-
   const renderCategory = ({ item }) => {
-
     return (
       <View>
-        {item.contactItems.length != 0
-        ? <Text className="ml-5 text-lg">{item.contactCaterogy}</Text> 
-        : <Text className="hidden"></Text>}
+        {item.contactItems.length != 0 ? (
+          <Text className="ml-5 text-lg">{item.contactCaterogy}</Text>
+        ) : (
+          <Text className="hidden"></Text>
+        )}
         <FlatList
           data={item.contactItems}
           keyExtractor={(item, index) => index}
@@ -57,15 +66,18 @@ const ContactList = ({ contacts }) => {
 };
 
 function ContactScreen() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const placeholder = STRINGS.seacrh;
 
   const contactsFiltered = contacts.map((contact) => {
-    let contactTemp = {...contact};
-    contactTemp.contactItems = contact.contactItems.filter((contactItem)=>{
+    let contactTemp = { ...contact };
+    contactTemp.contactItems = contact.contactItems.filter((contactItem) => {
       return searchQuery
-          ? (contactItem.contactName.toLowerCase().includes(searchQuery.toLowerCase()) || contactItem.phoneNumber.includes(searchQuery))
-          : contactItem;
+        ? contactItem.contactName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+            contactItem.phoneNumber.includes(searchQuery)
+        : contactItem;
     });
 
     return contactTemp;
@@ -73,9 +85,9 @@ function ContactScreen() {
 
   return (
     <View style={{ backgroundColor: "#fff" }} className="h-full">
-      <View className="w-[90%] p-2 flex flex-row items-center mt-5 border-solid rounded-3xl border self-center"
-        style={{ borderColor: COLORS.main }}
-      >
+      <View
+        className="w-[90%] p-2 flex flex-row items-center mt-5 border-solid rounded-3xl border self-center"
+        style={{ borderColor: COLORS.main }}>
         <SearchIcon />
         <TextInput
           className="ml-2 text-base w-full"
@@ -85,8 +97,6 @@ function ContactScreen() {
         />
       </View>
       <View className="mt-3 h-[90%]">
-        {console.log(contactsFiltered)}
-        {console.log(contacts)}
         <ContactList contacts={contactsFiltered} />
       </View>
     </View>
@@ -94,14 +104,12 @@ function ContactScreen() {
 }
 
 const styles = StyleSheet.create({
-  shadow : {
+  shadow: {
     backgroundColor: COLORS.noneBasic,
     shadowColor: COLORS.dark,
-    // Shadow properties for iOS
     shadowOffset: { width: 2, height: 0 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    // Shadow property for Android
     elevation: 5,
   },
 });

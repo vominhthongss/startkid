@@ -1,5 +1,6 @@
 import MainTabScreen from "../screens/MainTab/MainTabScreen";
 import { screenChildOption, screenParentOption } from "../constants/options";
+import LoginScreen from "../screens/Login/LoginScreen";
 import * as SCREENS_NAME from "../constants/screensName";
 import LeaveRequestScreen from "../screens/LeaveRequest/LeaveRequestScreen";
 
@@ -12,4 +13,9 @@ export const leaveRequest = {
   name: SCREENS_NAME.leaveRequest,
   component: LeaveRequestScreen,
   options: screenChildOption(SCREENS_NAME.leaveRequest),
+}
+export const login = {
+  name: SCREENS_NAME.login,
+  component: LoginScreen,
+  options: screenParentOption,
 };

@@ -21,6 +21,10 @@ export const home = {
   component: HomeScreen,
   options: {
     ...screenBottomOption,
+    headerStyle: {
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
+    },
     headerTitle: () => (
       <Text className="text-xl font-semibold" style={{ color: COLORS.main }}>
         {STRINGS.homeDes}
@@ -47,6 +51,10 @@ export const contact = {
   component: ContactScreen,
   options: {
     ...screenBottomOption,
+    headerStyle: {
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
+    },
     headerTitle: () => (
       <Text className="text-xl font-semibold">{STRINGS.contactDes}</Text>
     ),
@@ -71,6 +79,10 @@ export const notification = {
   component: NotificationScreen,
   options: {
     ...screenBottomOption,
+    headerStyle: {
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
+    },
     headerTitle: () => (
       <Text className="text-xl font-semibold">{STRINGS.notification}</Text>
     ),
@@ -96,9 +108,13 @@ export const account = {
     ...screenBottomOption,
     headerStyle: {
       backgroundColor: COLORS.main,
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
     },
     headerTitle: () => (
-      <Text className="text-xl font-semibold text-white">{STRINGS.account}</Text>
+      <Text className="text-xl font-semibold text-white">
+        {STRINGS.account}
+      </Text>
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.noneBasic} />,
     tabBarIcon: ({ color, size }) => {

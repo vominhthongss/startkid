@@ -32,7 +32,7 @@ const SavedPasswordModal = ({ isVisible, onClose, onSelected, onDelete, savedPas
         <View className="w-80 rounded-2xl bg-white">
           <View className="rounded-t-2xl pt-2 pb-2 pl-6" style={{backgroundColor: COLORS.main}}>
           <View className="flex-row items-center justify-between">
-            <Text className="text-lg text-white">{STRINGS.savedPassword}</Text>
+            <Text className="text-lg text-white">{STRINGS.selectAccount}</Text>
           </View>
           </View>
           <View className="pl-2">
@@ -116,7 +116,6 @@ const LoginScreen = () => {
   }
 
   const handleDeletePhoneNumberAndPassword = (phoneNumber) => {
-
     const updatedSavedPasswordList = savedPasswordList.filter(savedPassword => savedPassword.phoneNumber !== phoneNumber);
     setSavedPasswordList(updatedSavedPasswordList);
   }
@@ -181,7 +180,6 @@ const LoginScreen = () => {
       />
       <CustomModal />
     </View>
-    
   );
 };
 

@@ -15,8 +15,11 @@ import * as STRINGS from "../../constants/strings";
 import RadioButton from "../../components/RadioButton/RadioButton";
 import { savedPasswords } from '../../mock/savedPassword';
 import OutsidePressHandler from "react-native-outside-press";
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../store/modalSlice/modalSlice';
+import CustomModal from '../../components/CustomModal/CustomModal';
 
-const CustomAlert = ({ isVisible, onClose, header, body, footer }) => {
+const SavedPasswordModal = ({ isVisible, onClose, onSelected, onDelete, savedPasswordList }) => {
   return (
     <Modal
       transparent={true}
@@ -28,13 +31,32 @@ const CustomAlert = ({ isVisible, onClose, header, body, footer }) => {
       <OutsidePressHandler onOutsidePress={onClose}>
         <View className="w-80 rounded-2xl bg-white">
           <View className="rounded-t-2xl pt-2 pb-2 pl-6" style={{backgroundColor: COLORS.main}}>
-            {header}
+          <View className="flex-row items-center justify-between">
+            <Text className="text-lg text-white">{STRINGS.savedPassword}</Text>
+          </View>
           </View>
           <View className="pl-2">
-            {body}
-          </View>
-          <View className="pr-4 pb-2">
-            {footer}
+            <View className="h-16">
+              <FlatList
+                data={savedPasswordList}
+                keyExtractor={(item, index) => index}
+                renderItem={({item})=>(
+                  <View className="w-[95%] flex-row justify-between items-center pl-4 pb-2 pt-3" >
+                    <TouchableOpacity className="w-[90%]" onPress={()=>{onSelected(item.phoneNumber, item.password)}}>
+                      <View className="flex-row items-center">
+                        <UserIcon />
+                        <Text className="text-lg ml-4">{item.phoneNumber}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <View className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center">
+                      <TouchableOpacity onPress={()=>{onDelete(item.phoneNumber)}}>
+                        <TrashIcon />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}>
+              </FlatList>
+            </View>
           </View>
         </View>
       </OutsidePressHandler>
@@ -43,103 +65,44 @@ const CustomAlert = ({ isVisible, onClose, header, body, footer }) => {
   );
 };
 
-const SavedPasswordBodyAlert = ({ onSelected }) =>{
-  return (
-    <View className="max-h-16">
-      <FlatList
-        data={savedPasswords}
-        keyExtractor={(item, index) => index}
-        renderItem={({item})=>(
-          <View className="w-[95%] flex-row justify-between items-center pl-4 pb-2 pt-3" >
-            <TouchableOpacity className="w-[90%]" onPress={()=>{onSelected(item.phoneNumber, item.password)}}>
-              <View className="flex-row items-center">
-                <UserIcon />
-                <Text className="text-lg ml-4">{item.phoneNumber}</Text>
-              </View>
-            </TouchableOpacity>
-            <View className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center">
-              <TouchableOpacity>
-                <TrashIcon />
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-      >
-      </FlatList>
-    </View>
-  )
-}
-
-const TextBodyAlert = ({ description }) => {
-  return (
-    <View className="pt-4 pl-6 pr-4 pb-2">
-      <Text className="text-base">{description}</Text>
-    </View>
-  )
-}
-
-const ModalHeader = ({title, onClose}) =>{
-  return (
-    <View className="flex-row items-center justify-between">
-      <Text className="text-lg text-white">{title}</Text>
-      {onClose ? (<TouchableOpacity onPress={onClose}><Text className="text-white text-lg pr-3">X</Text></TouchableOpacity>) : null}
-    </View>
-  )
-}
-
-const ModalBody = ({ modalBody }) =>{
-  return (
-    <View>
-      {modalBody}
-    </View>
-  )
-}
-
-const ModalFooter = ({ text, onClose }) => {
-  return (
-    <TouchableOpacity onPress={onClose}>
-      <Text className="self-end text-base text-red-600">{text}</Text>
-    </TouchableOpacity>
-  )
-}
-
 const LoginScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [selectedOption, setSelectedOption] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
-  const [modalHeader, setModalHeader] = useState(null);
-  const [modalBody, setModalBody] = useState(null);
-  const [modalFooter, setModalFooter] = useState(null);
+  const [savedPasswordList, setSavedPasswordList] = useState(savedPasswords);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const handleForgotPasswordOpenModal = () => {
+    dispatch(
+      openModal({
+        title: STRINGS.forgotPassword,
+        content: STRINGS.forgotPasswordDes,
+      })
+    );
+  };
+
+  const handleUnSuccessLoginOpenModal = () => {
+    dispatch(
+      openModal({
+        title: STRINGS.unSuccessfulLogin,
+        content: STRINGS.unSuccessfulLoginDes,
+      })
+    );
+  };
 
   const handleLogin = () => {
     if (phoneNumber === '1' && password === '1') {
       navigation.navigate(SCREENS_NAME.mainTab);
     } else {
-        handleDisplayAlert(
-          <ModalHeader title={STRINGS.unSuccessfulLogin}/>,
-          <ModalBody modalBody={<TextBodyAlert description={STRINGS.unSuccessfulLoginDes}/>}/>,
-          <ModalFooter text={STRINGS.close} onClose={handleClose}/>
-        )
+      handleUnSuccessLoginOpenModal();
     }
   };
 
-  const handleForgotPassword = () => {
-    handleDisplayAlert(
-      <ModalHeader title={STRINGS.forgotPassword}/>,
-      <ModalBody modalBody={<TextBodyAlert description={STRINGS.forgotPasswordDes}/>}/>,
-      <ModalFooter text={STRINGS.close} onClose={handleClose}/>
-    )
-  }
-
   const handleSavedPassword = () => {
-    handleDisplayAlert(
-      <ModalHeader title={STRINGS.savedPassword}/>,
-      <ModalBody modalBody={<SavedPasswordBodyAlert onSelected={handleFillPhoneNumberAndPassword}/>}/>,
-      null
-    )
+    setAlertVisible(true);
   }
 
   const togglePasswordVisibility = () => {
@@ -152,11 +115,10 @@ const LoginScreen = () => {
     handleClose();
   }
 
-  const handleDisplayAlert = (header, body, footer) => {
-    setModalHeader(header)
-    setModalBody(body)
-    setModalFooter(footer)
-    setAlertVisible(true);
+  const handleDeletePhoneNumberAndPassword = (phoneNumber) => {
+
+    const updatedSavedPasswordList = savedPasswordList.filter(savedPassword => savedPassword.phoneNumber !== phoneNumber);
+    setSavedPasswordList(updatedSavedPasswordList);
   }
 
   const handleClose = () => {
@@ -199,7 +161,7 @@ const LoginScreen = () => {
           isSelected={selectedOption}
           onPress={() => setSelectedOption(!selectedOption)}
         />
-        <TouchableOpacity onPress={handleForgotPassword}>
+        <TouchableOpacity onPress={handleForgotPasswordOpenModal}>
           <Text style={{color: "#00000066"}} className="text-base" >{STRINGS.forgotPassword}</Text>
         </TouchableOpacity>
       </View>
@@ -210,13 +172,14 @@ const LoginScreen = () => {
       <TouchableOpacity className="mt-4 self-center" onPress={handleSavedPassword}>
         <Text style={{color: "#00000066"}}>{STRINGS.savedPassword}</Text>
       </TouchableOpacity>
-        <CustomAlert
-          isVisible={alertVisible}
-          onClose={handleClose}
-          header={modalHeader}
-          body={modalBody}
-          footer={modalFooter}
-        />
+      <SavedPasswordModal
+        isVisible={alertVisible}
+        onClose={handleClose}
+        onSelected={handleFillPhoneNumberAndPassword}
+        onDelete={handleDeletePhoneNumberAndPassword}
+        savedPasswordList={savedPasswordList}
+      />
+      <CustomModal />
     </View>
     
   );

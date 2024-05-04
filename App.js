@@ -9,7 +9,7 @@ import { EventProvider } from "react-native-outside-press";
 const Stack = createStackNavigator();
 
 function App() {
-  const [initialRoute, setInitialRoute] = useState(ROUTES.mainTab.name);
+  const [initialRoute, setInitialRoute] = useState(ROUTES.login.name);
   const screens = Object.values(ROUTES).map((screen, index) => (
     <Stack.Screen
       key={index}

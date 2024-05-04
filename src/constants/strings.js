@@ -53,3 +53,18 @@ export const seacrh = "Tìm kiếm";
 // End Contact screen
 
 export const school = "Trường";
+
+// Login screen
+export const welcome = "Welcome, StarKid!";
+export const phoneNumber = "Số điện thoại";
+export const password = "Mật khẩu";
+export const rememberPassword = "Nhớ mật khẩu";
+export const forgotPassword = "Quên mật khẩu ?";
+export const forgotPasswordDes = "Để lấy lại mật khẩu, xin vui lòng liên hệ nhà trường.";
+export const login = "Đăng Nhập";
+export const savedPassword = "Sử dụng mật khẩu đã lưu";
+export const selectAccount = "Chọn tài khoản";
+export const unSuccessfulLogin = "Đăng nhập không thành công"
+export const unSuccessfulLoginDes = "Số điện thoại hoặc mật khẩu không chính xác."
+export const close = "Đóng";
+// End login screen 

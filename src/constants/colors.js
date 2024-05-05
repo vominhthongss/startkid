@@ -5,3 +5,5 @@ export const nav = "#EA3637";
 export const nonePrimary = "#333333";
 export const noneSecondary = "#5F5F5F";
 export const noneBasic = "#FFFFFF";
+export const dark = "#000000";
+export const none = "#FFFFFF";

@@ -40,6 +40,9 @@ import FacebookIcon from "../FacebookIcon";
 import FeeIcon_2 from "../FeeIcon_2";
 import LearningIcon from "../Learning";
 import BabyIcon from "../BabyIcon";
+import { SearchIcon } from "../SearchIcon";
+import { CallIcon } from "../CallIcon";
+import {LogoIcon} from "../LogoIcon";
 
 const exportSvg = {
   AccountBalanceWalletIcon,
@@ -84,6 +87,10 @@ const exportSvg = {
   FeeIcon_2,
   BabyIcon,
   LearningIcon,
+  LearnMoreIcon,
+  SearchIcon,
+  CallIcon,
+  LogoIcon
 };
 
 export default exportSvg;

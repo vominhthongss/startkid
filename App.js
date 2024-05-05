@@ -5,7 +5,6 @@ import * as ROUTES from "./src/routes/routes";
 import { Provider } from "react-redux";
 import store from "./src/store/store";
 import { EventProvider } from "react-native-outside-press";
-import SwipeUpDrawer from "./src/components/SwipeUpDrawer/SwipeUpDrawer";
 
 const Stack = createStackNavigator();
 

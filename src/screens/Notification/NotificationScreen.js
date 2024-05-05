@@ -6,8 +6,9 @@ import { ScrollView } from "react-native-gesture-handler";
 function NotificationScreen() {
   return (
     <ScrollView className="bg-white">
-      {notifications.map((notification) => (
+      {notifications.map((notification, index) => (
         <NotificationItem
+          key={index}
           title={notification.title}
           thumb={notification.thumb}
           description={notification.description}

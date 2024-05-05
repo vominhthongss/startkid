@@ -37,7 +37,6 @@ import MenuIcon from "../MenuIcon";
 import CameraIcon from "../CameraIcon";
 import NewsIcon from "../NewsIcon";
 import FacebookIcon from "../FacebookIcon";
-import FeeIcon_2 from "../FeeIcon_2";
 import LearningIcon from "../Learning";
 import BabyIcon from "../BabyIcon";
 import { SearchIcon } from "../SearchIcon";
@@ -84,7 +83,6 @@ const exportSvg = {
   CameraIcon,
   NewsIcon,
   FacebookIcon,
-  FeeIcon_2,
   BabyIcon,
   LearningIcon,
   LearnMoreIcon,

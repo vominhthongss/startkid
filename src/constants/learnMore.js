@@ -59,7 +59,7 @@ export const learnMore = [
     text: STRINGS.baby,
   },
   {
-    icon: <ICONS.FeeIcon_2 size={60} color={COLORS.mainRgba} />,
+    icon: <ICONS.FeeIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.fee,
   },
 

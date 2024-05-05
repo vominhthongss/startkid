@@ -68,3 +68,8 @@ export const unSuccessfulLogin = "Đăng nhập không thành công"
 export const unSuccessfulLoginDes = "Số điện thoại hoặc mật khẩu không chính xác."
 export const close = "Đóng";
 // End login screen 
+
+// LeaveRequest screen
+export const createLeaveRq = "Tạo xin nghỉ";
+export const leaveTimeRange = "Thời gian nghỉ";
+// End leaveRequest screen

@@ -15,6 +15,7 @@ export const screenChildOption = (title) => {
   return {
     title: <Text style={{ fontSize: 20 }}>{title}</Text>,
     headerLeftLabelVisible: false,
+    headerTitleAlign: "center",
     headerBackTitle: STRINGS.backTitle,
     headerStyle: {
       backgroundColor: COLORS.main,

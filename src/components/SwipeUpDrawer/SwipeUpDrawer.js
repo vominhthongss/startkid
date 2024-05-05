@@ -1,13 +1,21 @@
 import React, { useRef } from "react";
-import { Text, View } from "react-native";
+import { Text, View, } from "react-native";
 import BottomSheet from "react-native-simple-bottom-sheet";
 import { useDispatch, useSelector } from "react-redux";
 import { turnOffSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
+import { FlatGrid } from "react-native-super-grid";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { learnMore } from "../../constants/learnMore";
+import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
+
+
 
 function SwipeUpDrawer() {
   const panelRef = useRef(null);
   const dispatch = useDispatch();
-
+  const handleOpenSwipeUp = () => {
+    dispatch(turnOnSwipeUpDrawer());
+  };
   const { show } = useSelector((state) => state.swipeUpDrawer);
   if (show) {
     panelRef.current?.togglePanel();
@@ -26,11 +34,30 @@ function SwipeUpDrawer() {
         isOpen={false}
         ref={(ref) => (panelRef.current = ref)}>
         <View>
-          {/* TODO */}
-          </View>
-      </BottomSheet>
-    </View>
+          <FlatGrid
+            itemDimension={80}
+            data={learnMore}
+            // spacing={0}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null}>
+                <View
+                  className="flex flex-col items-center"
+                >
+                  {item.icon}
+                  <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          // contentContainerStyle={{
+          //   justifyContent: 'space-between', // Canh giữa các cột và căn đều giữa không gian trống
+          // }}
+          />
+        </View>
+      </BottomSheet >
+    </View >
   );
+
 }
 
 export default SwipeUpDrawer;

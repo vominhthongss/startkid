@@ -13,6 +13,7 @@ import { SearchIcon } from "../../../assets/svg/SearchIcon";
 import { CallIcon } from "../../../assets/svg/CallIcon";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
+import { noImage } from "../../constants/images";
 
 const ContactItem = ({ contact }) => (
   <View
@@ -20,13 +21,13 @@ const ContactItem = ({ contact }) => (
     style={styles.shadow}>
     <View className="flex flex-row items-center">
       <Image
-        source={{ uri: contact.avatar }}
+        source={{ uri: contact.avatar || noImage }}
         className="ml-3 w-16 h-16 rounded-full"
         onLoad={() => {}}
         onError={() => {}}
       />
       <View className="ml-6">
-        <Text className="text-[#333333] text-lg">{contact.contactName}</Text>
+        <Text className="text-[#333333] text-lg">{contact.name}</Text>
         <Text className="text-[#999999] text-lg">{contact.phoneNumber}</Text>
       </View>
     </View>
@@ -43,7 +44,7 @@ const ContactList = ({ contacts }) => {
     return (
       <View>
         {item.contactItems.length != 0 ? (
-          <Text className="ml-5 text-lg">{item.contactCaterogy}</Text>
+          <Text className="ml-5 text-lg">{item.category}</Text>
         ) : (
           <Text className="hidden"></Text>
         )}
@@ -73,9 +74,7 @@ function ContactScreen() {
     let contactTemp = { ...contact };
     contactTemp.contactItems = contact.contactItems.filter((contactItem) => {
       return searchQuery
-        ? contactItem.contactName
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
+        ? contactItem.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             contactItem.phoneNumber.includes(searchQuery)
         : contactItem;
     });

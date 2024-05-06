@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import MediaIcon from "../../../assets/svg/MediaIcon";
 
-function NotificationItem({ title, content, dateTime }) {
+function NotificationItem({ title, content, dateTime, image }) {
   return (
     <View className="flex flex-row items-center">
       <Image
@@ -17,10 +17,14 @@ function NotificationItem({ title, content, dateTime }) {
           </Text>
         </View>
         <View className="flex flex-row justify-between">
-          <View className="bg-[#fff3d3] rounded-lg flex flex-row pl-2 pr-2 py-1">
-            <MediaIcon size={15} />
-            <Text className="text-[#999999] ml-2">+1</Text>
-          </View>
+          {image ? (
+            <View className="bg-[#fff3d3] rounded-lg flex flex-row pl-2 pr-2 py-1">
+              <MediaIcon size={15} />
+              <Text className="text-[#999999] ml-2">+{image.length}</Text>
+            </View>
+          ) : (
+            <Text></Text>
+          )}
           <Text className="text-[#84b3a1]">{dateTime}</Text>
         </View>
       </View>

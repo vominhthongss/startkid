@@ -12,6 +12,7 @@ function NotificationScreen() {
           title={notification.title}
           content={notification.content}
           dateTime={notification.dateTime}
+          image={notification.image}
         />
       ))}
     </ScrollView>

@@ -7,12 +7,15 @@ import {
   TextInput,
   FlatList,
 } from "react-native";
-import { contacts } from "../../mock/contacts";
 import { SearchIcon } from "../../../assets/svg/SearchIcon";
 import { CallIcon } from "../../../assets/svg/CallIcon";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 import { noImage } from "../../constants/images";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchContacts } from "../../store/contacts/contactsSlice";
+import { contacts } from "../../mock/contacts";
 
 const ContactItem = ({ contact }) => (
   <View
@@ -76,17 +79,24 @@ function ContactScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const placeholder = STRINGS.seacrh;
 
-  const contactsFiltered = contacts.map((contact) => {
+  const dispatch = useDispatch();
+  const { contacts } = useSelector((state) => state.contacts);
+  const contactsFiltered = contacts?.map((contact) => {
     let contactTemp = { ...contact };
     contactTemp.contactItems = contact.contactItems.filter((contactItem) => {
       return searchQuery
-        ? contactItem.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            contactItem.phoneNumber.includes(searchQuery)
+        ? contactItem.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            contactItem.phoneNumber?.includes(searchQuery)
         : contactItem;
     });
 
     return contactTemp;
   });
+  useEffect(() => {
+    if (!contacts) {
+      dispatch(fetchContacts());
+    }
+  }, [contacts, dispatch, contactsFiltered]);
 
   return (
     <View style={{ backgroundColor: "#fff" }} className="h-full">

@@ -86,7 +86,7 @@ function HomeScreen() {
             <Image
               className="w-full h-32 object-fill rounded-t-md bg-slate-100"
               source={{
-                uri: `${BASE_URL}/${item.image}` || noImage,
+                uri: item.image || noImage,
               }}
             />
             <Text numberOfLines={2}>{item.title}</Text>

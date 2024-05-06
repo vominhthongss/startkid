@@ -9,6 +9,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
 import { useNavigation } from "@react-navigation/native";
+import { noImage } from "../../constants/images";
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -54,17 +55,30 @@ function HomeScreen() {
           </TouchableOpacity>
         )}
       />
-
       <FlatGrid
         itemDimension={150}
         data={posts}
         renderItem={({ item }) => (
-          <View className="flex flex-col items-center border rounded-lg">
+          <View
+            style={{
+              backgroundColor: "white",
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+            }}
+            className="flex flex-col items-center rounded-md pb-1">
             <Image
-              className="w-full h-32 object-fill"
-              source={{ uri: item.src }}
+              className="w-full h-32 object-fill rounded-t-md"
+              source={{
+                uri: item.src || noImage,
+              }}
             />
-            <Text>{item.title}</Text>
+            <Text numberOfLines={2}>{item.title}</Text>
           </View>
         )}
       />

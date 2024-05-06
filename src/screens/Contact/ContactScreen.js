@@ -6,7 +6,6 @@ import {
   Image,
   TextInput,
   FlatList,
-  StyleSheet,
 } from "react-native";
 import { contacts } from "../../mock/contacts";
 import { SearchIcon } from "../../../assets/svg/SearchIcon";
@@ -18,7 +17,14 @@ import { noImage } from "../../constants/images";
 const ContactItem = ({ contact }) => (
   <View
     className="w-[90%] flex flex-row items-center justify-between rounded-2xl self-center p-2 m-[2%]"
-    style={styles.shadow}>
+    style={{
+      backgroundColor: COLORS.noneBasic,
+      shadowColor: COLORS.dark,
+      shadowOffset: { width: 2, height: 0 },
+      shadowOpacity: 0.1,
+      shadowRadius: 10,
+      elevation: 5,
+    }}>
     <View className="flex flex-row items-center">
       <Image
         source={{ uri: contact.avatar || noImage }}
@@ -101,16 +107,5 @@ function ContactScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  shadow: {
-    backgroundColor: COLORS.noneBasic,
-    shadowColor: COLORS.dark,
-    shadowOffset: { width: 2, height: 0 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-  },
-});
 
 export default ContactScreen;

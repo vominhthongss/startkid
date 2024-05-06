@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import * as STRINGS from "../../constants/strings";
+import * as COLORS from "../../constants/colors";
 
 const Loading = () => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const Loading = () => {
   return (
     <View className="flex flex-row justify-center items-center h-full w-full">
       {loading ? (
-        <Text>{STRINGS.loading}</Text>
+        <Text style={{ color: COLORS.main }}>{STRINGS.loading}</Text>
       ) : (
         <Text className="text-red-500 text-center">{STRINGS.noData}</Text>
       )}

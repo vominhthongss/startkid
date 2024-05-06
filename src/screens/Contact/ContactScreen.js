@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchContacts } from "../../store/contacts/contactsSlice";
 import { contacts } from "../../mock/contacts";
+import Loading from "../../components/Loading/Loading";
 
 const ContactItem = ({ contact }) => (
   <View
@@ -112,7 +113,11 @@ function ContactScreen() {
         />
       </View>
       <View className="mt-3 h-[90%]">
-        <ContactList contacts={contactsFiltered} />
+        {contactsFiltered ? (
+          <ContactList contacts={contactsFiltered} />
+        ) : (
+          <Loading />
+        )}
       </View>
     </View>
   );

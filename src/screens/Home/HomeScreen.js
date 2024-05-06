@@ -12,6 +12,7 @@ import { noImage } from "../../constants/images";
 import { fetchPosts } from "../../store/posts/postsSlice";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../constants/url";
+import Loading from "../../components/Loading/Loading";
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -64,33 +65,37 @@ function HomeScreen() {
           </TouchableOpacity>
         )}
       />
-      <FlatGrid
-        itemDimension={150}
-        data={posts}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              backgroundColor: "white",
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.23,
-              shadowRadius: 2.62,
-              elevation: 4,
-            }}
-            className="flex flex-col items-center rounded-md pb-1">
-            <Image
-              className="w-full h-32 object-fill rounded-t-md bg-slate-100"
-              source={{
-                uri: item.image || noImage,
+      {posts ? (
+        <FlatGrid
+          itemDimension={150}
+          data={posts}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                backgroundColor: "white",
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.23,
+                shadowRadius: 2.62,
+                elevation: 4,
               }}
-            />
-            <Text numberOfLines={2}>{item.title}</Text>
-          </View>
-        )}
-      />
+              className="flex flex-col items-center rounded-md pb-1">
+              <Image
+                className="w-full h-32 object-fill rounded-t-md bg-slate-100"
+                source={{
+                  uri: item.image || noImage,
+                }}
+              />
+              <Text numberOfLines={2}>{item.title}</Text>
+            </View>
+          )}
+        />
+      ) : (
+        <Loading />
+      )}
     </ScrollView>
   );
 }

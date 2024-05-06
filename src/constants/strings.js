@@ -61,3 +61,5 @@ export const createLeaveRq = "Tạo xin nghỉ";
 export const leaveTimeRange = "Thời gian nghỉ";
 export const alertName = "Thông báo";
 export const errorResponse = "Đã có lỗi xảy ra";
+export const loading = "Đang tải...";
+export const noData = "Không có dữ liệu";

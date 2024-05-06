@@ -11,8 +11,10 @@ function NotificationItem({ thumb, title, description, dateTime }) {
       />
       <View className="w-[75%] pt-5 pb-5 flex flex-col justify-between ml-5 pr-2 h-[120px] border-b border-[#e6f0ec]">
         <View>
-          <Text>{title}</Text>
-          <Text className="text-[#5F5F5F] text-xs">{description}</Text>
+          <Text numberOfLines={1}>{title}</Text>
+          <Text numberOfLines={3} className="text-[#5F5F5F] text-xs">
+            {description}
+          </Text>
         </View>
         <View className="flex flex-row justify-between">
           <View className="bg-[#fff3d3] rounded-lg flex flex-row pl-2 pr-2 py-1">

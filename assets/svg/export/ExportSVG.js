@@ -32,6 +32,13 @@ import FeeIcon from "../FeeIcon";
 import LearnMoreIcon from "../LearnMoreIcon";
 import LeaveRequestIcon from "../LeaveRequestIcon";
 import MediaIcon from "../MediaIcon";
+import VideoIcon from "../VideoIcon";
+import MenuIcon from "../MenuIcon";
+import CameraIcon from "../CameraIcon";
+import NewsIcon from "../NewsIcon";
+import FacebookIcon from "../FacebookIcon";
+import LearningIcon from "../Learning";
+import BabyIcon from "../BabyIcon";
 import { SearchIcon } from "../SearchIcon";
 import { CallIcon } from "../CallIcon";
 import {LogoIcon} from "../LogoIcon";
@@ -71,6 +78,13 @@ const exportSvg = {
   FeeIcon,
   MediaIcon,
   LearnMoreIcon,
+  VideoIcon,
+  MenuIcon,
+  CameraIcon,
+  NewsIcon,
+  FacebookIcon,
+  BabyIcon,
+  LearningIcon,
   LearnMoreIcon,
   SearchIcon,
   CallIcon,

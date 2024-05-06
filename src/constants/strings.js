@@ -46,6 +46,10 @@ export const com = "Nhận xét";
 export const attend = "Điểm danh";
 export const fee = "Học phí";
 export const learMore = "Xem thêm";
+export const facebook = "Facebook";
+export const video = "Video";
+export const baby = "Con yêu";
+export const learning = "Học tập"
 //End menu list
 
 // Contact screen

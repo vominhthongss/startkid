@@ -10,8 +10,7 @@ function NotificationScreen() {
         <NotificationItem
           key={index}
           title={notification.title}
-          thumb={notification.thumb}
-          description={notification.description}
+          content={notification.content}
           dateTime={notification.dateTime}
         />
       ))}

@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import contentDrawerReducer from "./contentDrawer/contentDrawerSlice";
-import swipeUpDrawerReducer from "./swipeUpDrawer/swipeUpDrawerSlice";
-import modalReducer from './modalSlice/modalSlice';
+import modalReducer from "./modalSlice/modalSlice";
+import postsSlice from "./posts/postsSlice";
+import swipeUpDrawerSlice from "./swipeUpDrawer/swipeUpDrawerSlice";
+import contentDrawerSlice from "./contentDrawer/contentDrawerSlice";
 const store = configureStore({
   reducer: {
-    contentDrawer: contentDrawerReducer,
-    swipeUpDrawer: swipeUpDrawerReducer,
-    modal: modalReducer
+    modal: modalReducer,
+    contentDrawer: contentDrawerSlice,
+    swipeUpDrawer: swipeUpDrawerSlice,
+    posts: postsSlice,
   },
 });
 

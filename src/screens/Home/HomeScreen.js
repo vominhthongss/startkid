@@ -4,12 +4,14 @@ import * as COLORS from "../../constants/colors";
 import BottomArrowIcon from "../../../assets/svg/BottomArrowIcon";
 import { FlatGrid } from "react-native-super-grid";
 import { menus } from "../../constants/menus";
-import { posts } from "../../mock/posts";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
 import { useNavigation } from "@react-navigation/native";
 import { noImage } from "../../constants/images";
+import { fetchPosts } from "../../store/posts/postsSlice";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../../constants/url";
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -23,6 +25,15 @@ function HomeScreen() {
     }
     navigation.navigate(screen);
   };
+  const { posts } = useSelector((state) => state.posts);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (!posts && !isLoading) {
+      setIsLoading(true);
+      dispatch(fetchPosts());
+    }
+  }, [posts, dispatch, isLoading]);
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row items-center px-10 border-2 border-main w-[95%] h-28 mx-auto mt-3 rounded-lg">
@@ -73,9 +84,9 @@ function HomeScreen() {
             }}
             className="flex flex-col items-center rounded-md pb-1">
             <Image
-              className="w-full h-32 object-fill rounded-t-md"
+              className="w-full h-32 object-fill rounded-t-md bg-slate-100"
               source={{
-                uri: item.src || noImage,
+                uri: `${BASE_URL}/${item.image}` || noImage,
               }}
             />
             <Text numberOfLines={2}>{item.title}</Text>

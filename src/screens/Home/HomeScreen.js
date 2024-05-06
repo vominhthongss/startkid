@@ -26,14 +26,12 @@ function HomeScreen() {
     navigation.navigate(screen);
   };
   const { posts } = useSelector((state) => state.posts);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!posts && !isLoading) {
-      setIsLoading(true);
+    if (!posts) {
       dispatch(fetchPosts());
     }
-  }, [posts, dispatch, isLoading]);
+  }, [posts, dispatch]);
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row items-center px-10 border-2 border-main w-[95%] h-28 mx-auto mt-3 rounded-lg">

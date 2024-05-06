@@ -16,7 +16,7 @@ export const fetchContacts = createAsyncThunk(
       if (response.data) {
         const contacts = [];
         response.data.contacts.forEach((x) => {
-          if (x.category) {
+          if (x.category && !contacts.some((c) => c.category === x.category)) {
             contacts.push({ category: x.category, contactItems: [] });
           }
         });

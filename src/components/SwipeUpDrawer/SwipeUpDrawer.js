@@ -30,7 +30,7 @@ function SwipeUpDrawer() {
         }}
         innerContentStyle={{
           width: "109%",
-          marginLeft: -20,
+          marginLeft: -7,
           marginTop: -10,
         }}
         sliderMinHeight={0}
@@ -42,7 +42,7 @@ function SwipeUpDrawer() {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null}>
-              <View className="flex flex-col items-center">
+              <View className="flex flex-col items-center w-[70px]">
                 {item.icon}
                 <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
               </View>

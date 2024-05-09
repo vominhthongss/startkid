@@ -37,7 +37,7 @@ import MenuIcon from "../MenuIcon";
 import CameraIcon from "../CameraIcon";
 import NewsIcon from "../NewsIcon";
 import FacebookIcon from "../FacebookIcon";
-import LearningIcon from "../Learning";
+import LearningIcon from "../LearningIcon";
 import BabyIcon from "../BabyIcon";
 import { SearchIcon } from "../SearchIcon";
 import { CallIcon } from "../CallIcon";

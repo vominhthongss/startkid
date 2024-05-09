@@ -31,6 +31,7 @@ function SwipeUpDrawer() {
         innerContentStyle={{
           width: "109%",
           marginLeft: -20,
+          marginTop: -10,
         }}
         sliderMinHeight={0}
         isOpen={false}

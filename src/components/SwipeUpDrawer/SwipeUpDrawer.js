@@ -7,12 +7,20 @@ import { FlatGrid } from "react-native-super-grid";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { learnMore } from "../../constants/learnMore";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
+import { useNavigation } from "@react-navigation/native";
 
 function SwipeUpDrawer() {
+  const navigation = useNavigation();
   const panelRef = useRef(null);
   const dispatch = useDispatch();
   const handleOpenSwipeUp = () => {
     dispatch(turnOnSwipeUpDrawer());
+  };
+  const handleGoToScreen = (screen) => {
+    if (!screen) {
+      return;
+    }
+    navigation.navigate(screen);
   };
   const { show } = useSelector((state) => state.swipeUpDrawer);
   if (show) {
@@ -41,8 +49,13 @@ function SwipeUpDrawer() {
           data={learnMore}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null}>
-              <View className="flex flex-col items-center w-[70px]">
+              // onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null
+              onPress={() =>
+                item.showSwipeUpDrawer
+                  ? handleOpenSwipeUp()
+                  : handleGoToScreen(item.screen)
+              }>
+              <View className="flex flex-col items-center">
                 {item.icon}
                 <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
               </View>

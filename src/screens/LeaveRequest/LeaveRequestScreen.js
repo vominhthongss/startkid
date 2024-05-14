@@ -28,7 +28,7 @@ function LeaveRequestScreen() {
         )}></FlatList>
       <TouchableOpacity
         className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
-        onPress={() => {}}>
+        onPress={() => { }}>
         <View className="flex flex-row items-center">
           <SendIcon />
           <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>

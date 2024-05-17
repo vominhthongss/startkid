@@ -48,8 +48,11 @@ export const phoneNumber = "Số điện thoại";
 export const password = "Mật khẩu";
 export const rememberPassword = "Nhớ mật khẩu";
 export const forgotPassword = "Quên mật khẩu ?";
-export const forgotPasswordDes =
-  "Để lấy lại mật khẩu, xin vui lòng liên hệ nhà trường.";
+export const forgotPasswordDes = "";
+export const changePassword = "Đổi mật khẩu";
+export const instruct = "Hướng dẫn";
+export const shuttle = "Đưa đón";
+"Để lấy lại mật khẩu, xin vui lòng liên hệ nhà trường.";
 export const login = "Đăng Nhập";
 export const savedPassword = "Sử dụng mật khẩu đã lưu";
 export const selectAccount = "Chọn tài khoản";

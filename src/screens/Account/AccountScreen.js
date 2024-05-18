@@ -15,15 +15,6 @@ import LogOutIconn from "../../../assets/svg/LogOutIconn";
 
 
 function AccountScreen() {
-
-  const [imageUri, setImageUri] = useState('initial_image_uri');
-
-  const updateImage = () => {
-    // Logic to update image URI, for example, fetching from an API
-    const newImageUri = 'new_image_uri';
-    setImageUri(newImageUri);
-  };
-
   const screenWidth = Dimensions.get('window').width;
   const styles = StyleSheet.create({
     line: {
@@ -153,20 +144,16 @@ function AccountScreen() {
       <View
         style={{ backgroundColor: COLORS.main }}
         className="h-20 w-full relative">
-      
-          <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white" >
-            <Image
-              source={require('../../../assets/img/diversity_1.png')}
-              style={{ margin: 15 }}
-            />
-            <View  style={{right:5,bottom:-5,position: 'absolute'}}>
-              <CameraAvatarIcon></CameraAvatarIcon>
-            </View>
-          
 
+        <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white" >
+          <Image
+            source={require('../../../assets/img/diversity_1.png')}
+            style={{ margin: 15 }}
+          />
+          <View style={{ right: 5, bottom: -5, position: 'absolute' }}>
+            <CameraAvatarIcon></CameraAvatarIcon>
+          </View>
         </View>
-
-
       </View>
       <View className="flex flex-row justify-center mt-20">{tabsRender}</View>
       <View className="w-[95%] rounded-xl mx-auto h-fit border-[#99C0B1] border-[1px]">

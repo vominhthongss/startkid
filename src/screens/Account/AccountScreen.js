@@ -83,7 +83,7 @@ function AccountScreen() {
           <View className="flex flex-row"
             style={styles.item}>
             <View className="ml-8 mt-2">
-              s
+              <Text>{STRINGS.mother}</Text>
               <View className="flex flex-row">
                 <TelephoneIcon />
                 <Text></Text>

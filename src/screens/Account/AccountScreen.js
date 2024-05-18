@@ -60,7 +60,7 @@ function AccountScreen() {
       name: "birthday",
       placeholder: "Sinh nhật",
       value: "",
-      type: "text",
+      type: "time",
       label: "Sinh nhật",
       isRequired: true,
     },

@@ -11,9 +11,6 @@ import TelephoneIcon from "../../../assets/svg/TelephoneIcon";
 import MailIcon from "../../../assets/svg/MailIcon";
 import HomePinIcon from "../../../assets/svg/HomePinIcon";
 import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
-import LogOutIconn from "../../../assets/svg/LogOutIconn";
-
-
 function AccountScreen() {
   const screenWidth = Dimensions.get('window').width;
   const styles = StyleSheet.create({

@@ -1,4 +1,11 @@
-import { Text, View, Image, Dimensions, StyleSheet, Button } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  Dimensions,
+  StyleSheet,
+  Button,
+} from "react-native";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 import { useState } from "react";
@@ -11,27 +18,77 @@ import TelephoneIcon from "../../../assets/svg/TelephoneIcon";
 import MailIcon from "../../../assets/svg/MailIcon";
 import HomePinIcon from "../../../assets/svg/HomePinIcon";
 import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
+import GeneralForm from "../../components/GeneralForm/GeneralForm";
 
 function AccountScreen() {
-  const screenWidth = Dimensions.get('window').width;
+  const fields = [
+    {
+      name: "phoneNumber",
+      placeholder: "Tên đăng nhập",
+      value: "",
+      type: "number",
+      label: "Tên đăng nhập",
+      isRequired: true,
+    },
+    {
+      name: "fullName",
+      placeholder: "Tên tài khoản",
+      value: "",
+      type: "text",
+      label: "Tên tài khoản",
+      isRequired: true,
+    },
+    {
+      name: "sex",
+      placeholder: "Giới tính",
+      value: "",
+      type: "text",
+      label: "Giới tính",
+      isRequired: true,
+    },
+    {
+      name: "birthday",
+      placeholder: "Sinh nhật",
+      value: "",
+      type: "text",
+      label: "Sinh nhật",
+      isRequired: true,
+    },
+    {
+      name: "phoneSms",
+      placeholder: "Số điện thoại nhận SMS",
+      value: "",
+      type: "number",
+      label: "Số điện thoại nhận SMS",
+      isRequired: true,
+    },
+    {
+      name: "email",
+      placeholder: "Gmail tài khoản",
+      value: "",
+      type: "email",
+      label: "Gmail tài khoản",
+      isRequired: true,
+    },
+  ];
+  const screenWidth = Dimensions.get("window").width;
   const styles = StyleSheet.create({
     line: {
-      width: '90%',
+      width: "90%",
       height: 1,
-      backgroundColor: 'grey',
-      alignItems: 'center',
-      justifyContent: 'center',
+      backgroundColor: "grey",
+      alignItems: "center",
+      justifyContent: "center",
       margin: 0,
     },
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
     },
     image: {
       height: 80,
       width: 80,
-
     },
     home: {
       marginBottom: 200,
@@ -41,7 +98,6 @@ function AccountScreen() {
       marginLeft: 10,
       marginBottom: 30,
     },
-
   });
 
   const navigation = useNavigation();
@@ -55,17 +111,20 @@ function AccountScreen() {
     }
     navigation.navigate(screen);
   };
+  const handleAccountForm = (data) => {
+    console.log("data :", data);
+  };
   const tabs = [
     {
       index: 0,
       name: STRINGS.school,
       component: (
         <View>
-          <View className="flex flex-row"
-            style={[styles.item, { marginLeft: 30 }]}
-          >
+          <View
+            className="flex flex-row"
+            style={[styles.item, { marginLeft: 30 }]}>
             <Image
-              source={require('../../../assets/img/face_3.png')}
+              source={require("../../../assets/img/face_3.png")}
               style={styles.image}
             />
             <View className="ml-8 mt-2">
@@ -76,12 +135,11 @@ function AccountScreen() {
               </View>
               <MailIcon></MailIcon>
             </View>
-          </View >
+          </View>
           <View style={styles.container}>
             <View style={styles.line}></View>
           </View>
-          <View className="flex flex-row"
-            style={styles.item}>
+          <View className="flex flex-row" style={styles.item}>
             <View className="ml-8 mt-2">
               <Text>{STRINGS.mother}</Text>
               <View className="flex flex-row">
@@ -91,16 +149,21 @@ function AccountScreen() {
               <MailIcon></MailIcon>
             </View>
             <Image
-              source={require('../../../assets/img/face_2.png')}
-              style={[styles.image, { position: 'absolute', right: screenWidth * 0.1 }]}
+              source={require("../../../assets/img/face_2.png")}
+              style={[
+                styles.image,
+                { position: "absolute", right: screenWidth * 0.1 },
+              ]}
             />
-          </View >
+          </View>
           <View style={styles.container}>
             <View style={styles.line}></View>
           </View>
-          <View className="flex flex-row" style={[styles.item, { paddingBottom: 70 }]}>
+          <View
+            className="flex flex-row"
+            style={[styles.item, { paddingBottom: 70 }]}>
             <View className="ml-8 mt-2">
-              <HomePinIcon ></HomePinIcon>
+              <HomePinIcon></HomePinIcon>
             </View>
           </View>
         </View>
@@ -110,10 +173,13 @@ function AccountScreen() {
       index: 1,
       name: STRINGS.account,
       component: (
-        <View>
-          <Text>{STRINGS.account}</Text>
+        <View className="mx-2">
+          <GeneralForm
+            handleData={handleAccountForm}
+            fields={fields}
+            titleSubmitBtn={"Lưu"}
+          />
         </View>
-
       ),
     },
   ];
@@ -142,13 +208,12 @@ function AccountScreen() {
       <View
         style={{ backgroundColor: COLORS.main }}
         className="h-20 w-full relative">
-
-        <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white" >
+        <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
           <Image
-            source={require('../../../assets/img/diversity_1.png')}
+            source={require("../../../assets/img/diversity_1.png")}
             style={{ margin: 15 }}
           />
-          <View style={{ right: 5, bottom: -5, position: 'absolute' }}>
+          <View style={{ right: 5, bottom: -5, position: "absolute" }}>
             <CameraAvatarIcon></CameraAvatarIcon>
           </View>
         </View>
@@ -171,7 +236,6 @@ function AccountScreen() {
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
             </View>
-
           </TouchableOpacity>
         )}
       />
@@ -180,4 +244,3 @@ function AccountScreen() {
 }
 
 export default AccountScreen;
-

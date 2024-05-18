@@ -41,7 +41,14 @@ import LearningIcon from "../LearningIcon";
 import BabyIcon from "../BabyIcon";
 import { SearchIcon } from "../SearchIcon";
 import { CallIcon } from "../CallIcon";
-import {LogoIcon} from "../LogoIcon";
+import { LogoIcon } from "../LogoIcon";
+import ShuttleIcon from "../ShuttleIcon";
+import InstructIcon from "../InstructIcon";
+import ChangePasswordIcon from "../ChangePassWordIcon";
+import LogOutIconn from "../LogOutIconn";
+import PhoneIcon from "../PhoneIcon";
+import MailIcon from "../MailIcon";
+import TelephoneIcon from "../TelephoneIcon";
 
 const exportSvg = {
   AccountBalanceWalletIcon,
@@ -88,7 +95,14 @@ const exportSvg = {
   LearnMoreIcon,
   SearchIcon,
   CallIcon,
-  LogoIcon
+  LogoIcon,
+  ShuttleIcon,
+  InstructIcon,
+  ChangePasswordIcon,
+  LogOutIconn,
+  PhoneIcon,
+  MailIcon,
+  TelephoneIcon,
 };
 
 export default exportSvg;

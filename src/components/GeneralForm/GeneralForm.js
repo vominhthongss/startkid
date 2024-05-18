@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import { parseToForm } from "../../helps/parseToForm";
 import CustomizeButton from "../CustomizeButton/CustomizeButton";
 import ErrorText from "../ErrorText/ErrorText";
+import CustomizeRadio from "../CustomizeRadio/CustomizeRadio";
 import CustomizeTextInput from "../CustomizeTextInput/CustomizeTextInput";
 
 function GeneralForm({ fields, handleData, titleSubmitBtn }) {
@@ -99,6 +100,22 @@ function GeneralForm({ fields, handleData, titleSubmitBtn }) {
           </View>
         );
         break;
+        case "radio":
+          element = (
+            <View className="relative flex flex-row justify-start">
+              <CustomizeRadio
+                key={key}
+                label={field.label}
+                value={values[field.name]}
+                options={field.options}
+                onChangeText={handleChange(field.name)}
+              />
+              <View className="absolute top-0 right-0">
+              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+            </View>
+            </View>
+          );
+          break;
       default:
         element = (
           <View className="relative">

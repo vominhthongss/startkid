@@ -41,9 +41,19 @@ function AccountScreen() {
     {
       name: "sex",
       placeholder: "Giới tính",
-      value: "",
-      type: "text",
+      value: "male",
+      type: "radio",
       label: "Giới tính",
+      options: [
+        {
+          id: "male",
+          label: "Nam",
+        },
+        {
+          id: "female",
+          label: "Nữ",
+        },
+      ],
       isRequired: true,
     },
     {

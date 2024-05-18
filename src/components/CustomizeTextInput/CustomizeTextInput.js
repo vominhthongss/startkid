@@ -15,7 +15,7 @@ function CustomizeTextInput({
     keyboardType = "default";
   }
   return (
-    <View className="relative border-b py-2 border-b-[#999999]">
+    <View className="border-b py-3 border-b-[#999999]">
       <Text className="text-[#999999] absolute">{label}</Text>
       <TextInput
         className="h-8 pt-3"

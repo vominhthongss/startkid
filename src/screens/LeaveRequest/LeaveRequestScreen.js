@@ -13,6 +13,10 @@ function LeaveRequestScreen() {
     navigation.navigate(SCREEN_NAMES.leaveRequestDetail, { id: id });
   };
 
+  const handleGoToAddScreen = () =>{
+    navigation.navigate(SCREEN_NAMES.addLeaveRequest);
+  }
+
   return (
     <View className="flex flex-row justify-center bg-white h-full">
       <FlatList
@@ -28,7 +32,7 @@ function LeaveRequestScreen() {
         )}></FlatList>
       <TouchableOpacity
         className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
-        onPress={() => { }}>
+        onPress={handleGoToAddScreen}>
         <View className="flex flex-row items-center">
           <SendIcon />
           <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>

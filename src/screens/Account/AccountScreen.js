@@ -11,6 +11,7 @@ import TelephoneIcon from "../../../assets/svg/TelephoneIcon";
 import MailIcon from "../../../assets/svg/MailIcon";
 import HomePinIcon from "../../../assets/svg/HomePinIcon";
 import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
+
 function AccountScreen() {
   const screenWidth = Dimensions.get('window').width;
   const styles = StyleSheet.create({
@@ -68,7 +69,7 @@ function AccountScreen() {
               style={styles.image}
             />
             <View className="ml-8 mt-2">
-              <Text>Bố: Nguyễn Trí Huy</Text>
+              <Text>{STRINGS.father}</Text>
               <View className="flex flex-row">
                 <TelephoneIcon />
                 <Text></Text>
@@ -82,7 +83,7 @@ function AccountScreen() {
           <View className="flex flex-row"
             style={styles.item}>
             <View className="ml-8 mt-2">
-              <Text>Mẹ:</Text>
+              s
               <View className="flex flex-row">
                 <TelephoneIcon />
                 <Text></Text>

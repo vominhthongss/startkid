@@ -52,6 +52,9 @@ export const forgotPasswordDes = "";
 export const changePassword = "Đổi mật khẩu";
 export const instruct = "Hướng dẫn";
 export const shuttle = "Đưa đón";
+export const father = "Bố:";
+export const mother = "Mẹ:";
+
 "Để lấy lại mật khẩu, xin vui lòng liên hệ nhà trường.";
 export const login = "Đăng Nhập";
 export const savedPassword = "Sử dụng mật khẩu đã lưu";

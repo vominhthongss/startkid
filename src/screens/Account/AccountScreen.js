@@ -9,7 +9,7 @@ import {
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { FlatGrid } from "react-native-super-grid";
 import { other } from "../../constants/other";
 import { useNavigation } from "@react-navigation/native";
@@ -214,7 +214,7 @@ function AccountScreen() {
     </View>
   ));
   return (
-    <View className="bg-white h-full">
+    <ScrollView className="bg-white h-full">
       <View
         style={{ backgroundColor: COLORS.main }}
         className="h-20 w-full relative">
@@ -249,7 +249,7 @@ function AccountScreen() {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </ScrollView>
   );
 }
 

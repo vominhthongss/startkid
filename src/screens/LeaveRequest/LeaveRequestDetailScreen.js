@@ -8,8 +8,6 @@ import formatDateTime from "../../utils/formatDateTime";
 function LeaveRequestDetailScreen() {
   const route = useRoute();
   const { leaveRequest } = route.params;
-  console.log(leaveRequest);
-
   return (
     <View className="flex flex-row justify-end pt-4 bg-white h-full">
       <View>

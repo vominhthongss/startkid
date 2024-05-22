@@ -5,8 +5,6 @@ import { CancelIcon } from "../../../../assets/svg/Cancelcon";
 import { CheckCircleIcon } from "../../../../assets/svg/CheckCircleIcon";
 
 const LargeHeaderIconModal = ({params, handleConfirm, isError}) => {
-
-  console.log(isError);
   return (
     <View>
       <View>

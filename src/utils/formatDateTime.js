@@ -1,4 +1,3 @@
-
 // Function to check if a date is valid
 function isValidDate(date) {
   return date instanceof Date && !isNaN(date);
@@ -9,7 +8,7 @@ const formatDateTime = (dateTime, format) => {
   const date = new Date(dateTime);
 
   // Check if the parsed date is valid
-  if(isValidDate(date)){
+  if (isValidDate(date)) {
     const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
     // Get the date time
     const weekday = weekdays[date.getDay()];
@@ -21,7 +20,7 @@ const formatDateTime = (dateTime, format) => {
     const seconds = date.getSeconds().toString().padStart(2, "0"); // Extract minute
 
     let formattedDate = "";
-    if(format){
+    if (format) {
       formattedDate = format
         .replace("WD", weekday)
         .replace("DD", day)
@@ -33,12 +32,10 @@ const formatDateTime = (dateTime, format) => {
     }
 
     return formattedDate;
-  }else{
-
-    // Handle date invalid
+  } else {
     console.log("Invalid format or date", format);
     return;
   }
-}
+};
 
 export default formatDateTime;

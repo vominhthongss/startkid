@@ -14,7 +14,6 @@ export const fetchLeaveRquests = createAsyncThunk(
     try {
       const response = await api.get("/api/leave-requests");
       if (response.data) {
-        console.log(response.data);
         return response.data.leaveRequests;
       }
     } catch (error) {

@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
   Modal,
   FlatList,
@@ -26,6 +25,7 @@ import OutsidePressHandler from "react-native-outside-press";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../store/modalSlice/modalSlice";
 import CustomModal from "../../components/CustomModal/CustomModal";
+import { MODAL_TYPE } from "../../constants/common";
 
 const SavedPasswordModal = ({
   isVisible,
@@ -103,22 +103,31 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleForgotPasswordOpenModal = () => {
-    dispatch(
-      openModal({
-        title: STRINGS.forgotPassword,
-        content: STRINGS.forgotPasswordDes,
-      })
-    );
+    const params = {
+      title: STRINGS.forgotPassword,
+      content: STRINGS.forgotPasswordDes
+    };
+
+    handleOpenModal(MODAL_TYPE.NORMAL, params);
   };
 
   const handleUnSuccessLoginOpenModal = () => {
+    const params = {
+      title: STRINGS.unSuccessfulLogin,
+      content: STRINGS.unSuccessfulLoginDes
+    };
+
+    handleOpenModal(MODAL_TYPE.NORMAL, params);
+  };
+
+  const handleOpenModal = (modalType, params) => {
     dispatch(
       openModal({
-        title: STRINGS.unSuccessfulLogin,
-        content: STRINGS.unSuccessfulLoginDes,
+        modalType: modalType,
+        params: params
       })
     );
-  };
+  }
 
   const handleLogin = () => {
     if (phoneNumber === "1" && password === "1") {

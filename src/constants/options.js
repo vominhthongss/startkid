@@ -11,12 +11,13 @@ export const screenBottomOption = {
   tabBarShowLabel: false,
   tabBarActiveTintColor: COLORS.main,
 };
-export const screenChildOption = (title) => {
+export const screenChildOption = (title, headerLeft) => {
   return {
     title: <Text style={{ fontSize: 20 }}>{title}</Text>,
     headerLeftLabelVisible: false,
     headerTitleAlign: "center",
     headerBackTitle: STRINGS.backTitle,
+    headerLeft: headerLeft,
     headerStyle: {
       backgroundColor: COLORS.main,
     },

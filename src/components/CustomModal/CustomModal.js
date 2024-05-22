@@ -1,18 +1,45 @@
-import React from 'react';
-import { Modal, View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../../store/modalSlice/modalSlice';
-import * as COLORS from "../../constants/colors";
-import * as STRINGS from "../../constants/strings";
+import React from "react";
+import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../store/modalSlice/modalSlice";
 import OutsidePressHandler from "react-native-outside-press";
+import NormalModal from "./Template/NormalModal";
+import LargeHeaderIconModal from "./Template/LargeHeaderIconModal"
+import { MODAL_TYPE } from "../../constants/common";
 
 const CustomModal = () => {
   const dispatch = useDispatch();
-  const { isVisible, title, content } = useSelector((state) => state.modal);
+  const { isVisible, modalType, params } = useSelector((state) => state.modal);
 
   const handleClose = () => {
     dispatch(closeModal());
   };
+
+  const handleConfirm = () => {
+    params.handleConfirm();
+    handleClose();
+  }
+
+  const Template = ({}) => {
+
+    if (modalType == MODAL_TYPE.NORMAL){
+      return (
+        <NormalModal params={params} handleClose={handleClose} 
+        isFooterConfirm={params.isFooterConfirm} handleConfirm={handleConfirm}/>
+      )
+    }
+
+    if (modalType == MODAL_TYPE.LARGE_HEADER){
+      return (
+        <LargeHeaderIconModal params={params} handleClose={handleClose}
+        handleConfirm={handleConfirm} isError={params.isError}/>
+      )
+    }
+
+    return (
+      <NormalModal params={params} />
+    );
+  }
 
   return (
     <Modal
@@ -21,42 +48,15 @@ const CustomModal = () => {
       animationType="fade"
       onRequestClose={handleClose}
     >
-      <View className="h-full flex justify-center items-center" style={{backgroundColor: "#D9D9D980"}}>
-      <OutsidePressHandler onOutsidePress={handleClose}>
+      <View className="h-full flex justify-center items-center bg-[#D9D9D980]">
+      <OutsidePressHandler onOutsidePress={()=>{}}>
         <View className="w-80 rounded-2xl bg-white">
-          <View className="rounded-t-2xl pt-2 pb-2 pl-6" style={{backgroundColor: COLORS.main}}>
-            <Text className="text-lg text-white">{title}</Text>
-          </View>
-          <View className="pt-4 pl-6 pr-4 pb-2">
-            <Text className="text-base pl-2">
-              {content}
-            </Text>
-          </View>
-          <View className="pr-4 pb-2">
-            <TouchableOpacity onPress={handleClose}>
-              <Text className="self-end text-base text-red-600">{STRINGS.close}</Text>
-            </TouchableOpacity>
-          </View>
+          <Template />
         </View>
       </OutsidePressHandler>
       </View>
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-});
 
 export default CustomModal;

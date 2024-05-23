@@ -1,4 +1,4 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 import AvatarIcon from "../../../assets/svg/AvatarIcon";
 import * as COLORS from "../../constants/colors";
 import BottomArrowIcon from "../../../assets/svg/BottomArrowIcon";
@@ -45,11 +45,11 @@ function HomeScreen() {
           <BottomArrowIcon size={12} />
         </View>
       </View>
-      <View className="flex flex-row flex-wrap justify-between my-5">
+      <View className="flex flex-row flex-wrap justify-between my-5 px-2">
         {menus.map((item, key) => (
           <TouchableOpacity
             key={key}
-            className="w-[100px]"
+            style={{ width: -5 + Dimensions.get("window").width / 4 }}
             onPress={() =>
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()

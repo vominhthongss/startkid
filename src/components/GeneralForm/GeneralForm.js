@@ -7,7 +7,7 @@ import ErrorText from "../ErrorText/ErrorText";
 import CustomizeRadio from "../CustomizeRadio/CustomizeRadio";
 import CustomizeTextInput from "../CustomizeTextInput/CustomizeTextInput";
 
-function GeneralForm({ fields, handleData, titleSubmitBtn }) {
+function GeneralForm({ fields, handleData, titleSubmitBtn, customStyleButton=""}) {
   const fieldRender = (field, key, { handleChange, values, errors }) => {
     let element = null;
 
@@ -100,22 +100,22 @@ function GeneralForm({ fields, handleData, titleSubmitBtn }) {
           </View>
         );
         break;
-        case "radio":
-          element = (
-            <View className="relative flex flex-row justify-start">
-              <CustomizeRadio
-                key={key}
-                label={field.label}
-                value={values[field.name]}
-                options={field.options}
-                onChangeText={handleChange(field.name)}
-              />
-              <View className="absolute top-0 right-0">
+      case "radio":
+        element = (
+          <View className="relative flex flex-row justify-start">
+            <CustomizeRadio
+              key={key}
+              label={field.label}
+              value={values[field.name]}
+              options={field.options}
+              onChangeText={handleChange(field.name)}
+            />
+            <View className="absolute top-0 right-0">
               {errors[field.name] && <ErrorText content={errors[field.name]} />}
             </View>
-            </View>
-          );
-          break;
+          </View>
+        );
+        break;
       default:
         element = (
           <View className="relative">
@@ -162,10 +162,18 @@ function GeneralForm({ fields, handleData, titleSubmitBtn }) {
               field.name
             ] = `${field.label} phải có ít nhất ${field.minLength} ký tự!`;
           }
+          // check fields have field have name is rePassword and newPassword different rePassword
+          if (
+            field.name === "rePassword" &&
+            values["rePassword"] !== values["newPassword"]
+          ) {
+            errors[field.name] = "Mật khẩu không khớp nhau !";
+          }
           return;
         });
         return errors;
-      }}>
+      }}
+    >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View className={"w-full"}>
           {fields.map((field, key) => (
@@ -177,6 +185,7 @@ function GeneralForm({ fields, handleData, titleSubmitBtn }) {
             <View className={"w-full"}>
               <View className={"w-full"}>
                 <CustomizeButton
+                  styleButton={customStyleButton}
                   title={titleSubmitBtn}
                   onPress={handleSubmit}
                 />

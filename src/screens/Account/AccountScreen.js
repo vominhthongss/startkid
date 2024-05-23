@@ -132,7 +132,8 @@ function AccountScreen() {
         <View>
           <View
             className="flex flex-row"
-            style={[styles.item, { marginLeft: 30 }]}>
+            style={[styles.item, { marginLeft: 30 }]}
+          >
             <Image
               source={require("../../../assets/img/face_3.png")}
               style={styles.image}
@@ -171,7 +172,8 @@ function AccountScreen() {
           </View>
           <View
             className="flex flex-row"
-            style={[styles.item, { paddingBottom: 70 }]}>
+            style={[styles.item, { paddingBottom: 70 }]}
+          >
             <View className="ml-8 mt-2">
               <HomePinIcon></HomePinIcon>
             </View>
@@ -201,13 +203,15 @@ function AccountScreen() {
       style={{
         backgroundColor: currentTab === tab.index ? COLORS.main : COLORS.none,
       }}
-      className="rounded-t-lg">
+      className="rounded-t-lg"
+    >
       <TouchableOpacity onPress={() => setCurrentTab(tab.index)}>
         <Text
           style={{
             color: currentTab === tab.index ? COLORS.none : COLORS.dark,
           }}
-          className="px-[13%] py-[5px] text-[18px]">
+          className="px-[13%] py-[5px] text-[18px]"
+        >
           {tab.name}
         </Text>
       </TouchableOpacity>
@@ -217,7 +221,8 @@ function AccountScreen() {
     <ScrollView className="bg-white h-full">
       <View
         style={{ backgroundColor: COLORS.main }}
-        className="h-20 w-full relative">
+        className="h-20 w-full relative"
+      >
         <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
           <Image
             source={require("../../../assets/img/diversity_1.png")}
@@ -241,7 +246,8 @@ function AccountScreen() {
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()
                 : handleGoToScreen(item.screen)
-            }>
+            }
+          >
             <View className="flex flex-col items-center">
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>

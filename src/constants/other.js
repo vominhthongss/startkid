@@ -14,6 +14,7 @@ export const other = [
   {
     icon: <ICONS.ChangePasswordIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.changePassword,
+    screen: SCREENS_NAME.changePassword,
   },
   {
     icon: <ICONS.LogOutIconn size={60} color={COLORS.mainRgba} />,

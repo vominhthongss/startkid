@@ -47,7 +47,6 @@ function HomeScreen() {
           <BottomArrowIcon size={12} />
         </View>
       </View>
-
       <FlatGrid
         itemDimension={90}
         data={menus}

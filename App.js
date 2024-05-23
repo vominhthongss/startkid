@@ -5,7 +5,9 @@ import * as ROUTES from "./src/routes/routes";
 import { Provider } from "react-redux";
 import store from "./src/store/store";
 import { EventProvider } from "react-native-outside-press";
-
+// import { LogBox } from "react-native";
+// LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+// LogBox.ignoreAllLogs(); //Ignore all log notifications
 const Stack = createStackNavigator();
 
 function App() {

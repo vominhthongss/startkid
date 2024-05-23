@@ -2,7 +2,6 @@ import { Image, ScrollView, Text, View } from "react-native";
 import AvatarIcon from "../../../assets/svg/AvatarIcon";
 import * as COLORS from "../../constants/colors";
 import BottomArrowIcon from "../../../assets/svg/BottomArrowIcon";
-import { FlatGrid } from "react-native-super-grid";
 import { menus } from "../../constants/menus";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +9,7 @@ import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlic
 import { useNavigation } from "@react-navigation/native";
 import { noImage } from "../../constants/images";
 import { fetchPosts } from "../../store/posts/postsSlice";
-import { useEffect, useState } from "react";
-import { BASE_URL } from "../../constants/url";
+import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
 
 function HomeScreen() {
@@ -47,31 +45,30 @@ function HomeScreen() {
           <BottomArrowIcon size={12} />
         </View>
       </View>
-
-      <FlatGrid
-        itemDimension={90}
-        data={menus}
-        renderItem={({ item }) => (
+      <View className="flex flex-row flex-wrap justify-between my-5">
+        {menus.map((item, key) => (
           <TouchableOpacity
+            key={key}
+            className="w-[100px]"
             onPress={() =>
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()
                 : handleGoToScreen(item.screen)
             }>
-            <View className="flex flex-col items-center">
+            <View className="flex flex-col items-center ">
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
             </View>
           </TouchableOpacity>
-        )}
-      />
+        ))}
+      </View>
       {posts ? (
-        <FlatGrid
-          itemDimension={150}
-          data={posts}
-          renderItem={({ item }) => (
+        <View className="flex flex-row flex-wrap justify-between px-2">
+          {posts.map((item, key) => (
             <View
+              key={key}
               style={{
+                width: "48%",
                 backgroundColor: "white",
                 shadowColor: "#000",
                 shadowOffset: {
@@ -81,6 +78,7 @@ function HomeScreen() {
                 shadowOpacity: 0.23,
                 shadowRadius: 2.62,
                 elevation: 4,
+                marginBottom: 10,
               }}
               className="flex flex-col items-center rounded-md pb-1">
               <Image
@@ -91,8 +89,8 @@ function HomeScreen() {
               />
               <Text numberOfLines={2}>{item.title}</Text>
             </View>
-          )}
-        />
+          ))}
+        </View>
       ) : (
         <Loading />
       )}

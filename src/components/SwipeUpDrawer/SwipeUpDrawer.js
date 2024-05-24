@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
-import { Text, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import BottomSheet from "react-native-simple-bottom-sheet";
 import { useDispatch, useSelector } from "react-redux";
 import { turnOffSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
-import { FlatGrid } from "react-native-super-grid";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { learnMore } from "../../constants/learnMore";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
@@ -37,18 +36,18 @@ function SwipeUpDrawer() {
           dispatch(turnOffSwipeUpDrawer());
         }}
         innerContentStyle={{
-          width: "109%",
-          marginLeft: -7,
+          width: "106%",
+          marginLeft: -8,
           marginTop: -10,
         }}
         sliderMinHeight={0}
         isOpen={false}
         ref={(ref) => (panelRef.current = ref)}>
-        <FlatGrid
-          itemDimension={92}
-          data={learnMore}
-          renderItem={({ item }) => (
+        <View className="flex flex-row flex-wrap my-5 justify-between">
+          {learnMore.map((item, key) => (
             <TouchableOpacity
+              key={key}
+              style={{ width: -5 + Dimensions.get("window").width / 4 }}
               // onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null
               onPress={() =>
                 item.showSwipeUpDrawer
@@ -60,8 +59,8 @@ function SwipeUpDrawer() {
                 <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
               </View>
             </TouchableOpacity>
-          )}
-        />
+          ))}
+        </View>
       </BottomSheet>
     </View>
   );

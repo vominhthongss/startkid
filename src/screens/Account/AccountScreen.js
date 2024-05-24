@@ -10,7 +10,6 @@ import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 import { useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { FlatGrid } from "react-native-super-grid";
 import { other } from "../../constants/other";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -237,11 +236,10 @@ function AccountScreen() {
       <View className="w-[95%] rounded-xl mx-auto h-fit border-[#99C0B1] border-[1px]">
         {tabs[currentTab]?.component}
       </View>
-      <FlatGrid
-        itemDimension={90}
-        data={other}
-        renderItem={({ item }) => (
+      <View className="flex flex-row justify-between p-5">
+        {other.map((item, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() =>
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()
@@ -253,8 +251,8 @@ function AccountScreen() {
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
             </View>
           </TouchableOpacity>
-        )}
-      />
+        ))}
+      </View>
     </ScrollView>
   );
 }

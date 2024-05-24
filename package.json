@@ -11,9 +11,6 @@
     "build-android": "eas build -p android --profile preview"
   },
   "dependencies": {
-    "@expo/config": "^8.1.1",
-    "@expo/metro-config": "^0.10.0",
-    "@expo/metro-runtime": "~3.2.1",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/datetimepicker": "^8.0.1",
@@ -48,7 +45,6 @@
     "react-native-super-grid": "^5.0.0",
     "react-native-svg": "15.2.0",
     "react-native-vector-icons": "^10.0.2",
-    "react-native-web": "~0.19.10",
     "react-redux": "^9.0.4",
     "yarn": "^1.22.21"
   },

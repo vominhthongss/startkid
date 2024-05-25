@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
-const ShuttleIcon = ({ size, color }) => (
-<Svg
+const PickDropIcon = ({ size, color }) => (
+  <Svg
     width={size}
     height={size}
     viewBox="1 0 60 61"
@@ -28,4 +28,4 @@ const ShuttleIcon = ({ size, color }) => (
 
 );
 
-export default ShuttleIcon;
+export default PickDropIcon;

@@ -154,9 +154,12 @@ function AccountScreen() {
               <Text>{STRINGS.mother}</Text>
               <View className="flex flex-row">
                 <TelephoneIcon />
+                <Text>0378773</Text>
+              </View>
+              <View className="flex flex-row">
+                <MailIcon></MailIcon>
                 <Text></Text>
               </View>
-              <MailIcon></MailIcon>
             </View>
             <Image
               source={require("../../../assets/img/face_2.png")}

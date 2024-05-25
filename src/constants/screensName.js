@@ -8,3 +8,6 @@ export const leaveRequestDetail = "Chi tiết";
 export const addLeaveRequest = "Thêm xin nghỉ";
 export const add = " ";
 export const login = "Login";
+export const pickDrop = "Đưa đón";
+
+

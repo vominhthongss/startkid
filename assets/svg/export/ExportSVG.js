@@ -42,13 +42,16 @@ import BabyIcon from "../BabyIcon";
 import { SearchIcon } from "../SearchIcon";
 import { CallIcon } from "../CallIcon";
 import { LogoIcon } from "../LogoIcon";
-import ShuttleIcon from "../ShuttleIcon";
+import PickDropIcon from "../PickDropIcon";
 import InstructIcon from "../InstructIcon";
 import ChangePasswordIcon from "../ChangePassWordIcon";
 import LogOutIconn from "../LogOutIconn";
 import PhoneIcon from "../PhoneIcon";
 import MailIcon from "../MailIcon";
 import TelephoneIcon from "../TelephoneIcon";
+import DotIcon from "../DotIcon";
+import EditNoteIcon_2 from "../EditNoteIcon_2";
+import SendIcon_2 from "../SendIcon_2";
 
 const exportSvg = {
   AccountBalanceWalletIcon,
@@ -96,13 +99,16 @@ const exportSvg = {
   SearchIcon,
   CallIcon,
   LogoIcon,
-  ShuttleIcon,
+  PickDropIcon,
   InstructIcon,
   ChangePasswordIcon,
   LogOutIconn,
   PhoneIcon,
   MailIcon,
   TelephoneIcon,
+  DotIcon,
+  EditNoteIcon_2,
+  SendIcon_2
 };
 
 export default exportSvg;

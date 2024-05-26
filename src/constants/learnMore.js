@@ -2,6 +2,7 @@ import * as STRINGS from "./strings";
 import ICONS from "../../assets/svg/export/ExportSVG";
 import * as COLORS from "../constants/colors";
 import * as SCREENS_NAME from "../constants/screensName";
+import { View } from "react-native";
 export const learnMore = [
   {
     icon: <ICONS.MessageIcon size={60} color={COLORS.mainRgba} />,
@@ -64,5 +65,8 @@ export const learnMore = [
     icon: <ICONS.FeeIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.fee,
   },
-
+  {
+    icon: <View className="w-[60px]"></View>,
+    text: "",
+  },
 ];

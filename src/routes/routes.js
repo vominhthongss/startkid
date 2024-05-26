@@ -6,7 +6,11 @@ import LeaveRequestScreen from "../screens/LeaveRequest/LeaveRequestScreen";
 import LeaveRequestDetailScreen from "../screens/LeaveRequest/LeaveRequestDetailScreen";
 import AddLeaveRequestScreen from "../screens/LeaveRequest/AddLeaveRequest";
 import BackButton from "../components/BackButton/BackButton";
+<<<<<<< HEAD
 import PickDropScreen from "../screens/PickDrop/PickDropScreen";
+=======
+import { ChangePasswordScreen } from "../screens/changePassword/ChangePasswordScreen";
+>>>>>>> main
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,
@@ -17,24 +21,42 @@ export const leaveRequest = {
   name: SCREENS_NAME.leaveRequest,
   component: LeaveRequestScreen,
   options: screenChildOption(SCREENS_NAME.leaveRequest),
-}
+};
 export const leaveRequestDetail = {
   name: SCREENS_NAME.leaveRequestDetail,
   component: LeaveRequestDetailScreen,
   options: screenChildOption(SCREENS_NAME.leaveRequestDetail),
-}
+};
 export const addLeaveRequest = {
   name: SCREENS_NAME.addLeaveRequest,
   component: AddLeaveRequestScreen,
+<<<<<<< HEAD
   options: screenChildOption(SCREENS_NAME.addLeaveRequest, () => <BackButton />),
 }
+=======
+  options: screenChildOption(SCREENS_NAME.addLeaveRequest, () => (
+    <BackButton />
+  )),
+};
+>>>>>>> main
 export const login = {
   name: SCREENS_NAME.login,
   component: LoginScreen,
   options: screenParentOption,
 };
+<<<<<<< HEAD
 export const pickDrop = {
   name: SCREENS_NAME.pickDrop,
   component: PickDropScreen,
   options: screenChildOption(SCREENS_NAME.pickDrop),
 }
+=======
+
+export const changePasswordScreen = {
+  name: SCREENS_NAME.changePassword,
+  component: ChangePasswordScreen,
+  options: screenChildOption(SCREENS_NAME.changePassword, () => (
+    <BackButton />
+  )),
+};
+>>>>>>> main

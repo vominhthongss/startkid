@@ -38,6 +38,7 @@ function CustomizeTextInput({
       <TextInput
         className="h-8 pt-3"
         value={value}
+        secureTextEntry={secureTextEntry}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         onFocus={() => type === "time" && showTimePicker()}

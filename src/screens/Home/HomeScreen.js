@@ -54,14 +54,8 @@ function HomeScreen() {
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()
                 : handleGoToScreen(item.screen)
-<<<<<<< HEAD
-            }
-            >
-            <View className="flex flex-col items-center">
-=======
             }>
             <View className="flex flex-col items-center ">
->>>>>>> main
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
             </View>

@@ -60,6 +60,7 @@ export const selectAccount = "Chọn tài khoản";
 export const unSuccessfulLogin = "Đăng nhập không thành công";
 export const pick ="Đưa";
 export const drop ="Đón";
+export const latePickUp = "Đón trễ"
 export const unSuccessfulLoginDes =
   "Số điện thoại hoặc mật khẩu không chính xác.";
 export const close = "Đóng";

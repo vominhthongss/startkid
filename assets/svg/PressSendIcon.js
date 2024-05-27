@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
 
-const PressSendIcon = ({ size, color }) => (
+const PressSendIcon = () => (
   <Svg
     width="35"
     height="35"

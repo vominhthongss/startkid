@@ -72,7 +72,7 @@ function PickDropScreen() {
               style={{ backgroundColor: "#E3FFF4" }}
               onChangeText={handleInputChange}
               value={text}
-              placeholder="Đón trễ"></TextInput>
+              placeholder={STRINGS.latePickUp}></TextInput>
             <TouchableOpacity>
               <PressSendIcon></PressSendIcon>
             </TouchableOpacity>

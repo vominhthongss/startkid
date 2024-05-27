@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
 
-const UpdateNoteIcon = ({ size, color }) => (
+const UpdateNoteIcon = () => (
   <Svg
     width="35"
     height="35"

@@ -13,6 +13,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/checkbox": "^0.5.17",
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.9",
@@ -23,6 +24,7 @@
     "date-fns": "^3.3.1",
     "eas": "^0.1.0",
     "expo": "^51.0.5",
+    "expo-checkbox": "~3.0.0",
     "expo-file-system": "~17.0.1",
     "expo-notifications": "^0.28.1",
     "expo-sharing": "~12.0.1",

@@ -51,13 +51,16 @@ export const forgotPassword = "Quên mật khẩu ?";
 export const forgotPasswordDes = "Để lấy lại mật khẩu, xin vui lòng liên hệ nhà trường.";
 export const changePassword = "Đổi mật khẩu";
 export const instruct = "Hướng dẫn";
-export const shuttle = "Đưa đón";
+export const pickDrop = "Đưa đón";
 export const father = "Bố:";
 export const mother = "Mẹ:";
 export const login = "Đăng Nhập";
 export const savedPassword = "Sử dụng mật khẩu đã lưu";
 export const selectAccount = "Chọn tài khoản";
 export const unSuccessfulLogin = "Đăng nhập không thành công";
+export const pick ="Đưa";
+export const drop ="Đón";
+export const latePickUp = "Đón trễ"
 export const unSuccessfulLoginDes =
   "Số điện thoại hoặc mật khẩu không chính xác.";
 export const close = "Đóng";

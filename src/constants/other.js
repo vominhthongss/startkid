@@ -4,8 +4,9 @@ import * as COLORS from "../constants/colors";
 import * as SCREENS_NAME from "../constants/screensName";
 export const other = [
   {
-    icon: <ICONS.ShuttleIcon size={60} color={COLORS.mainRgba} />,
-    text: STRINGS.shuttle,
+    icon: <ICONS.PickDropIcon size={60} color={COLORS.mainRgba} />,
+    text: STRINGS.pickDrop,
+    screen: SCREENS_NAME.pickDrop,
   },
   {
     icon: <ICONS.InstructIcon size={60} color={COLORS.mainRgba} />,

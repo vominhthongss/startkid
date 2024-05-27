@@ -6,6 +6,7 @@ import LeaveRequestScreen from "../screens/LeaveRequest/LeaveRequestScreen";
 import LeaveRequestDetailScreen from "../screens/LeaveRequest/LeaveRequestDetailScreen";
 import AddLeaveRequestScreen from "../screens/LeaveRequest/AddLeaveRequest";
 import BackButton from "../components/BackButton/BackButton";
+import PickDropScreen from "../screens/PickDrop/PickDropScreen";
 import { ChangePasswordScreen } from "../screens/changePassword/ChangePasswordScreen";
 
 export const mainTab = {
@@ -35,11 +36,13 @@ export const login = {
   component: LoginScreen,
   options: screenParentOption,
 };
-
+export const pickDrop = {
+  name: SCREENS_NAME.pickDrop,
+  component: PickDropScreen,
+  options: screenChildOption(SCREENS_NAME.pickDrop),
+};
 export const changePasswordScreen = {
   name: SCREENS_NAME.changePassword,
   component: ChangePasswordScreen,
-  options: screenChildOption(SCREENS_NAME.changePassword, () => (
-    <BackButton />
-  )),
+  options: screenChildOption(SCREENS_NAME.changePassword, () => <BackButton />),
 };

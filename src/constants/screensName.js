@@ -9,3 +9,6 @@ export const addLeaveRequest = "Thêm xin nghỉ";
 export const add = " ";
 export const login = "Login";
 export const changePassword = "Đổi mật khẩu";
+export const pickDrop = "Đưa đón";
+
+

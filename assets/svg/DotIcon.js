@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
 
-const DotIcon = ({ size, color }) => (
+const DotIcon = () => (
   <Svg
     width="10"
     height="10"

@@ -50,8 +50,8 @@ import PhoneIcon from "../PhoneIcon";
 import MailIcon from "../MailIcon";
 import TelephoneIcon from "../TelephoneIcon";
 import DotIcon from "../DotIcon";
-import EditNoteIcon_2 from "../EditNoteIcon_2";
-import SendIcon_2 from "../SendIcon_2";
+import UpdateNoteIcon from "../UpdateNote";
+import PressSendIcon from "../PressSendIcon";
 
 const exportSvg = {
   AccountBalanceWalletIcon,
@@ -107,8 +107,8 @@ const exportSvg = {
   MailIcon,
   TelephoneIcon,
   DotIcon,
-  EditNoteIcon_2,
-  SendIcon_2
+  UpdateNoteIcon,
+  PressSendIcon,
 };
 
 export default exportSvg;

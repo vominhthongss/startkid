@@ -1,12 +1,12 @@
 import { View, Text, Image, StyleSheet, TextInput } from "react-native";
 import DotIcon from "../../../assets/svg/DotIcon";
-import EditNoteIcon_2 from "../../../assets/svg/EditNoteIcon_2";
-import SendIcon_2 from "../../../assets/svg/SendIcon_2";
+import PressSendIcon from "../../../assets/svg/PressSendIcon";
 import React, { useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import * as STRINGS from "../../constants/strings";
 import * as COLORS from "../../constants/colors";
 import CheckBox from "expo-checkbox";
+import UpdateNoteIcon from "../../../assets/svg/UpdateNote";
 
 function PickDropScreen() {
   const [text, setText] = useState("");
@@ -18,77 +18,28 @@ function PickDropScreen() {
   const [isDrop, setIsDrop] = useState(false);
 
   const styles = StyleSheet.create({
-    image: {
-      height: 100,
-      width: 100,
-    },
-    square: {
-      marginTop: 15,
-      marginLeft: 10,
-      width: 160,
-      height: 160,
-      backgroundColor: "rgba(227, 255, 244, 0.9)",
-      borderRadius: 15,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    dot: {
-      left: -20,
-      alignItems: "center",
-    },
-    editnote: {
-      left: -30,
-      alignItems: "center",
-    },
-    textInput: {
-      width: 180,
-      color: "black",
-      borderRadius: 10,
-      backgroundColor: "rgba(227, 255, 244, 0.9)",
-      height: 60,
-      borderColor: "rgba(227, 255, 244, 0.9)",
-      paddingLeft: 15,
-      paddingTop: 5,
-      margin: 10,
-      placeholderTextColor: "black",
-      textAlignVertical: "top",
-    },
-    checkBox: {
-      width: 15,
-      height: 15,
-      borderWidth: 2,
-      marginLeft: 30,
-      left: -10,
-    },
-    text: {
-      marginLeft: 5,
-    },
   });
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row">
-        <View style={styles.square}>
-          <Image
-            source={require("../../../assets/img/face_3.png")}
-            style={styles.image}
-          />
-        </View>
+        <Image className="my-4 mx-2.5 w-40 h-40 "
+          source={require("../../../assets/img/imageface.png")}
+        />
         <View className="ml-8 mt-2">
-          <View className="flex flex-row" style={styles.dot}>
+          <View className="flex flex-row items-center -left-5">
             <DotIcon></DotIcon>
-            <Text style={styles.text}>Nguyễn Văn A</Text>
+            <Text className="mx-1">Nguyễn Văn A</Text>
           </View>
-          <View className="flex flex-row" style={styles.dot}>
+          <View className="flex flex-row items-center -left-5">
             <DotIcon></DotIcon>
-            <Text style={styles.text}>0903123456</Text>
+            <Text className="mx-1">0903123456</Text>
           </View>
-          <View className="flex flex-row" style={styles.dot}>
+          <View className="flex flex-row items-center -left-5">
             <DotIcon></DotIcon>
-            <Text style={styles.text}>Bác</Text>
+            <Text className="mx-1">Bác</Text>
           </View>
           <View
-            className="flex flex-row"
-            style={{ left: -40, alignItems: "center" }}>
+            className="flex flex-row -left-10 items-center" >
             <View className="flex flex-row">
               <CheckBox
                 color={COLORS.main}
@@ -97,7 +48,7 @@ function PickDropScreen() {
                 className="w-4 h-4 border-black ml-5 mr-2"
                 onValueChange={(value) => setIsPick(value)}
               />
-              <Text style={{ alignItems: "center" }}>{STRINGS.pick}</Text>
+              <Text className="items-center">{STRINGS.pick}</Text>
             </View>
             <View className="flex flex-row">
               <CheckBox
@@ -109,17 +60,22 @@ function PickDropScreen() {
               />
               <Text>{STRINGS.drop}</Text>
             </View>
-            <View style={{ left: 70 }}>
-              <EditNoteIcon_2></EditNoteIcon_2>
+            <View className="left-[55]">
+              <TouchableOpacity>
+                <UpdateNoteIcon></UpdateNoteIcon>
+              </TouchableOpacity>
             </View>
           </View>
-          <View className="flex flex-row" style={styles.editnote}>
+          <View className="flex flex-row items-center -left-7">
             <TextInput
-              style={styles.textInput}
+              className="w-40 text-black rounded-xl bg-emerald-50 h-16 px-3.5 py-3 m-2.5 align-text-top "
+              style={{ backgroundColor: "#E3FFF4" }}
               onChangeText={handleInputChange}
               value={text}
               placeholder="Đón trễ"></TextInput>
-            <SendIcon_2></SendIcon_2>
+            <TouchableOpacity>
+              <PressSendIcon></PressSendIcon>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle, Mask, G, Rect } from "react-native-svg";
 
-const EditNoteIcon_2 = ({ size, color }) => (
+const UpdateNoteIcon = ({ size, color }) => (
   <Svg
     width="35"
     height="35"
@@ -27,4 +27,4 @@ const EditNoteIcon_2 = ({ size, color }) => (
 
 );
 
-export default EditNoteIcon_2;
+export default UpdateNoteIcon;

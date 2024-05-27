@@ -17,8 +17,6 @@ function PickDropScreen() {
   const [isPick, setIsPick] = useState(false);
   const [isDrop, setIsDrop] = useState(false);
 
-  const styles = StyleSheet.create({
-  });
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row">

@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { View, TextInput, Text, Modal, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  Modal,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import OutsidePressHandler from "react-native-outside-press";
 import { compareAsc } from "date-fns";
 import formatDateTime from "../../utils/formatDateTime";
@@ -23,7 +30,8 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
   return (
-    <View className="w-full flex flex-row items-center justify-around self-center rounded-lg pt-2 pb-2"
+    <View
+      className="w-full flex flex-row items-center justify-around self-center rounded-lg pt-2 pb-2"
       style={{
         backgroundColor: COLORS.noneBasic,
         shadowColor: COLORS.dark,
@@ -35,9 +43,14 @@ const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
       <View>
         <Text className="text-[#999999]">{STRINGS.startDate}</Text>
         <View className="flex flex-row ml-5">
-          <Text className="mt-[3] mr-2 text-base">{formatDateTime(startDate, "DD/MM/YYYY")}</Text>
+          <Text className="mt-[3] mr-2 text-base">
+            {formatDateTime(startDate, "DD/MM/YYYY")}
+          </Text>
           <View>
-            <TouchableOpacity onPress={() => showDatePicker(DATE_TYPE.START_DATE)}><CalendarIcon /></TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => showDatePicker(DATE_TYPE.START_DATE)}>
+              <CalendarIcon />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -47,13 +60,17 @@ const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
       <View>
         <Text className="text-[#999999]">{STRINGS.endDate}</Text>
         <View className="flex flex-row ml-5">
-          <Text className="mt-[3] mr-2 text-base">{formatDateTime(endDate, "DD/MM/YYYY")}</Text>
-          <TouchableOpacity onPress={() => showDatePicker(DATE_TYPE.END_DATE)}><CalendarIcon /></TouchableOpacity>
+          <Text className="mt-[3] mr-2 text-base">
+            {formatDateTime(endDate, "DD/MM/YYYY")}
+          </Text>
+          <TouchableOpacity onPress={() => showDatePicker(DATE_TYPE.END_DATE)}>
+            <CalendarIcon />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const DetailLeaveRequest = ({
   isVisible,
@@ -62,7 +79,7 @@ const DetailLeaveRequest = ({
   onSelect,
   allCheck,
   isMorningAll,
-  isAftrenoonAll
+  isAftrenoonAll,
 }) => {
   return (
     <Modal
@@ -83,7 +100,7 @@ const DetailLeaveRequest = ({
                   {STRINGS.detailLeave}
                 </Text>
                 <TouchableOpacity onPress={onClose} className="mr-2">
-                  <CloseIcon/>
+                  <CloseIcon />
                 </TouchableOpacity>
               </View>
             </View>
@@ -95,21 +112,23 @@ const DetailLeaveRequest = ({
                   <Text className="">{STRINGS.afternoon}</Text>
                 </View>
               </View>
-                  <View className="h-36 w-[95%] self-center">
+              <View className="h-36 w-[95%] self-center">
                 <View className="flex flex-row border-b border-[#DADADA]">
                   <Text className="w-[40%]">{STRINGS.selectCommon}</Text>
                   <View className="w-[60%] flex flex-row justify-around">
                     <View className="flex-col items-center">
                       <RadioButton
                         isSelected={isMorningAll}
-                        onPress={()=>allCheck(SESSION_TYPE.MORNING)}
-                        dotColor="#EA3637"/>
+                        onPress={() => allCheck(SESSION_TYPE.MORNING)}
+                        dotColor="#EA3637"
+                      />
                     </View>
                     <View className="flex-col items-center">
                       <RadioButton
                         isSelected={isAftrenoonAll}
-                        onPress={()=>allCheck(SESSION_TYPE.AFTERNOON)} 
-                        dotColor="#EA3637"/>
+                        onPress={() => allCheck(SESSION_TYPE.AFTERNOON)}
+                        dotColor="#EA3637"
+                      />
                     </View>
                   </View>
                 </View>
@@ -123,14 +142,28 @@ const DetailLeaveRequest = ({
                         <View className="flex-col items-center">
                           <RadioButton
                             isSelected={item.session.morning}
-                            onPress={() => onSelect(index, !item.session.morning, SESSION_TYPE.MORNING)} 
-                            dotColor="#EA3637"/>
+                            onPress={() =>
+                              onSelect(
+                                index,
+                                !item.session.morning,
+                                SESSION_TYPE.MORNING
+                              )
+                            }
+                            dotColor="#EA3637"
+                          />
                         </View>
                         <View className="flex-col items-center">
                           <RadioButton
                             isSelected={item.session.afternoon}
-                            onPress={() => onSelect(index, !item.session.afternoon, SESSION_TYPE.AFTERNOON)} 
-                            dotColor="#EA3637"/>
+                            onPress={() =>
+                              onSelect(
+                                index,
+                                !item.session.afternoon,
+                                SESSION_TYPE.AFTERNOON
+                              )
+                            }
+                            dotColor="#EA3637"
+                          />
                         </View>
                       </View>
                     </View>
@@ -144,9 +177,9 @@ const DetailLeaveRequest = ({
   );
 };
 
-
-const AddLeaveRequestScreen = ({ }) => {
-  const [isStartDatePickerVisible, setStartDatePickerVisibility] = useState(false);
+const AddLeaveRequestScreen = ({}) => {
+  const [isStartDatePickerVisible, setStartDatePickerVisibility] =
+    useState(false);
   const [isEndDatePickerVisible, setEndatePickerVisibility] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -164,7 +197,6 @@ const AddLeaveRequestScreen = ({ }) => {
     } else {
       setEndatePickerVisibility(true);
     }
-
   };
 
   const hideDatePicker = (type) => {
@@ -186,149 +218,166 @@ const AddLeaveRequestScreen = ({ }) => {
   };
 
   const handleDetailLeave = () => {
-    if(compareAsc(startDate, endDate) > 0){
+    if (compareAsc(startDate, endDate) > 0) {
       const params = {
         title: STRINGS.alertName,
-        content: STRINGS.startLargerEnd
-      }
+        content: STRINGS.startLargerEnd,
+      };
       handleOpenModal(MODAL_TYPE.NORMAL, params);
       return;
     }
 
-    if (dateRangeList){
-      if (dateRangeList.length == 0){
+    if (dateRangeList) {
+      if (dateRangeList.length == 0) {
         setDateRangeList(getDatesArray(startDate, endDate));
-      }else{
+      } else {
         const newDateRangeList = getDatesArray(startDate, endDate);
-        newDateRangeList.map(newDateRange => {
-          
-          const filtered = dateRangeList.filter(dateRange => dateRange.date == newDateRange.date);
-          if (filtered.length > 0){
+        newDateRangeList.map((newDateRange) => {
+          const filtered = dateRangeList.filter(
+            (dateRange) => dateRange.date == newDateRange.date
+          );
+          if (filtered.length > 0) {
             newDateRange.session = filtered[0].session;
           }
         });
 
-        const allMorningCheck = newDateRangeList.some(dateRange=>dateRange.session.morning == false);
-        const allAfterenoonCheck = newDateRangeList.some(dateRange=>dateRange.session.afternoon == false);
+        const allMorningCheck = newDateRangeList.some(
+          (dateRange) => dateRange.session.morning == false
+        );
+        const allAfterenoonCheck = newDateRangeList.some(
+          (dateRange) => dateRange.session.afternoon == false
+        );
         setMorningAll(!allMorningCheck);
         setAftrenoonAll(!allAfterenoonCheck);
 
         setDateRangeList(newDateRangeList);
       }
-    }else{
-
+    } else {
       setDateRangeList(getDatesArray(startDate, endDate));
       setAftrenoonAll(false);
       setMorningAll(false);
     }
 
     setAlertVisible(true);
-  }
+  };
 
   function getDatesArray(startDate, endDate) {
     let datesArray = [];
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    for (let dt = start; dt.valueOf() <= end.valueOf(); dt.setDate(dt.getDate() + 1)) {
+    for (
+      let dt = start;
+      dt.valueOf() <= end.valueOf();
+      dt.setDate(dt.getDate() + 1)
+    ) {
       // Add weekday without weekend
       if (new Date(dt).getDay() != 0 && new Date(dt).getDay() != 6) {
-        datesArray.push(
-          {
-            date: formatDateTime(new Date(dt).toISOString().split("T")[0], "WD, DD/MM/YYYY"), 
-            session: {
-              morning: false,
-              afternoon: false
-            } 
-          }
-        );
+        datesArray.push({
+          date: formatDateTime(
+            new Date(dt).toISOString().split("T")[0],
+            "WD, DD/MM/YYYY"
+          ),
+          session: {
+            morning: false,
+            afternoon: false,
+          },
+        });
       }
     }
     return datesArray;
   }
 
   const handleAllCheck = (session) => {
-    
-    dateRangeList.map((dateRange)=>{
+    dateRangeList.map((dateRange) => {
       if (session == SESSION_TYPE.MORNING) {
         dateRange.session[SESSION_TYPE.MORNING] = !isMorningAll;
         setMorningAll(!isMorningAll);
       } else {
-
         dateRange.session[SESSION_TYPE.AFTERNOON] = !isAftrenoonAll;
         setAftrenoonAll(!isAftrenoonAll);
       }
     });
-  }
+  };
 
   const handleSelectSession = (index, value, session) => {
     dateRangeList[index].session[session] = value;
     handleDetailLeave();
-  }
+  };
 
   const handleSendLeaveRequest = () => {
-
-    if (content){
+    if (content) {
       const params = {
         title: STRINGS.alertName,
         content: STRINGS.leaveRqSuccessful,
         isFooterConfirm: true,
         isError: false,
-        handleConfirm: ()=>handleGoback()
-      }
+        handleConfirm: () => handleGoback(),
+      };
       handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
-    }else{
+    } else {
       const params = {
         title: STRINGS.alertName,
         content: STRINGS.noBlank,
         isFooterConfirm: true,
         isError: true,
-        handleConfirm: ()=>{}
-      }
+        handleConfirm: () => {},
+      };
 
       handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
     }
-  }
+  };
 
   const handleOpenModal = (modalType, params) => {
     dispatch(
       openModal({
         modalType: modalType,
-        params: params
+        params: params,
       })
     );
   };
 
   const handleGoback = () => {
     navigation.goBack();
-  }
+  };
 
   return (
     <View className="p-3 bg-white h-full">
       <View>
-        <DateTimePicker startDate={startDate} showDatePicker={showDatePicker} endDate={endDate} />
+        <DateTimePicker
+          startDate={startDate}
+          showDatePicker={showDatePicker}
+          endDate={endDate}
+        />
         <DateTimePickerModal
           isVisible={isStartDatePickerVisible}
           mode="date"
           onConfirm={setStDate}
-          onCancel={()=>hideDatePicker(DATE_TYPE.START_DATE)}/>
+          onCancel={() => hideDatePicker(DATE_TYPE.START_DATE)}
+        />
         <DateTimePickerModal
           isVisible={isEndDatePickerVisible}
           mode="date"
           onConfirm={setEdDate}
-          onCancel={()=>hideDatePicker(DATE_TYPE.END_DATE)}/>
+          onCancel={() => hideDatePicker(DATE_TYPE.END_DATE)}
+        />
       </View>
       <View>
         <View className="w-[100%] self-center flex flex-row justify-between mt-5 mb-3 pl-3 ">
           <Text className="text-base text-[#0A6843]">{STRINGS.content}</Text>
-          <TouchableOpacity className="flex flex-row items-center" onPress={() => handleDetailLeave(startDate, endDate)}>
-            <Text className="text-base text-[#0A6843]">{STRINGS.detailLeave}</Text>
+          <TouchableOpacity
+            className="flex flex-row items-center"
+            onPress={() => handleDetailLeave(startDate, endDate)}>
+            <Text className="text-base text-[#0A6843]">
+              {STRINGS.detailLeave}
+            </Text>
             <View className="mt-1">
               <ExpandMoreIcon />
             </View>
           </TouchableOpacity>
         </View>
-        <View className="h-[80%] p-3 bg-[#E3FFF4E5] rounded-lg"
+        <View
+          className="h-[80%] p-3 bg-[#E3FFF4E5] rounded-lg"
           style={{
             shadowColor: COLORS.dark,
             shadowOffset: { width: 2, height: 0 },
@@ -336,12 +385,15 @@ const AddLeaveRequestScreen = ({ }) => {
             shadowRadius: 0,
             elevation: 5,
           }}>
-          <TextInput className="h-[95%] text-xs" style={{ textAlignVertical: "top" }}
+          <TextInput
+            className="h-[95%] text-xs"
+            style={{ textAlignVertical: "top" }}
             multiline={true}
             numberOfLines={4}
             placeholder={STRINGS.leavePlaceholder}
             onChangeText={setContent}
-            value={content} />
+            value={content}
+          />
           <View className="self-end flex flex-row w-[20%] justify-around items-center">
             <TouchableOpacity>
               <PhotoCameraIcon size={20} />
@@ -361,16 +413,16 @@ const AddLeaveRequestScreen = ({ }) => {
       </TouchableOpacity>
       <DetailLeaveRequest
         onClose={() => setAlertVisible(false)}
-        dateRangeList={dateRangeList} 
+        dateRangeList={dateRangeList}
         isVisible={alertVisible}
         allCheck={handleAllCheck}
         isAftrenoonAll={isAftrenoonAll}
         isMorningAll={isMorningAll}
-        onSelect={handleSelectSession}/>
+        onSelect={handleSelectSession}
+      />
       <CustomModal />
     </View>
-
-  )
-}
+  );
+};
 
 export default AddLeaveRequestScreen;

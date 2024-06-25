@@ -6,6 +6,7 @@ import contentDrawerSlice from "./contentDrawer/contentDrawerSlice";
 import contactsSlice from "./contacts/contactsSlice";
 import notificationsSlice from "./notifications/notificationsSlice";
 import leaveRequestSlice from "./leaveRequest/leaveRequestSlice";
+import authSlice from "./auth/authSlice";
 const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -14,7 +15,8 @@ const store = configureStore({
     posts: postsSlice,
     contacts: contactsSlice,
     notifications: notificationsSlice,
-    leaveRequests: leaveRequestSlice
+    leaveRequests: leaveRequestSlice,
+    authentication: authSlice
   },
 });
 

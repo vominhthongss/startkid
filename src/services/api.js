@@ -1,15 +1,14 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as LOCAL_STORAGE from "../utils/localStorage";
 import axios from "axios";
-import * as STRINGS from "../constants/strings";
-import { Alert } from "react-native";
 import { BASE_URL } from "../constants/url";
+import * as AUTH from "../constants/auth";
 const api = axios.create({
   baseURL: BASE_URL,
 });
 
 api.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem("token");
+    const token = await LOCAL_STORAGE.getItem(AUTH.TOKEN);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -24,9 +23,10 @@ api.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
-    console.log("error :", error);
-    Alert.alert(STRINGS.alertName, STRINGS.errorResponse + `\n${error}`);
+  async (error) => {
+    if (error.response.status === 401) {
+      await LOCAL_STORAGE.removeItem(AUTH.TOKEN);
+    }
     return Promise.reject(error);
   }
 );

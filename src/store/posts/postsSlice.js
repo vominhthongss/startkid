@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
+import * as URLS from "../../constants/url";
 import api from "../../services/api";
 
 const initialState = {
@@ -10,9 +11,9 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   try {
-    const response = await api.get("/api/health-posts");
+    const response = await api.get(URLS.HEALTH_POSTS);
     if (response.data) {
-      return response.data.post;
+      return response.data.data;
     }
   } catch (error) {
     throw error;

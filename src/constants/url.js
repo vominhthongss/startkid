@@ -4,3 +4,4 @@ export const SIGN_IN = "/api/signin";
 export const HEALTH_POSTS = "/api/health-posts";
 export const CONTACT = "/api/contacts";
 export const NOTIFICATIONS = "/api/notifications";
+export const USER = "/api/user";

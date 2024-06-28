@@ -7,6 +7,7 @@ import contactsSlice from "./contacts/contactsSlice";
 import notificationsSlice from "./notifications/notificationsSlice";
 import leaveRequestSlice from "./leaveRequest/leaveRequestSlice";
 import authSlice from "./auth/authSlice";
+import userSlice from "./user/userSlice";
 const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -16,7 +17,8 @@ const store = configureStore({
     contacts: contactsSlice,
     notifications: notificationsSlice,
     leaveRequests: leaveRequestSlice,
-    authentication: authSlice
+    authentication: authSlice,
+    user: userSlice,
   },
 });
 

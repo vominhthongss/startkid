@@ -18,8 +18,17 @@ import MailIcon from "../../../assets/svg/MailIcon";
 import HomePinIcon from "../../../assets/svg/HomePinIcon";
 import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
 import GeneralForm from "../../components/GeneralForm/GeneralForm";
+import { fetchUser } from "../../store/user/userSlice";
+import { useEffect } from "react";
 
 function AccountScreen() {
+  const { user } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (!user) {
+      dispatch(fetchUser());
+    }
+  }, [user, dispatch]);
+
   const fields = [
     {
       name: "phoneNumber",
@@ -131,19 +140,24 @@ function AccountScreen() {
         <View>
           <View
             className="flex flex-row"
-            style={[styles.item, { marginLeft: 30 }]}
-          >
+            style={[styles.item, { marginLeft: 30 }]}>
             <Image
               source={require("../../../assets/img/face_3.png")}
               style={styles.image}
             />
             <View className="ml-8 mt-2">
-              <Text>{STRINGS.father}</Text>
-              <View className="flex flex-row">
+              <Text>
+                {STRINGS.father}
+                {user?.father?.name}
+              </Text>
+              <View className="flex flex-row items-center">
                 <TelephoneIcon />
-                <Text></Text>
+                <Text> {user?.father?.phoneNumber}</Text>
               </View>
-              <MailIcon></MailIcon>
+              <View className="flex flex-row items-center">
+                <MailIcon></MailIcon>
+                <Text> {user?.father?.email}</Text>
+              </View>
             </View>
           </View>
           <View style={styles.container}>
@@ -151,14 +165,17 @@ function AccountScreen() {
           </View>
           <View className="flex flex-row" style={styles.item}>
             <View className="ml-8 mt-2">
-              <Text>{STRINGS.mother}</Text>
-              <View className="flex flex-row">
+              <Text>
+                {STRINGS.mother}
+                {user?.mother?.name}
+              </Text>
+              <View className="flex flex-row items-center">
                 <TelephoneIcon />
-                <Text>0378773</Text>
+                <Text> {user?.mother?.phoneNumber}</Text>
               </View>
-              <View className="flex flex-row">
+              <View className="flex flex-row items-center">
                 <MailIcon></MailIcon>
-                <Text></Text>
+                <Text> {user?.mother?.email}</Text>
               </View>
             </View>
             <Image
@@ -174,10 +191,12 @@ function AccountScreen() {
           </View>
           <View
             className="flex flex-row"
-            style={[styles.item, { paddingBottom: 70 }]}
-          >
+            style={[styles.item, { paddingBottom: 70 }]}>
             <View className="ml-8 mt-2">
-              <HomePinIcon></HomePinIcon>
+              <View className="flex flex-row items-center">
+                <HomePinIcon></HomePinIcon>
+                <Text>{user?.address}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -205,26 +224,24 @@ function AccountScreen() {
       style={{
         backgroundColor: currentTab === tab.index ? COLORS.main : COLORS.none,
       }}
-      className="rounded-t-lg"
-    >
+      className="rounded-t-lg">
       <TouchableOpacity onPress={() => setCurrentTab(tab.index)}>
         <Text
           style={{
             color: currentTab === tab.index ? COLORS.none : COLORS.dark,
           }}
-          className="px-[13%] py-[5px] text-[18px]"
-        >
+          className="px-[13%] py-[5px] text-[18px]">
           {tab.name}
         </Text>
       </TouchableOpacity>
     </View>
   ));
+
   return (
     <ScrollView className="bg-white h-full">
       <View
         style={{ backgroundColor: COLORS.main }}
-        className="h-20 w-full relative"
-      >
+        className="h-20 w-full relative">
         <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
           <Image
             source={require("../../../assets/img/diversity_1.png")}
@@ -247,8 +264,7 @@ function AccountScreen() {
               item.showSwipeUpDrawer
                 ? handleOpenSwipeUp()
                 : handleGoToScreen(item.screen)
-            }
-          >
+            }>
             <View className="flex flex-col items-center">
               {item.icon}
               <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>

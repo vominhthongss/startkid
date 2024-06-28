@@ -15,7 +15,6 @@ import { noImage } from "../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchContacts } from "../../store/contacts/contactsSlice";
-import { contacts } from "../../mock/contacts";
 import Loading from "../../components/Loading/Loading";
 
 const ContactItem = ({ contact }) => (

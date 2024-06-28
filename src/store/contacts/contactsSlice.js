@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
+import * as URL from "../../constants/url";
 import api from "../../services/api";
 
 const initialState = {
@@ -12,16 +13,16 @@ export const fetchContacts = createAsyncThunk(
   "contacts/fetchContacts",
   async () => {
     try {
-      const response = await api.get("/api/contacts");
+      const response = await api.get(URL.CONTACT);
       if (response.data) {
         const contacts = [];
-        response.data.contacts.forEach((x) => {
+        response.data.data.forEach((x) => {
           if (x.category && !contacts.some((c) => c.category === x.category)) {
             contacts.push({ category: x.category, contactItems: [] });
           }
         });
         contacts.forEach((x) => {
-          response.data.contacts.forEach((y) => {
+          response.data.data.forEach((y) => {
             if (x.category === y.category) {
               x.contactItems.push(y);
             }

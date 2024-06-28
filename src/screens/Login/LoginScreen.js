@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Modal,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as SCREENS_NAME from "../../constants/screensName";
@@ -26,6 +27,7 @@ import { useDispatch } from "react-redux";
 import { openModal } from "../../store/modalSlice/modalSlice";
 import CustomModal from "../../components/CustomModal/CustomModal";
 import { MODAL_TYPE } from "../../constants/common";
+import { login } from "../../store/auth/authSlice";
 
 const SavedPasswordModal = ({
   isVisible,
@@ -101,6 +103,7 @@ const LoginScreen = () => {
   const [savedPasswordList, setSavedPasswordList] = useState(savedPasswords);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const handleForgotPasswordOpenModal = () => {
     const params = {
@@ -129,11 +132,25 @@ const LoginScreen = () => {
     );
   }
 
-  const handleLogin = () => {
-    if (phoneNumber === "1" && password === "1") {
-      navigation.navigate(SCREENS_NAME.mainTab);
-    } else {
+  const handleLogin = async () => {
+
+    let userData = {
+      "phoneNumber": phoneNumber,
+      "password": password
+    }
+
+    try {
+      setLoading(true);
+      let resultAction  =  await dispatch(login(userData));
+      if (login.fulfilled.match(resultAction)) {
+        navigation.navigate(SCREENS_NAME.mainTab);
+      } else {
+        handleUnSuccessLoginOpenModal();
+      }
+    }catch(error){
       handleUnSuccessLoginOpenModal();
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -212,9 +229,11 @@ const LoginScreen = () => {
         className="h-[6%] w-[60%] mt-8 rounded-3xl flex flex-row items-center justify-center self-center"
         style={{ backgroundColor: COLORS.main }}
         onPress={handleLogin}>
-        <Text className="text-lg" style={{ color: COLORS.noneBasic }}>
-          {STRINGS.login}
-        </Text>
+          {loading ? 
+          <ActivityIndicator size="large" />
+          :<Text className="text-lg" style={{ color: COLORS.noneBasic }}>
+            {STRINGS.login}
+          </Text>}
       </TouchableOpacity>
       <TouchableOpacity
         className="mt-4 self-center"

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
+import * as URL from "../../constants/url";
 import api from "../../services/api";
 
 const initialState = {
@@ -12,9 +13,9 @@ export const fetchNotifications = createAsyncThunk(
   "notifications/fetchNotifications",
   async () => {
     try {
-      const response = await api.get("/api/notifications");
+      const response = await api.get(URL.NOTIFICATIONS);
       if (response.data) {
-        return response.data.notifications;
+        return response.data.data;
       }
     } catch (error) {
       throw error;

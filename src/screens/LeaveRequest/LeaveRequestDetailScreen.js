@@ -12,20 +12,33 @@ function LeaveRequestDetailScreen() {
     <View className="flex flex-row justify-end pt-4 bg-white h-full">
       <View>
         <Text className="self-end text-[#999999]">{leaveRequest.userId}</Text>
-        <View style={styles.shadow} className="w-72 h-36 self-end rounded-xl mt-2 self-center">
+        <View
+          style={styles.shadow}
+          className="w-72 h-36 ounded-xl mt-2 self-center">
           <View className="w-64 pt-1 self-center">
-            <Text className="border-b border-solid border-[#0A68431A] pb-2">{leaveRequest.title}</Text>
-            <Text className="text-xs text-[#5F5F5F] pt-2">{STRINGS.leaveTimeRange}: {formatDateTime(leaveRequest.startDateTime, "DD/MM")}</Text>
+            <Text className="border-b border-solid border-[#0A68431A] pb-2">
+              {leaveRequest.title}
+            </Text>
+            <Text className="text-xs text-[#5F5F5F] pt-2">
+              {STRINGS.leaveTimeRange}:{" "}
+              {formatDateTime(leaveRequest.startDateTime, "DD/MM")}
+            </Text>
             <View className="flex flex-row items-center mt-3">
-              <Text className="text-xs text-[#5F5F5F] ml-8">{formatDateTime(leaveRequest.startDateTime, "WD, DD/MM/YYYY")}</Text>
+              <Text className="text-xs text-[#5F5F5F] ml-8">
+                {formatDateTime(leaveRequest.startDateTime, "WD, DD/MM/YYYY")}
+              </Text>
               <View className="flex flex-row justify-center items-center rounded-xl bg-[#0A6843]  -[24] w-[60] ml-4">
                 <Text className="text-xs text-white">{"Sang"}</Text>
               </View>
             </View>
           </View>
           <View className="flex flex-row self-end mt-4 justify-center items-center mr-2">
-            <Text className="mr-3 text-red-500" style={{ fontSize: 10 }}>{leaveRequest.status}</Text>
-            <Text className="text-sm text-[#999999]" style={{ fontSize: 10 }}>{formatDateTime(leaveRequest.startDateTime, "HH:mm, DD/MM/YYYY")}</Text>
+            <Text className="mr-3 text-red-500" style={{ fontSize: 10 }}>
+              {leaveRequest.status}
+            </Text>
+            <Text className="text-sm text-[#999999]" style={{ fontSize: 10 }}>
+              {formatDateTime(leaveRequest.startDateTime, "HH:mm, DD/MM/YYYY")}
+            </Text>
           </View>
         </View>
       </View>

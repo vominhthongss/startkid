@@ -3,13 +3,13 @@ import { CalendarClockIcon } from "../../../assets/svg/CalendarClockIcon";
 import MediaIcon from "../../../assets/svg/MediaIcon";
 import * as STRINGS from "../../constants/strings";
 import formatDateTime from "../../utils/formatDateTime";
+import { ddmm, hhmmddmm } from "../../constants/dateTimeFormat";
 
 function LeaveRequestItem({ leaveRequestItem, onSelected }) {
-  const format = "DD/MM";
   const startEndDateTime =
-    formatDateTime(leaveRequestItem.startDateTime, format) +
+    formatDateTime(leaveRequestItem.startDate, ddmm) +
     " - " +
-    formatDateTime(leaveRequestItem.endDateTime, format);
+    formatDateTime(leaveRequestItem.endDate, ddmm);
 
   return (
     <TouchableOpacity
@@ -20,7 +20,7 @@ function LeaveRequestItem({ leaveRequestItem, onSelected }) {
         <View className="bg-[#EA3637] h-3 w-3 rounded-full absolute bottom-[4] right-[4]" />
       </View>
       <View className="ml-5 w-full border-b border-solid border-[#0A68431A]">
-        <Text className="text-base">{leaveRequestItem.title}</Text>
+        <Text className="text-base">{leaveRequestItem.content}</Text>
         <Text>
           {STRINGS.leaveTimeRange}: {startEndDateTime}
         </Text>
@@ -30,7 +30,7 @@ function LeaveRequestItem({ leaveRequestItem, onSelected }) {
             <Text className="text-[#999999] ml-2">+1</Text>
           </View>
           <Text className="text-[#84b3a1]">
-            {formatDateTime(leaveRequestItem.startDateTime)}
+            {formatDateTime(leaveRequestItem.createdDate, hhmmddmm)}
           </Text>
         </View>
       </View>

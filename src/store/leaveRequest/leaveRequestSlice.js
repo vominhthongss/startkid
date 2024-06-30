@@ -4,7 +4,7 @@ import api from "../../services/api";
 import { leaveRequests } from "../../mock/leaveRequests";
 
 const initialState = {
-  leaveRequests: leaveRequests,
+  leaveRequests: undefined,
   status: "idle",
   error: null,
 };

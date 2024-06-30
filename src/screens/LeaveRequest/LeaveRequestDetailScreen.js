@@ -4,6 +4,7 @@ import { DiversityIcon } from "../../../assets/svg/DiversityIcon";
 import * as STRINGS from "../../constants/strings";
 import * as COLORS from "../../constants/colors";
 import formatDateTime from "../../utils/formatDateTime";
+import { ddmm, wdddmmyyyy } from "../../constants/dateTimeFormat";
 
 function LeaveRequestDetailScreen() {
   const route = useRoute();
@@ -17,18 +18,18 @@ function LeaveRequestDetailScreen() {
           className="w-72 h-36 ounded-xl mt-2 self-center">
           <View className="w-64 pt-1 self-center">
             <Text className="border-b border-solid border-[#0A68431A] pb-2">
-              {leaveRequest.title}
+              {leaveRequest.content}
             </Text>
             <Text className="text-xs text-[#5F5F5F] pt-2">
               {STRINGS.leaveTimeRange}:{" "}
-              {formatDateTime(leaveRequest.startDateTime, "DD/MM")}
+              {formatDateTime(leaveRequest.startDate, ddmm)}
             </Text>
             <View className="flex flex-row items-center mt-3">
               <Text className="text-xs text-[#5F5F5F] ml-8">
-                {formatDateTime(leaveRequest.startDateTime, "WD, DD/MM/YYYY")}
+                {formatDateTime(leaveRequest.startDate, wdddmmyyyy)}
               </Text>
               <View className="flex flex-row justify-center items-center rounded-xl bg-[#0A6843]  -[24] w-[60] ml-4">
-                <Text className="text-xs text-white">{"Sang"}</Text>
+                <Text className="text-xs text-white">{"Sáng"}</Text>
               </View>
             </View>
           </View>

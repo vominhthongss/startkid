@@ -1,4 +1,10 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as SCREEN_NAMES from "../../constants/screensName";
@@ -33,17 +39,17 @@ function LeaveRequestScreen() {
     <View className="flex flex-row justify-center bg-white h-full">
       {leaveRequests ? (
         <View>
-          <FlatList
-            data={leaveRequests}
-            renderItem={({ item, index }) => (
+          <ScrollView>
+            {leaveRequests.map((item, key) => (
               <LeaveRequestItem
-                key={index}
+                key={key}
                 onSelected={() => {
                   handleGoToDetailScreen(item);
                 }}
                 leaveRequestItem={item}
               />
-            )}></FlatList>
+            ))}
+          </ScrollView>
           <TouchableOpacity
             className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
             onPress={handleGoToAddScreen}>

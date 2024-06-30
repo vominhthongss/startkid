@@ -10,5 +10,6 @@ export const add = " ";
 export const login = "Login";
 export const changePassword = "Đổi mật khẩu";
 export const pickDrop = "Đưa đón";
-
-
+export const message = "Lời nhắn";
+export const messageDetail = "Chi tiết lời nhắn";
+export const addMessage = "Thêm lời nhắn";

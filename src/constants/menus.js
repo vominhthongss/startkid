@@ -6,6 +6,7 @@ export const menus = [
   {
     icon: <ICONS.MessageIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.message,
+    screen: SCREENS_NAME.message,
   },
   {
     icon: <ICONS.RemindMedicineIcon size={60} color={COLORS.mainRgba} />,

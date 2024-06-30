@@ -8,6 +8,9 @@ import AddLeaveRequestScreen from "../screens/LeaveRequest/AddLeaveRequest";
 import BackButton from "../components/BackButton/BackButton";
 import PickDropScreen from "../screens/PickDrop/PickDropScreen";
 import { ChangePasswordScreen } from "../screens/changePassword/ChangePasswordScreen";
+import MessageScreen from "../screens/Message/MessageScreen";
+import MessageDetailScreen from "../screens/Message/MessageDetailScreen";
+import AddMessageScreen from "../screens/Message/AddMessageRequest";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,
@@ -30,6 +33,21 @@ export const addLeaveRequest = {
   options: screenChildOption(SCREENS_NAME.addLeaveRequest, () => (
     <BackButton />
   )),
+};
+export const message = {
+  name: SCREENS_NAME.message,
+  component: MessageScreen,
+  options: screenChildOption(SCREENS_NAME.message),
+};
+export const messageDetail = {
+  name: SCREENS_NAME.messageDetail,
+  component: MessageDetailScreen,
+  options: screenChildOption(SCREENS_NAME.messageDetail),
+};
+export const addMessage = {
+  name: SCREENS_NAME.addMessage,
+  component: AddMessageScreen,
+  options: screenChildOption(SCREENS_NAME.addMessage, () => <BackButton />),
 };
 export const login = {
   name: SCREENS_NAME.login,

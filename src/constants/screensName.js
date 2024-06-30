@@ -16,3 +16,6 @@ export const addMessage = "Thêm lời nhắn";
 export const remindMedicine = "Dặn thuốc";
 export const remindMedicineDetail = "Chi tiết dặn thuốc";
 export const addRemindMedicine = "Thêm dặn thuốc";
+export const feedBack = "Góp ý";
+export const feedBackDetail = "Chi tiết góp ý";
+export const addFeedBack = "Thêm góp ý";

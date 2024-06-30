@@ -25,6 +25,7 @@ export const menus = [
   {
     icon: <ICONS.CommentIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.com,
+    screen: SCREENS_NAME.feedBack,
   },
   {
     icon: <ICONS.AttendIcon size={60} color={COLORS.mainRgba} />,

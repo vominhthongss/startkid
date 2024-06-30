@@ -14,6 +14,9 @@ import AddMessageScreen from "../screens/Message/AddMessageRequest";
 import RemindMedicineScreen from "../screens/RemindMedicine/RemindMedicineScreen";
 import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineRequest";
 import RemindMedicineDetailScreen from "../screens/RemindMedicine/RemindMedicineDetailScreen";
+import FeedBackScreen from "../screens/FeedBack/FeedBackScreen";
+import FeedBackDetailScreen from "../screens/FeedBack/FeedBackDetailScreen";
+import AddFeedBackScreen from "../screens/FeedBack/AddFeedBackRequest";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,
@@ -68,6 +71,21 @@ export const addRemindMedicine = {
   options: screenChildOption(SCREENS_NAME.addRemindMedicine, () => (
     <BackButton />
   )),
+};
+export const feedBack = {
+  name: SCREENS_NAME.feedBack,
+  component: FeedBackScreen,
+  options: screenChildOption(SCREENS_NAME.feedBack),
+};
+export const feedBackDetail = {
+  name: SCREENS_NAME.feedBackDetail,
+  component: FeedBackDetailScreen,
+  options: screenChildOption(SCREENS_NAME.feedBackDetail),
+};
+export const addFeedBack = {
+  name: SCREENS_NAME.addFeedBack,
+  component: AddFeedBackScreen,
+  options: screenChildOption(SCREENS_NAME.addFeedBack, () => <BackButton />),
 };
 export const login = {
   name: SCREENS_NAME.login,

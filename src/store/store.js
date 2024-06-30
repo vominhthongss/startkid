@@ -8,6 +8,7 @@ import notificationsSlice from "./notifications/notificationsSlice";
 import leaveRequestSlice from "./leaveRequest/leaveRequestSlice";
 import authSlice from "./auth/authSlice";
 import userSlice from "./user/userSlice";
+import messageSlice from "./message/messageSlice";
 const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -19,6 +20,7 @@ const store = configureStore({
     leaveRequests: leaveRequestSlice,
     authentication: authSlice,
     user: userSlice,
+    messages: messageSlice,
   },
 });
 

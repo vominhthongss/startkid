@@ -182,12 +182,18 @@ const AddLeaveRequestScreen = ({}) => {
     useState(false);
   const [isEndDatePickerVisible, setEndatePickerVisibility] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  console.log("startDate :", startDate);
   const [endDate, setEndDate] = useState(new Date());
+  console.log("endDate :", endDate);
   const [content, setContent] = useState("");
+  console.log("content :", content);
   const [alertVisible, setAlertVisible] = useState(false);
   const [dateRangeList, setDateRangeList] = useState([]);
+  console.log("dateRangeList :", dateRangeList);
   const [isMorningAll, setMorningAll] = useState(false);
+  console.log("isMorningAll :", isMorningAll);
   const [isAftrenoonAll, setAftrenoonAll] = useState(false);
+  console.log("isAftrenoonAll :", isAftrenoonAll);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -271,7 +277,6 @@ const AddLeaveRequestScreen = ({}) => {
       dt.valueOf() <= end.valueOf();
       dt.setDate(dt.getDate() + 1)
     ) {
-      // Add weekday without weekend
       if (new Date(dt).getDay() != 0 && new Date(dt).getDay() != 6) {
         datesArray.push({
           date: formatDateTime(
@@ -309,16 +314,23 @@ const AddLeaveRequestScreen = ({}) => {
     if (content) {
       const params = {
         title: STRINGS.alertName,
-        content: STRINGS.leaveRqSuccessful,
+        content: content,
+        startDate: startDate,
+        endDate: endDate,
+        dateRangeList: JSON.stringify(dateRangeList),
         isFooterConfirm: true,
         isError: false,
         handleConfirm: () => handleGoback(),
       };
+      //chỗ này gửi param lên server OK thì bật cái modal, ERROR thì hiện lỗi
       handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
     } else {
       const params = {
         title: STRINGS.alertName,
-        content: STRINGS.noBlank,
+        content: content,
+        startDate: startDate,
+        endDate: endDate,
+        dateRangeList: dateRangeList,
         isFooterConfirm: true,
         isError: true,
         handleConfirm: () => {},

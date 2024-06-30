@@ -22,6 +22,21 @@ export const fetchLeaveRquests = createAsyncThunk(
     }
   }
 );
+export const addLeaveRquests = createAsyncThunk(
+  "leaveRequest/addLeaveRquests",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/api/leave-requests/add", data);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 
 const leaveRequestsSlice = createSlice({
   name: "leaveRequests",

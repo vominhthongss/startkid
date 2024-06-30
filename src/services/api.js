@@ -2,6 +2,7 @@ import * as LOCAL_STORAGE from "../utils/localStorage";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import * as AUTH from "../constants/auth";
+import { Alert } from "react-native";
 const api = axios.create({
   baseURL: BASE_URL,
 });
@@ -15,6 +16,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log("error :", error);
     return Promise.reject(error);
   }
 );
@@ -24,6 +26,8 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log("error :", error);
+    Alert.alert("Lỗi hệ thống", "Vui lòng thử lại sau !");
     if (error.response.status === 401) {
       await LOCAL_STORAGE.removeItem(AUTH.TOKEN);
     }

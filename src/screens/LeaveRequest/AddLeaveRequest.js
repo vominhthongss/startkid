@@ -27,6 +27,7 @@ import { MODAL_TYPE } from "../../constants/common";
 import { DATE_TYPE } from "../../constants/common";
 import { SESSION_TYPE } from "../../constants/common";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { addLeaveRquests } from "../../store/leaveRequest/leaveRequestSlice";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
   return (
@@ -182,18 +183,12 @@ const AddLeaveRequestScreen = ({}) => {
     useState(false);
   const [isEndDatePickerVisible, setEndatePickerVisibility] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  console.log("startDate :", startDate);
   const [endDate, setEndDate] = useState(new Date());
-  console.log("endDate :", endDate);
   const [content, setContent] = useState("");
-  console.log("content :", content);
   const [alertVisible, setAlertVisible] = useState(false);
   const [dateRangeList, setDateRangeList] = useState([]);
-  console.log("dateRangeList :", dateRangeList);
   const [isMorningAll, setMorningAll] = useState(false);
-  console.log("isMorningAll :", isMorningAll);
   const [isAftrenoonAll, setAftrenoonAll] = useState(false);
-  console.log("isAftrenoonAll :", isAftrenoonAll);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -310,33 +305,29 @@ const AddLeaveRequestScreen = ({}) => {
     handleDetailLeave();
   };
 
-  const handleSendLeaveRequest = () => {
-    if (content) {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: JSON.stringify(dateRangeList),
-        isFooterConfirm: true,
-        isError: false,
-        handleConfirm: () => handleGoback(),
-      };
-      //chỗ này gửi param lên server OK thì bật cái modal, ERROR thì hiện lỗi
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
-    } else {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: dateRangeList,
-        isFooterConfirm: true,
-        isError: true,
-        handleConfirm: () => {},
-      };
-
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
+  const handleSendLeaveRequest = async () => {
+    const data = {
+      content: content,
+      startDate: startDate.toString(),
+      endDate: endDate.toString(),
+      dateRangeList: dateRangeList,
+      createdDate: new Date().toString(),
+      isFooterConfirm: true,
+      isError: content === "",
+      handleConfirm: () => content !== "" && handleGoback(),
+    };
+    try {
+      const resultAction = await dispatch(addLeaveRquests(data));
+      if (
+        addLeaveRquests.fulfilled.match(resultAction) &&
+        resultAction.payload.status_code === 200
+      ) {
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+      } else if (addLeaveRquests.rejected.match(resultAction)) {
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+      }
+    } catch (error) {
+      console.error("Error adding leave request:", error);
     }
   };
 

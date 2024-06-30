@@ -306,24 +306,23 @@ const AddLeaveRequestScreen = ({}) => {
   };
 
   const handleSendLeaveRequest = async () => {
-    const data = {
+    var data = {
       content: content,
       startDate: startDate.toString(),
       endDate: endDate.toString(),
       dateRangeList: dateRangeList,
       createdDate: new Date().toString(),
-      isFooterConfirm: true,
-      isError: content === "",
-      handleConfirm: () => content !== "" && handleGoback(),
     };
     try {
       const resultAction = await dispatch(addLeaveRquests(data));
-      if (
-        addLeaveRquests.fulfilled.match(resultAction) &&
-        resultAction.payload.status_code === 200
-      ) {
-        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
-      } else if (addLeaveRquests.rejected.match(resultAction)) {
+      if (resultAction.payload.status_code > 0) {
+        data = {
+          ...data,
+          isFooterConfirm: true,
+          isError: resultAction.payload.status_code !== 200,
+          handleConfirm: () =>
+            resultAction.payload.status_code === 200 && handleGoback(),
+        };
         handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
       }
     } catch (error) {

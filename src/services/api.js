@@ -16,7 +16,6 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log("error :", error);
     return Promise.reject(error);
   }
 );
@@ -26,10 +25,9 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log("error :", error);
-    Alert.alert("Lỗi hệ thống", "Vui lòng thử lại sau !");
     if (error.response.status === 401) {
       await LOCAL_STORAGE.removeItem(AUTH.TOKEN);
+      Alert.alert("Thông báo", "Vui lòng đăng nhập lại");
     }
     return Promise.reject(error);
   }

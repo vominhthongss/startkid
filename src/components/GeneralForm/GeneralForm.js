@@ -7,10 +7,14 @@ import ErrorText from "../ErrorText/ErrorText";
 import CustomizeRadio from "../CustomizeRadio/CustomizeRadio";
 import CustomizeTextInput from "../CustomizeTextInput/CustomizeTextInput";
 
-function GeneralForm({ fields, handleData, titleSubmitBtn, customStyleButton=""}) {
+function GeneralForm({
+  fields,
+  handleData,
+  titleSubmitBtn,
+  customStyleButton = "",
+}) {
   const fieldRender = (field, key, { handleChange, values, errors }) => {
     let element = null;
-
     switch (field.type) {
       case "number":
         element = (
@@ -172,8 +176,7 @@ function GeneralForm({ fields, handleData, titleSubmitBtn, customStyleButton=""}
           return;
         });
         return errors;
-      }}
-    >
+      }}>
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View className={"w-full"}>
           {fields.map((field, key) => (

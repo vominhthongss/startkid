@@ -28,12 +28,11 @@ function AccountScreen() {
       dispatch(fetchUser());
     }
   }, [user, dispatch]);
-
   const fields = [
     {
       name: "phoneNumber",
       placeholder: "Tên đăng nhập",
-      value: "",
+      value: "0" + user?.phoneNumber.toString(),
       type: "number",
       label: "Tên đăng nhập",
       isRequired: true,
@@ -41,7 +40,7 @@ function AccountScreen() {
     {
       name: "fullName",
       placeholder: "Tên tài khoản",
-      value: "",
+      value: user?.name,
       type: "text",
       label: "Tên tài khoản",
       isRequired: true,
@@ -49,7 +48,7 @@ function AccountScreen() {
     {
       name: "sex",
       placeholder: "Giới tính",
-      value: "male",
+      value: user?.sex,
       type: "radio",
       label: "Giới tính",
       options: [
@@ -65,17 +64,9 @@ function AccountScreen() {
       isRequired: true,
     },
     {
-      name: "birthday",
-      placeholder: "Sinh nhật",
-      value: "",
-      type: "time",
-      label: "Sinh nhật",
-      isRequired: true,
-    },
-    {
       name: "phoneSms",
       placeholder: "Số điện thoại nhận SMS",
-      value: "",
+      value: "0" + user?.phoneNumber.toString(),
       type: "number",
       label: "Số điện thoại nhận SMS",
       isRequired: true,
@@ -83,7 +74,7 @@ function AccountScreen() {
     {
       name: "email",
       placeholder: "Gmail tài khoản",
-      value: "",
+      value: user?.email,
       type: "email",
       label: "Gmail tài khoản",
       isRequired: true,
@@ -238,41 +229,43 @@ function AccountScreen() {
   ));
 
   return (
-    <ScrollView className="bg-white h-full">
-      <View
-        style={{ backgroundColor: COLORS.main }}
-        className="h-20 w-full relative">
-        <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
-          <Image
-            source={require("../../../assets/img/diversity_1.png")}
-            style={{ margin: 15 }}
-          />
-          <View style={{ right: 5, bottom: -5, position: "absolute" }}>
-            <CameraAvatarIcon></CameraAvatarIcon>
+    user && (
+      <ScrollView className="bg-white h-full">
+        <View
+          style={{ backgroundColor: COLORS.main }}
+          className="h-20 w-full relative">
+          <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
+            <Image
+              source={require("../../../assets/img/diversity_1.png")}
+              style={{ margin: 15 }}
+            />
+            <View style={{ right: 5, bottom: -5, position: "absolute" }}>
+              <CameraAvatarIcon></CameraAvatarIcon>
+            </View>
           </View>
         </View>
-      </View>
-      <View className="flex flex-row justify-center mt-20">{tabsRender}</View>
-      <View className="w-[95%] rounded-xl mx-auto h-fit border-[#99C0B1] border-[1px]">
-        {tabs[currentTab]?.component}
-      </View>
-      <View className="flex flex-row justify-between p-5">
-        {other.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() =>
-              item.showSwipeUpDrawer
-                ? handleOpenSwipeUp()
-                : handleGoToScreen(item.screen)
-            }>
-            <View className="flex flex-col items-center">
-              {item.icon}
-              <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+        <View className="flex flex-row justify-center mt-20">{tabsRender}</View>
+        <View className="w-[95%] rounded-xl mx-auto h-fit border-[#99C0B1] border-[1px]">
+          {tabs[currentTab]?.component}
+        </View>
+        <View className="flex flex-row justify-between p-5">
+          {other.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                item.showSwipeUpDrawer
+                  ? handleOpenSwipeUp()
+                  : handleGoToScreen(item.screen)
+              }>
+              <View className="flex flex-col items-center">
+                {item.icon}
+                <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    )
   );
 }
 

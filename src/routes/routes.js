@@ -11,6 +11,9 @@ import { ChangePasswordScreen } from "../screens/changePassword/ChangePasswordSc
 import MessageScreen from "../screens/Message/MessageScreen";
 import MessageDetailScreen from "../screens/Message/MessageDetailScreen";
 import AddMessageScreen from "../screens/Message/AddMessageRequest";
+import RemindMedicineScreen from "../screens/RemindMedicine/RemindMedicineScreen";
+import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineRequest";
+import RemindMedicineDetailScreen from "../screens/RemindMedicine/RemindMedicineDetailScreen";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,
@@ -48,6 +51,23 @@ export const addMessage = {
   name: SCREENS_NAME.addMessage,
   component: AddMessageScreen,
   options: screenChildOption(SCREENS_NAME.addMessage, () => <BackButton />),
+};
+export const remindMedicine = {
+  name: SCREENS_NAME.remindMedicine,
+  component: RemindMedicineScreen,
+  options: screenChildOption(SCREENS_NAME.remindMedicine),
+};
+export const remindMedicineDetail = {
+  name: SCREENS_NAME.remindMedicineDetail,
+  component: RemindMedicineDetailScreen,
+  options: screenChildOption(SCREENS_NAME.remindMedicineDetail),
+};
+export const addRemindMedicine = {
+  name: SCREENS_NAME.addRemindMedicine,
+  component: AddRemindMedicineScreen,
+  options: screenChildOption(SCREENS_NAME.addRemindMedicine, () => (
+    <BackButton />
+  )),
 };
 export const login = {
   name: SCREENS_NAME.login,

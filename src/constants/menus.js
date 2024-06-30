@@ -11,6 +11,7 @@ export const menus = [
   {
     icon: <ICONS.RemindMedicineIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.remindMedicine,
+    screen: SCREENS_NAME.remindMedicine,
   },
   {
     icon: <ICONS.LeaveRequestIcon size={60} color={COLORS.mainRgba} />,

@@ -9,6 +9,7 @@ import leaveRequestSlice from "./leaveRequest/leaveRequestSlice";
 import authSlice from "./auth/authSlice";
 import userSlice from "./user/userSlice";
 import messageSlice from "./message/messageSlice";
+import remindMedicineSlice from "./remindMedicine/remindMedicineSlice";
 const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -21,6 +22,7 @@ const store = configureStore({
     authentication: authSlice,
     user: userSlice,
     messages: messageSlice,
+    remindMedicines: remindMedicineSlice,
   },
 });
 

@@ -13,3 +13,6 @@ export const pickDrop = "Đưa đón";
 export const message = "Lời nhắn";
 export const messageDetail = "Chi tiết lời nhắn";
 export const addMessage = "Thêm lời nhắn";
+export const remindMedicine = "Dặn thuốc";
+export const remindMedicineDetail = "Chi tiết dặn thuốc";
+export const addRemindMedicine = "Thêm dặn thuốc";

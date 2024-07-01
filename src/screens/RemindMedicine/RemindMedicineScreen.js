@@ -8,6 +8,7 @@ import { SendIcon } from "../../../assets/svg/SendIcon";
 import * as STRINGS from "../../constants/strings";
 import Loading from "../../components/Loading/Loading";
 import RemindMedicineItem from "../../components/RemindMedicineItem/RemindmedicineItem";
+import { ScrollView } from "react-native-gesture-handler";
 
 function RemindMedicineScreen() {
   const navigation = useNavigation();
@@ -33,17 +34,17 @@ function RemindMedicineScreen() {
     <View className="flex flex-row justify-center bg-white h-full">
       {remindMedicines ? (
         <View>
-          <FlatList
-            data={remindMedicines}
-            renderItem={({ item, index }) => (
+          <ScrollView>
+            {remindMedicines.map((item, key) => (
               <RemindMedicineItem
-                key={index}
+                key={key}
                 onSelected={() => {
                   handleGoToDetailScreen(item);
                 }}
                 remindMedicineItem={item}
               />
-            )}></FlatList>
+            ))}
+          </ScrollView>
           <TouchableOpacity
             className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
             onPress={handleGoToAddScreen}>

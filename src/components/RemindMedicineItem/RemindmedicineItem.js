@@ -3,14 +3,9 @@ import { CalendarClockIcon } from "../../../assets/svg/CalendarClockIcon";
 import MediaIcon from "../../../assets/svg/MediaIcon";
 import * as STRINGS from "../../constants/strings";
 import formatDateTime from "../../utils/formatDateTime";
+import { hhmmddmm } from "../../constants/dateTimeFormat";
 
 function RemindMedicineItem({ remindMedicineItem, onSelected }) {
-  const format = "DD/MM";
-  const startEndDateTime =
-    formatDateTime(remindMedicineItem.startDateTime, format) +
-    " - " +
-    formatDateTime(remindMedicineItem.endDateTime, format);
-
   return (
     <TouchableOpacity
       onPress={onSelected}
@@ -21,16 +16,18 @@ function RemindMedicineItem({ remindMedicineItem, onSelected }) {
       </View>
       <View className="ml-5 w-full border-b border-solid border-[#0A68431A]">
         <Text className="text-base">{remindMedicineItem.title}</Text>
-        <Text>
-          {STRINGS.leaveTimeRange}: {startEndDateTime}
-        </Text>
+        <View className="flex flex-row">
+          <Text className="text-[#999999]">{STRINGS.sickName}: </Text>
+          <Text className="text-red-500">{remindMedicineItem.sickName}</Text>
+        </View>
+        <Text className="text-[#999999]">{remindMedicineItem.content}</Text>
         <View className="flex flex-row justify-between items-center pt-3 pb-1">
           <View className="bg-[#fff3d3] rounded-xl flex flex-row items-center pl-2 pr-2 py-1">
             <MediaIcon size={15} />
             <Text className="text-[#999999] ml-2">+1</Text>
           </View>
           <Text className="text-[#84b3a1]">
-            {formatDateTime(remindMedicineItem.startDateTime)}
+            {formatDateTime(remindMedicineItem.createdDate, hhmmddmm)}
           </Text>
         </View>
       </View>

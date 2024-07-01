@@ -3,6 +3,7 @@ import { useRoute } from "@react-navigation/native";
 import { DiversityIcon } from "../../../assets/svg/DiversityIcon";
 import * as COLORS from "../../constants/colors";
 import formatDateTime from "../../utils/formatDateTime";
+import { hhmmddmm } from "../../constants/dateTimeFormat";
 
 function MessageDetailScreen() {
   const route = useRoute();
@@ -25,7 +26,7 @@ function MessageDetailScreen() {
             <Text
               className="text-sm"
               style={{ fontSize: 10, color: COLORS.main }}>
-              {formatDateTime(message.createdDate, "HH:mm, DD/MM/YYYY")}
+              {formatDateTime(message.createdDate, hhmmddmm)}
             </Text>
           </View>
         </View>

@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
-import { feedBacks } from "../../mock/feedBacks";
+import * as URLS from "../../constants/url";
 
 const initialState = {
-  feedBacks: feedBacks,
+  feedBacks: undefined,
   status: "idle",
   error: null,
 };
 
-export const fetchFeedBack = createAsyncThunk(
-  "feedBack/fetchFeedBack",
+export const fetchFeedBacks = createAsyncThunk(
+  "feedBacks/fetchFeedBacks",
   async () => {
     try {
-      const response = await api.get("/api/feedBacks");
+      const response = await api.get(URLS.FEEDBACK_ALL);
       if (response.data) {
         return response.data.data;
       }
@@ -22,7 +22,21 @@ export const fetchFeedBack = createAsyncThunk(
     }
   }
 );
-
+export const addFeedBacks = createAsyncThunk(
+  "feedBacks/addFeedBacks",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await api.post(URLS.FEEDBACK_ADD, data);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 const feedBacksSlice = createSlice({
   name: "feedBacks",
   initialState,
@@ -34,14 +48,14 @@ const feedBacksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFeedBack.pending, (state) => {
+      .addCase(fetchFeedBacks.pending, (state) => {
         state.status = LOADING;
       })
-      .addCase(fetchFeedBack.fulfilled, (state, action) => {
+      .addCase(fetchFeedBacks.fulfilled, (state, action) => {
         state.status = SUCCEEDED;
         state.feedBacks = action.payload;
       })
-      .addCase(fetchFeedBack.rejected, (state, action) => {
+      .addCase(fetchFeedBacks.rejected, (state, action) => {
         state.status = FAILED;
       });
   },

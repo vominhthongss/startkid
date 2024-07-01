@@ -8,6 +8,7 @@ import { SendIcon } from "../../../assets/svg/SendIcon";
 import * as STRINGS from "../../constants/strings";
 import Loading from "../../components/Loading/Loading";
 import FeedBackItem from "../../components/FeedBackItem/FeedBackItem";
+import { ScrollView } from "react-native-gesture-handler";
 
 function FeedBackScreen() {
   const navigation = useNavigation();
@@ -33,17 +34,17 @@ function FeedBackScreen() {
     <View className="flex flex-row justify-center bg-white h-full">
       {feedBacks ? (
         <View>
-          <FlatList
-            data={feedBacks}
-            renderItem={({ item, index }) => (
+          <ScrollView>
+            {feedBacks.map((item, key) => (
               <FeedBackItem
-                key={index}
+                key={key}
                 onSelected={() => {
                   handleGoToDetailScreen(item);
                 }}
                 feedBackItem={item}
               />
-            )}></FlatList>
+            ))}
+          </ScrollView>
           <TouchableOpacity
             className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
             onPress={handleGoToAddScreen}>

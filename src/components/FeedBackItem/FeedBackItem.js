@@ -3,6 +3,7 @@ import { CalendarClockIcon } from "../../../assets/svg/CalendarClockIcon";
 import MediaIcon from "../../../assets/svg/MediaIcon";
 import * as STRINGS from "../../constants/strings";
 import formatDateTime from "../../utils/formatDateTime";
+import { hhmmddmm } from "../../constants/dateTimeFormat";
 
 function FeedBackItem({ feedBackItem, onSelected }) {
   const format = "DD/MM";
@@ -21,16 +22,11 @@ function FeedBackItem({ feedBackItem, onSelected }) {
       </View>
       <View className="ml-5 w-full border-b border-solid border-[#0A68431A]">
         <Text className="text-base">{feedBackItem.title}</Text>
-        <Text>
-          {STRINGS.leaveTimeRange}: {startEndDateTime}
-        </Text>
-        <View className="flex flex-row justify-between items-center pt-3 pb-1">
-          <View className="bg-[#fff3d3] rounded-xl flex flex-row items-center pl-2 pr-2 py-1">
-            <MediaIcon size={15} />
-            <Text className="text-[#999999] ml-2">+1</Text>
-          </View>
+        <Text className="text-base">{feedBackItem.content}</Text>
+
+        <View className="flex flex-row justify-end items-center pt-3 pb-1">
           <Text className="text-[#84b3a1]">
-            {formatDateTime(feedBackItem.startDateTime)}
+            {formatDateTime(feedBackItem.createdDate, hhmmddmm)}
           </Text>
         </View>
       </View>

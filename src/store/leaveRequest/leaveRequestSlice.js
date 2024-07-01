@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const fetchLeaveRquests = createAsyncThunk(
-  "leaveRequests/fetchLeaveRquests",
+  "leaveRequest/fetchLeaveRquests",
   async () => {
     try {
       const response = await api.get(URLS.LEAVE_REQUESTS_ALL);
@@ -23,7 +23,7 @@ export const fetchLeaveRquests = createAsyncThunk(
   }
 );
 export const addLeaveRquests = createAsyncThunk(
-  "leaveRequests/addLeaveRquests",
+  "leaveRequest/addLeaveRquests",
   async (data, { rejectWithValue }) => {
     try {
       const response = await api.post(URLS.LEAVE_REQUESTS_ADD, data);

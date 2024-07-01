@@ -212,9 +212,7 @@ const AddRemindMedicineScreen = ({}) => {
         };
         handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
       }
-    } catch (error) {
-      console.error("Error adding leave request:", error);
-    }
+    } catch (error) {}
   };
 
   const handleOpenModal = (modalType, params) => {

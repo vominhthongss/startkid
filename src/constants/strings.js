@@ -93,3 +93,5 @@ export const messagePlaceholder =
   "Phụ huynh nhập nội dung lời nhắn để gửi đến giáo viên của con...";
 export const sickName = "Tên bệnh";
 export const sickNamePlaceholder = "Nhập tên bệnh";
+export const feedBackTitle = "Tiêu đề";
+export const feedBackPlaceholder = "Nhập tiêu đề";

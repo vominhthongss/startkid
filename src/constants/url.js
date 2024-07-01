@@ -1,5 +1,4 @@
 export const BASE_URL = "https://apis-ij6u.onrender.com";
-
 export const SIGN_IN = "/api/signin";
 export const HEALTH_POSTS = "/api/health-posts";
 export const CONTACT = "/api/contacts";
@@ -11,3 +10,5 @@ export const MESSAGES_ALL = "/api/messages/all";
 export const MESSAGES_ADD = "/api/messages/send";
 export const REMIND_MEDICINE_ALL = "/api/remindMedicines/all";
 export const REMIND_MEDICINE_ADD = "/api/remindMedicines/add";
+export const FEEDBACK_ALL = "/api/feedbacks/all";
+export const FEEDBACK_ADD = "/api/feedbacks/add";

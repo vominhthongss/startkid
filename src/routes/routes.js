@@ -15,8 +15,8 @@ import RemindMedicineScreen from "../screens/RemindMedicine/RemindMedicineScreen
 import RemindMedicineDetailScreen from "../screens/RemindMedicine/RemindMedicineDetailScreen";
 import FeedBackScreen from "../screens/FeedBack/FeedBackScreen";
 import FeedBackDetailScreen from "../screens/FeedBack/FeedBackDetailScreen";
-import AddFeedBackScreen from "../screens/FeedBack/AddFeedBackRequest";
 import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineScreen";
+import AddFeedBackScreen from "../screens/FeedBack/AddFeedBackScreen";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,

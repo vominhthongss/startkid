@@ -50,7 +50,9 @@ function RemindMedicineScreen() {
             onPress={handleGoToAddScreen}>
             <View className="flex flex-row items-center">
               <SendIcon />
-              <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>
+              <Text className="text-white ml-2">
+                {STRINGS.createRemindMedicine}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

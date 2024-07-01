@@ -288,7 +288,7 @@ const AddFeedBackScreen = ({}) => {
         className="absolute bottom-8 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
         onPress={handleSendFeedBack}>
         <View className="flex flex-row items-center">
-          <Text className="text-white ml-2">{STRINGS.sendLeaveRq}</Text>
+          <Text className="text-white ml-2">{STRINGS.sendFeedBack}</Text>
         </View>
       </TouchableOpacity>
       <CustomModal />

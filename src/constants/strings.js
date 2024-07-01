@@ -95,3 +95,10 @@ export const sickName = "Tên bệnh";
 export const sickNamePlaceholder = "Nhập tên bệnh";
 export const feedBackTitle = "Tiêu đề";
 export const feedBackPlaceholder = "Nhập tiêu đề";
+
+export const createFeedBack = "Tạo góp ý";
+export const sendFeedBack = "Gửi góp ý";
+export const createMessage = "Tạo lời nhắn";
+export const sendMessage = "Gửi lời nhắn";
+export const createRemindMedicine = "Tạo dặn thuốc";
+export const sendRemindMedicine = "Gửi dặn thuốc";

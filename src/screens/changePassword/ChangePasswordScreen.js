@@ -31,9 +31,7 @@ export const ChangePasswordScreen = () => {
       isRequired: true,
     },
   ];
-  const handleChangePassword = (data) => {
-    console.log("data :", data);
-  };
+  const handleChangePassword = (data) => {};
   return (
     <SafeAreaView>
       <View style={{ marginTop: "8%", marginBottom: "15%" }}>

@@ -33,7 +33,6 @@ const formatDateTime = (dateTime, format) => {
 
     return formattedDate;
   } else {
-    console.log("Invalid format or date", format);
     return;
   }
 };

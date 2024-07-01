@@ -120,9 +120,7 @@ function AccountScreen() {
     }
     navigation.navigate(screen);
   };
-  const handleAccountForm = (data) => {
-    console.log("data :", data);
-  };
+  const handleAccountForm = (data) => {};
   const tabs = [
     {
       index: 0,

@@ -13,7 +13,6 @@ import { compareAsc } from "date-fns";
 import formatDateTime from "../../utils/formatDateTime";
 import { CalendarIcon } from "../../../assets/svg/CalendarIcon";
 import { ArrowForwardIcon } from "../../../assets/svg/ArrowForwardIcon";
-import { ExpandMoreIcon } from "../../../assets/svg/ExpandMoreIcon";
 import { PhotoCameraIcon } from "../../../assets/svg/PhotoCameraIcon";
 import { ImageIcon } from "../../../assets/svg/ImageIcon";
 import * as COLORS from "../../constants/colors";
@@ -23,7 +22,6 @@ import CustomModal from "../../components/CustomModal/CustomModal";
 import { MODAL_TYPE } from "../../constants/common";
 import { DATE_TYPE } from "../../constants/common";
 import { SESSION_TYPE } from "../../constants/common";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { addMessages } from "../../store/message/messageSlice";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {

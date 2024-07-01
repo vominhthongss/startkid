@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const fetchMessages = createAsyncThunk(
-  "leaveRequest/fetchMessages",
+  "messages/fetchMessages",
   async () => {
     try {
       const response = await api.get(URLS.MESSAGES_ALL);
@@ -23,7 +23,7 @@ export const fetchMessages = createAsyncThunk(
   }
 );
 export const addMessages = createAsyncThunk(
-  "leaveRequest/addMessages",
+  "messages/addMessages",
   async (data, { rejectWithValue }) => {
     try {
       const response = await api.post(URLS.MESSAGES_ADD, data);

@@ -17,6 +17,7 @@ import { MODAL_TYPE } from "../../constants/common";
 import { DATE_TYPE } from "../../constants/common";
 import { SESSION_TYPE } from "../../constants/common";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { addRemindMedicines } from "../../store/remindMedicine/remindMedicineSlice";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
   return (
@@ -67,18 +68,13 @@ const AddRemindMedicineScreen = ({}) => {
     useState(false);
   const [isEndDatePickerVisible, setEndatePickerVisibility] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  console.log("startDate :", startDate);
   const [endDate, setEndDate] = useState(new Date());
-  console.log("endDate :", endDate);
   const [content, setContent] = useState("");
-  console.log("content :", content);
+  const [sickName, setSickName] = useState("");
   const [alertVisible, setAlertVisible] = useState(false);
   const [dateRangeList, setDateRangeList] = useState([]);
-  console.log("dateRangeList :", dateRangeList);
   const [isMorningAll, setMorningAll] = useState(false);
-  console.log("isMorningAll :", isMorningAll);
   const [isAftrenoonAll, setAftrenoonAll] = useState(false);
-  console.log("isAftrenoonAll :", isAftrenoonAll);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -195,33 +191,29 @@ const AddRemindMedicineScreen = ({}) => {
     handleDetail();
   };
 
-  const handleSendRemindMedicine = () => {
-    if (content) {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: JSON.stringify(dateRangeList),
-        isFooterConfirm: true,
-        isError: false,
-        handleConfirm: () => handleGoback(),
-      };
-      //chỗ này gửi param lên server OK thì bật cái modal, ERROR thì hiện lỗi
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
-    } else {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: dateRangeList,
-        isFooterConfirm: true,
-        isError: true,
-        handleConfirm: () => {},
-      };
-
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
+  const handleSendRemindMedicine = async () => {
+    var data = {
+      content: content,
+      sickName: sickName,
+      startDate: startDate.toString(),
+      endDate: endDate.toString(),
+      dateRangeList: dateRangeList,
+      status: "Chưa xác nhận",
+    };
+    try {
+      const resultAction = await dispatch(addRemindMedicines(data));
+      if (resultAction.payload.status_code > 0) {
+        data = {
+          ...data,
+          isFooterConfirm: true,
+          isError: resultAction.payload.status_code !== 200,
+          handleConfirm: () =>
+            resultAction.payload.status_code === 200 && handleGoback(),
+        };
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+      }
+    } catch (error) {
+      console.error("Error adding leave request:", error);
     }
   };
 
@@ -261,17 +253,31 @@ const AddRemindMedicineScreen = ({}) => {
       </View>
       <View>
         <View className="w-[100%] self-center flex flex-row justify-between mt-5 mb-3 pl-3 ">
+          <Text className="text-base text-[#0A6843]">{STRINGS.sickName}</Text>
+        </View>
+        <View
+          className="h-[50px] p-3 bg-[#E3FFF4E5] rounded-lg"
+          style={{
+            shadowColor: COLORS.dark,
+            shadowOffset: { width: 2, height: 0 },
+            shadowOpacity: 0.1,
+            shadowRadius: 0,
+            elevation: 5,
+          }}>
+          <TextInput
+            className="text-xs"
+            style={{ textAlignVertical: "top" }}
+            multiline={true}
+            numberOfLines={4}
+            placeholder={STRINGS.sickNamePlaceholder}
+            onChangeText={setSickName}
+            value={sickName}
+          />
+        </View>
+      </View>
+      <View>
+        <View className="w-[100%] self-center flex flex-row justify-between mt-5 mb-3 pl-3 ">
           <Text className="text-base text-[#0A6843]">{STRINGS.content}</Text>
-          <TouchableOpacity
-            className="flex flex-row items-center"
-            onPress={() => handleDetail(startDate, endDate)}>
-            <Text className="text-base text-[#0A6843]">
-              {STRINGS.detailLeave}
-            </Text>
-            <View className="mt-1">
-              <ExpandMoreIcon />
-            </View>
-          </TouchableOpacity>
         </View>
         <View
           className="h-[80%] p-3 bg-[#E3FFF4E5] rounded-lg"

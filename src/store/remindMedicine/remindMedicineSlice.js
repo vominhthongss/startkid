@@ -1,24 +1,39 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
-import { remindMedicine } from "../../mock/remindMedicine";
+import * as URLS from "../../constants/url";
 
 const initialState = {
-  remindMedicines: remindMedicine,
+  remindMedicines: undefined,
   status: "idle",
   error: null,
 };
 
 export const fetchRemindMedicines = createAsyncThunk(
-  "remindMedicine/fetchRemindMedicines",
+  "remindMedicines/fetchRemindMedicines",
   async () => {
     try {
-      const response = await api.get("/api/remindMedicines");
+      const response = await api.get(URLS.REMIND_MEDICINE_ALL);
       if (response.data) {
         return response.data.data;
       }
     } catch (error) {
       throw error;
+    }
+  }
+);
+export const addRemindMedicines = createAsyncThunk(
+  "remindMedicines/addRemindMedicines",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await api.post(URLS.REMIND_MEDICINE_ADD, data);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
     }
   }
 );

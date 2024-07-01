@@ -12,11 +12,11 @@ import MessageScreen from "../screens/Message/MessageScreen";
 import MessageDetailScreen from "../screens/Message/MessageDetailScreen";
 import AddMessageScreen from "../screens/Message/AddMessageScreen";
 import RemindMedicineScreen from "../screens/RemindMedicine/RemindMedicineScreen";
-import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineRequest";
 import RemindMedicineDetailScreen from "../screens/RemindMedicine/RemindMedicineDetailScreen";
 import FeedBackScreen from "../screens/FeedBack/FeedBackScreen";
 import FeedBackDetailScreen from "../screens/FeedBack/FeedBackDetailScreen";
 import AddFeedBackScreen from "../screens/FeedBack/AddFeedBackRequest";
+import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineScreen";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,

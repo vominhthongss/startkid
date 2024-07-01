@@ -1,24 +1,39 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
-import { messages } from "../../mock/messages";
+import * as URLS from "../../constants/url";
 
 const initialState = {
-  messages: messages,
+  messages: undefined,
   status: "idle",
   error: null,
 };
 
 export const fetchMessages = createAsyncThunk(
-  "message/fetchMessages",
+  "leaveRequest/fetchMessages",
   async () => {
     try {
-      const response = await api.get("/api/messages");
+      const response = await api.get(URLS.MESSAGES_ALL);
       if (response.data) {
         return response.data.data;
       }
     } catch (error) {
       throw error;
+    }
+  }
+);
+export const addMessages = createAsyncThunk(
+  "leaveRequest/addMessages",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await api.post(URLS.MESSAGES_ADD, data);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
     }
   }
 );

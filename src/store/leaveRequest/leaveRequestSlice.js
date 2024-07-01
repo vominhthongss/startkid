@@ -13,7 +13,7 @@ export const fetchLeaveRquests = createAsyncThunk(
   "leaveRequest/fetchLeaveRquests",
   async () => {
     try {
-      const response = await api.get(URLS.LEAVE_REQUEST_ALL);
+      const response = await api.get(URLS.LEAVE_REQUESTS_ALL);
       if (response.data) {
         return response.data.data;
       }
@@ -26,7 +26,7 @@ export const addLeaveRquests = createAsyncThunk(
   "leaveRequest/addLeaveRquests",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await api.post(URLS.LEAVE_REQUEST_ADD, data);
+      const response = await api.post(URLS.LEAVE_REQUESTS_ADD, data);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {

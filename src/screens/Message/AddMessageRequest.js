@@ -24,6 +24,7 @@ import { MODAL_TYPE } from "../../constants/common";
 import { DATE_TYPE } from "../../constants/common";
 import { SESSION_TYPE } from "../../constants/common";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { addMessages } from "../../store/message/messageSlice";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
   return (
@@ -74,18 +75,12 @@ const AddMessageScreen = ({}) => {
     useState(false);
   const [isEndDatePickerVisible, setEndatePickerVisibility] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  console.log("startDate :", startDate);
   const [endDate, setEndDate] = useState(new Date());
-  console.log("endDate :", endDate);
   const [content, setContent] = useState("");
-  console.log("content :", content);
   const [alertVisible, setAlertVisible] = useState(false);
   const [dateRangeList, setDateRangeList] = useState([]);
-  console.log("dateRangeList :", dateRangeList);
   const [isMorningAll, setMorningAll] = useState(false);
-  console.log("isMorningAll :", isMorningAll);
   const [isAftrenoonAll, setAftrenoonAll] = useState(false);
-  console.log("isAftrenoonAll :", isAftrenoonAll);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -202,33 +197,28 @@ const AddMessageScreen = ({}) => {
     handleDetail();
   };
 
-  const handleSendMessage = () => {
-    if (content) {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: JSON.stringify(dateRangeList),
-        isFooterConfirm: true,
-        isError: false,
-        handleConfirm: () => handleGoback(),
-      };
-      //chỗ này gửi param lên server OK thì bật cái modal, ERROR thì hiện lỗi
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
-    } else {
-      const params = {
-        title: STRINGS.alertName,
-        content: content,
-        startDate: startDate,
-        endDate: endDate,
-        dateRangeList: dateRangeList,
-        isFooterConfirm: true,
-        isError: true,
-        handleConfirm: () => {},
-      };
-
-      handleOpenModal(MODAL_TYPE.LARGE_HEADER, params);
+  const handleSendMessage = async () => {
+    var data = {
+      content: content,
+      startDate: startDate.toString(),
+      endDate: endDate.toString(),
+      dateRangeList: dateRangeList,
+      createdDate: new Date().toString(),
+    };
+    try {
+      const resultAction = await dispatch(addMessages(data));
+      if (resultAction.payload.status_code > 0) {
+        data = {
+          ...data,
+          isFooterConfirm: true,
+          isError: resultAction.payload.status_code !== 200,
+          handleConfirm: () =>
+            resultAction.payload.status_code === 200 && handleGoback(),
+        };
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+      }
+    } catch (error) {
+      console.error("Error adding leave request:", error);
     }
   };
 

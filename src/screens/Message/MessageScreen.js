@@ -8,6 +8,7 @@ import { fetchMessages } from "../../store/message/messageSlice";
 import { SendIcon } from "../../../assets/svg/SendIcon";
 import * as STRINGS from "../../constants/strings";
 import Loading from "../../components/Loading/Loading";
+import { ScrollView } from "react-native-gesture-handler";
 
 function MessageScreen() {
   const navigation = useNavigation();
@@ -33,17 +34,17 @@ function MessageScreen() {
     <View className="flex flex-row justify-center bg-white h-full">
       {messages ? (
         <View>
-          <FlatList
-            data={messages}
-            renderItem={({ item, index }) => (
+          <ScrollView>
+            {messages.map((item, key) => (
               <MessageItem
-                key={index}
+                key={key}
                 onSelected={() => {
                   handleGoToDetailScreen(item);
                 }}
                 messageItem={item}
               />
-            )}></FlatList>
+            ))}
+          </ScrollView>
           <TouchableOpacity
             className="absolute bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
             onPress={handleGoToAddScreen}>

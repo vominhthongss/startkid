@@ -5,3 +5,5 @@ export const HEALTH_POSTS = "/api/health-posts";
 export const CONTACT = "/api/contacts";
 export const NOTIFICATIONS = "/api/notifications";
 export const USER = "/api/user";
+export const LEAVE_REQUEST_ALL = "/api/leave-requests";
+export const LEAVE_REQUEST_ADD = "/api/leave-requests/add";

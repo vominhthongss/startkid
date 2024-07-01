@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
-import { leaveRequests } from "../../mock/leaveRequests";
+import * as URLS from "../../constants/url";
 
 const initialState = {
   leaveRequests: undefined,
@@ -13,7 +13,7 @@ export const fetchLeaveRquests = createAsyncThunk(
   "leaveRequest/fetchLeaveRquests",
   async () => {
     try {
-      const response = await api.get("/api/leave-requests");
+      const response = await api.get(URLS.LEAVE_REQUEST_ALL);
       if (response.data) {
         return response.data.data;
       }
@@ -26,7 +26,7 @@ export const addLeaveRquests = createAsyncThunk(
   "leaveRequest/addLeaveRquests",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await api.post("/api/leave-requests/add", data);
+      const response = await api.post(URLS.LEAVE_REQUEST_ADD, data);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {

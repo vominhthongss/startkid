@@ -200,10 +200,7 @@ const AddMessageScreen = ({}) => {
   const handleSendMessage = async () => {
     var data = {
       content: content,
-      startDate: startDate.toString(),
-      endDate: endDate.toString(),
-      dateRangeList: dateRangeList,
-      createdDate: new Date().toString(),
+      status: "Chưa xác nhận",
     };
     try {
       const resultAction = await dispatch(addMessages(data));
@@ -238,38 +235,6 @@ const AddMessageScreen = ({}) => {
   return (
     <View className="p-3 bg-white h-full">
       <View>
-        <DateTimePicker
-          startDate={startDate}
-          showDatePicker={showDatePicker}
-          endDate={endDate}
-        />
-        <DateTimePickerModal
-          isVisible={isStartDatePickerVisible}
-          mode="date"
-          onConfirm={setStDate}
-          onCancel={() => hideDatePicker(DATE_TYPE.START_DATE)}
-        />
-        <DateTimePickerModal
-          isVisible={isEndDatePickerVisible}
-          mode="date"
-          onConfirm={setEdDate}
-          onCancel={() => hideDatePicker(DATE_TYPE.END_DATE)}
-        />
-      </View>
-      <View>
-        <View className="w-[100%] self-center flex flex-row justify-between mt-5 mb-3 pl-3 ">
-          <Text className="text-base text-[#0A6843]">{STRINGS.content}</Text>
-          <TouchableOpacity
-            className="flex flex-row items-center"
-            onPress={() => handleDetail(startDate, endDate)}>
-            <Text className="text-base text-[#0A6843]">
-              {STRINGS.detailLeave}
-            </Text>
-            <View className="mt-1">
-              <ExpandMoreIcon />
-            </View>
-          </TouchableOpacity>
-        </View>
         <View
           className="h-[80%] p-3 bg-[#E3FFF4E5] rounded-lg"
           style={{
@@ -283,8 +248,8 @@ const AddMessageScreen = ({}) => {
             className="h-[95%] text-xs"
             style={{ textAlignVertical: "top" }}
             multiline={true}
-            numberOfLines={4}
-            placeholder={STRINGS.leavePlaceholder}
+            numberOfLines={10}
+            placeholder={STRINGS.messagePlaceholder}
             onChangeText={setContent}
             value={content}
           />

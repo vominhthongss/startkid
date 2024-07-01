@@ -10,7 +10,7 @@ import PickDropScreen from "../screens/PickDrop/PickDropScreen";
 import { ChangePasswordScreen } from "../screens/changePassword/ChangePasswordScreen";
 import MessageScreen from "../screens/Message/MessageScreen";
 import MessageDetailScreen from "../screens/Message/MessageDetailScreen";
-import AddMessageScreen from "../screens/Message/AddMessageRequest";
+import AddMessageScreen from "../screens/Message/AddMessageScreen";
 import RemindMedicineScreen from "../screens/RemindMedicine/RemindMedicineScreen";
 import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineRequest";
 import RemindMedicineDetailScreen from "../screens/RemindMedicine/RemindMedicineDetailScreen";

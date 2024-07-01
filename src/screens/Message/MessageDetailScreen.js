@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { DiversityIcon } from "../../../assets/svg/DiversityIcon";
-import * as STRINGS from "../../constants/strings";
 import * as COLORS from "../../constants/colors";
 import formatDateTime from "../../utils/formatDateTime";
 
@@ -11,33 +10,22 @@ function MessageDetailScreen() {
   return (
     <View className="flex flex-row justify-end pt-4 bg-white h-full">
       <View>
-        <Text className="self-end text-[#999999]">{message.userId}</Text>
         <View
           style={styles.shadow}
-          className="w-72 h-36 ounded-xl mt-2 self-center">
+          className="w-72 h-fit rounded-xl mt-2 self-center ">
           <View className="w-64 pt-1 self-center">
             <Text className="border-b border-solid border-[#0A68431A] pb-2">
-              {message.title}
+              {message.content}
             </Text>
-            <Text className="text-xs text-[#5F5F5F] pt-2">
-              {STRINGS.leaveTimeRange}:{" "}
-              {formatDateTime(message.startDateTime, "DD/MM")}
-            </Text>
-            <View className="flex flex-row items-center mt-3">
-              <Text className="text-xs text-[#5F5F5F] ml-8">
-                {formatDateTime(message.startDateTime, "WD, DD/MM/YYYY")}
-              </Text>
-              <View className="flex flex-row justify-center items-center rounded-xl bg-[#0A6843]  -[24] w-[60] ml-4">
-                <Text className="text-xs text-white">{"Sang"}</Text>
-              </View>
-            </View>
           </View>
-          <View className="flex flex-row self-end mt-4 justify-center items-center mr-2">
+          <View className="flex flex-row self-end mt-4 justify-end w-full items-center px-2">
             <Text className="mr-3 text-red-500" style={{ fontSize: 10 }}>
               {message.status}
             </Text>
-            <Text className="text-sm text-[#999999]" style={{ fontSize: 10 }}>
-              {formatDateTime(message.startDateTime, "HH:mm, DD/MM/YYYY")}
+            <Text
+              className="text-sm"
+              style={{ fontSize: 10, color: COLORS.main }}>
+              {formatDateTime(message.createdDate, "HH:mm, DD/MM/YYYY")}
             </Text>
           </View>
         </View>

@@ -89,3 +89,5 @@ export const sendLeaveRq = "Gửi đơn xin nghỉ";
 export const yes = "Có";
 export const no = "Không";
 export const startLargerEnd = "Ngày bắt đầu lớn hơn ngày kết thúc.";
+export const messagePlaceholder =
+  "Phụ huynh nhập nội dung lời nhắn để gửi đến giáo viên của con...";

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import * as URL from "../../constants/url";
 import api from "../../services/api";
+import * as LOCAL_STORAGE from "../../utils/localStorage";
 
 const initialState = {
   user: undefined,
@@ -11,9 +12,12 @@ const initialState = {
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   try {
-    const response = await api.get(URL.USER + "/2");
-    if (response.data) {
-      return response.data.data;
+    const userId = await LOCAL_STORAGE.getItem("userId");
+    if (userId) {
+      const response = await api.get(`${URL.USER}/${userId}`);
+      if (response.data) {
+        return response.data.data;
+      }
     }
   } catch (error) {
     throw error;

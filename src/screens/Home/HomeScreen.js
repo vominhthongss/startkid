@@ -11,6 +11,7 @@ import { noImage } from "../../constants/images";
 import { fetchPosts } from "../../store/posts/postsSlice";
 import { useEffect } from "react";
 import Loading from "../../components/Loading/Loading";
+import { fetchUser } from "../../store/user/userSlice";
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -42,8 +43,8 @@ function HomeScreen() {
           <View className="flex flex-row">
             <AvatarIcon color={COLORS.main} size={60} />
             <View className="ml-8 mt-2">
-              <Text>{user.name}</Text>
-              <Text className="text-[#999999]">{user.classStudy}</Text>
+              <Text>{user?.name}</Text>
+              <Text className="text-[#999999]">{user?.classStudy}</Text>
             </View>
           </View>
           <BottomArrowIcon size={12} />

@@ -25,12 +25,16 @@ function HomeScreen() {
     navigation.navigate(screen);
   };
   const { posts } = useSelector((state) => state.posts);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
+    if (!user) {
+      dispatch(fetchUser());
+    }
     if (!posts) {
       dispatch(fetchPosts());
     }
-  }, [posts, dispatch]);
+  }, [user, posts, dispatch]);
   return (
     <ScrollView className="bg-white h-full">
       <View className="flex flex-row items-center px-10 border-2 border-main w-[95%] h-28 mx-auto mt-3 rounded-lg">
@@ -38,8 +42,8 @@ function HomeScreen() {
           <View className="flex flex-row">
             <AvatarIcon color={COLORS.main} size={60} />
             <View className="ml-8 mt-2">
-              <Text>Nguyễn Văn A</Text>
-              <Text className="text-[#999999]">Lớp: Tuyển sinh</Text>
+              <Text>{user.name}</Text>
+              <Text className="text-[#999999]">{user.classStudy}</Text>
             </View>
           </View>
           <BottomArrowIcon size={12} />

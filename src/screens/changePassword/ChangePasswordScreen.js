@@ -1,10 +1,16 @@
 import React from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import GuardIcon from "../../../assets/svg/GuardIcon";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as COLORS from "../../constants/colors";
+import * as STRINGS from "../../constants/strings";
 import GeneralForm from "../../components/GeneralForm/GeneralForm";
+import { useDispatch } from "react-redux";
+import { changePassword } from "../../store/user/userSlice";
+import { useNavigation } from "@react-navigation/native";
 export const ChangePasswordScreen = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const fields = [
     {
       name: "oldPassword",
@@ -31,7 +37,19 @@ export const ChangePasswordScreen = () => {
       isRequired: true,
     },
   ];
-  const handleChangePassword = (data) => {};
+  const handleChangePassword = async (data) => {
+    try {
+      const resultAction = await dispatch(changePassword(data));
+      if ((resultAction.payload.status_code = 200)) {
+        Alert.alert(STRINGS.alertTitle, resultAction.payload.message);
+        navigation.goBack();
+      } else {
+        Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
+      }
+    } catch (error) {
+      Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
+    }
+  };
   return (
     <SafeAreaView>
       <View style={{ marginTop: "8%", marginBottom: "15%" }}>

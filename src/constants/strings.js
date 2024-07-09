@@ -102,3 +102,7 @@ export const createMessage = "Tạo lời nhắn";
 export const sendMessage = "Gửi lời nhắn";
 export const createRemindMedicine = "Tạo dặn thuốc";
 export const sendRemindMedicine = "Gửi dặn thuốc";
+export const alertTitle = "Thông báo";
+export const alertSuccess = "Thành công";
+export const alertFail = "Thất bại, hãy thử lại";
+export const loginAgain = "Vui lòng đăng nhập lại";

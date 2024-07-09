@@ -3,6 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import * as AUTH from "../constants/auth";
 import { Alert } from "react-native";
+import * as STRINGS from "../constants/strings";
 const api = axios.create({
   baseURL: BASE_URL,
 });
@@ -27,7 +28,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response.status === 401) {
       await LOCAL_STORAGE.removeItem(AUTH.TOKEN);
-      Alert.alert("Thông báo", "Vui lòng đăng nhập lại");
+      Alert.alert(STRINGS.alertTitle, STRINGS.loginAgain);
     }
     return Promise.reject(error);
   }

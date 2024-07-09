@@ -5,10 +5,26 @@ const RadioButton = ({
   onPress,
   label,
   dotColor = "#0A684380",
+  borderColor = "#EA3637",
 }) => {
   return (
-    <View style={styles.radioContainer}>
-      <TouchableOpacity style={styles.radioCircle} onPress={onPress}>
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 10,
+      }}>
+      <TouchableOpacity
+        style={{
+          height: 15,
+          width: 15,
+          borderRadius: 12,
+          borderWidth: 2,
+          borderColor: borderColor,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onPress={onPress}>
         {isSelected ? (
           <View
             style={{
@@ -28,22 +44,5 @@ const RadioButton = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  radioContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 10,
-  },
-  radioCircle: {
-    height: 15,
-    width: 15,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#EA3637",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default RadioButton;

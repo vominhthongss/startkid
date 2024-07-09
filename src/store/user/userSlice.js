@@ -23,6 +23,28 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
     throw error;
   }
 });
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (data, { rejectWithValue }) => {
+    try {
+      const userId = await LOCAL_STORAGE.getItem("userId");
+      if (userId) {
+        const response = await api.post(URL.CHANGE_PASSWORD, {
+          userId: userId,
+          oldPassword: data.oldPassword,
+          newPassword: data.newPassword,
+        });
+        return response.data;
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",

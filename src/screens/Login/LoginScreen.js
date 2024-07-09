@@ -108,7 +108,7 @@ const LoginScreen = () => {
   const handleForgotPasswordOpenModal = () => {
     const params = {
       title: STRINGS.forgotPassword,
-      content: STRINGS.forgotPasswordDes
+      content: STRINGS.forgotPasswordDes,
     };
 
     handleOpenModal(MODAL_TYPE.NORMAL, params);
@@ -117,7 +117,7 @@ const LoginScreen = () => {
   const handleUnSuccessLoginOpenModal = () => {
     const params = {
       title: STRINGS.unSuccessfulLogin,
-      content: STRINGS.unSuccessfulLoginDes
+      content: STRINGS.unSuccessfulLoginDes,
     };
 
     handleOpenModal(MODAL_TYPE.NORMAL, params);
@@ -127,29 +127,28 @@ const LoginScreen = () => {
     dispatch(
       openModal({
         modalType: modalType,
-        params: params
+        params: params,
       })
     );
-  }
+  };
 
   const handleLogin = async () => {
-
     let userData = {
-      "phoneNumber": phoneNumber,
-      "password": password
-    }
+      phoneNumber: phoneNumber,
+      password: password,
+    };
 
     try {
       setLoading(true);
-      let resultAction  =  await dispatch(login(userData));
+      let resultAction = await dispatch(login(userData));
       if (login.fulfilled.match(resultAction)) {
         navigation.navigate(SCREENS_NAME.mainTab);
       } else {
         handleUnSuccessLoginOpenModal();
       }
-    }catch(error){
+    } catch (error) {
       handleUnSuccessLoginOpenModal();
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -218,6 +217,7 @@ const LoginScreen = () => {
           label={STRINGS.rememberPassword}
           isSelected={selectedOption}
           onPress={() => setSelectedOption(!selectedOption)}
+          borderColor="green"
         />
         <TouchableOpacity onPress={handleForgotPasswordOpenModal}>
           <Text style={{ color: "#00000066" }} className="text-base">
@@ -229,11 +229,13 @@ const LoginScreen = () => {
         className="h-[6%] w-[60%] mt-8 rounded-3xl flex flex-row items-center justify-center self-center"
         style={{ backgroundColor: COLORS.main }}
         onPress={handleLogin}>
-          {loading ? 
+        {loading ? (
           <ActivityIndicator size="large" />
-          :<Text className="text-lg" style={{ color: COLORS.noneBasic }}>
+        ) : (
+          <Text className="text-lg" style={{ color: COLORS.noneBasic }}>
             {STRINGS.login}
-          </Text>}
+          </Text>
+        )}
       </TouchableOpacity>
       <TouchableOpacity
         className="mt-4 self-center"

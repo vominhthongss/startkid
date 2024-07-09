@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   Button,
+  Alert,
 } from "react-native";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
@@ -18,7 +19,7 @@ import MailIcon from "../../../assets/svg/MailIcon";
 import HomePinIcon from "../../../assets/svg/HomePinIcon";
 import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
 import GeneralForm from "../../components/GeneralForm/GeneralForm";
-import { fetchUser } from "../../store/user/userSlice";
+import { fetchUser, updateUser } from "../../store/user/userSlice";
 import { useEffect } from "react";
 
 function AccountScreen() {
@@ -120,7 +121,19 @@ function AccountScreen() {
     }
     navigation.navigate(screen);
   };
-  const handleAccountForm = (data) => {};
+  const handleAccountForm = async (data) => {
+    try {
+      const resultAction = await dispatch(updateUser(data));
+      if ((resultAction.payload.status_code = 200)) {
+        Alert.alert(STRINGS.alertTitle, resultAction.payload.message);
+        navigation.goBack();
+      } else {
+        Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
+      }
+    } catch (error) {
+      Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
+    }
+  };
   const tabs = [
     {
       index: 0,

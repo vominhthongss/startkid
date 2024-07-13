@@ -12,3 +12,4 @@ export const REMIND_MEDICINE_ALL = "/api/remindMedicines/all";
 export const REMIND_MEDICINE_ADD = "/api/remindMedicines/add";
 export const FEEDBACK_ALL = "/api/feedbacks/all";
 export const FEEDBACK_ADD = "/api/feedbacks/add";
+export const PICK_DROP = "/api/pickups";

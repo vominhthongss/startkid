@@ -124,7 +124,7 @@ function AccountScreen() {
   const handleAccountForm = async (data) => {
     try {
       const resultAction = await dispatch(updateUser(data));
-      if ((resultAction.payload.status_code = 200)) {
+      if (resultAction.payload.status_code === 200) {
         Alert.alert(STRINGS.alertTitle, resultAction.payload.message);
         navigation.goBack();
       } else {

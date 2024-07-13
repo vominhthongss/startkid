@@ -40,7 +40,11 @@ export const ChangePasswordScreen = () => {
   const handleChangePassword = async (data) => {
     try {
       const resultAction = await dispatch(changePassword(data));
-      if ((resultAction.payload.status_code = 200)) {
+      if (resultAction.payload.status_code === 200) {
+        console.log(
+          "resultAction.payload. :",
+          resultAction.payload.status_code
+        );
         Alert.alert(STRINGS.alertTitle, resultAction.payload.message);
         navigation.goBack();
       } else {

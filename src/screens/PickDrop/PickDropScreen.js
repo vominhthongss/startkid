@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput } from "react-native";
+import { View, Text, Image, StyleSheet, TextInput, Button } from "react-native";
 import DotIcon from "../../../assets/svg/DotIcon";
 import PressSendIcon from "../../../assets/svg/PressSendIcon";
 import React, { useState } from "react";
@@ -10,6 +10,10 @@ import UpdateNoteIcon from "../../../assets/svg/UpdateNote";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchPickDrops } from "../../store/pickDrop/pickDropSlice";
+import { SendIcon } from "../../../assets/svg/SendIcon";
+import { useNavigation } from "@react-navigation/native";
+import * as SCREEN_NAMES from "../../constants/screensName";
+import Loading from "../../components/Loading/Loading";
 
 function PickDropScreen() {
   const { pickDrops } = useSelector((state) => state.pickDrops);
@@ -19,12 +23,32 @@ function PickDropScreen() {
       dispatch(fetchPickDrops());
     }
   }, [pickDrops]);
-
+  const navigation = useNavigation();
+  const handleGoToAddScreen = () => {
+    navigation.navigate(SCREEN_NAMES.addLeaveRequest);
+  };
   return (
-    <ScrollView className="bg-white h-full">
-      {pickDrops &&
-        pickDrops.map((pickDrop) => <PickDropItem data={pickDrop} />)}
-    </ScrollView>
+    <View className="flex flex-row justify-center bg-white h-full">
+      {pickDrops ? (
+        <View>
+          <ScrollView>
+            {pickDrops.map((pickDrop, key) => (
+              <PickDropItem key={key} data={pickDrop} />
+            ))}
+          </ScrollView>
+          <TouchableOpacity
+            onPress={handleGoToAddScreen}
+            className="bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]">
+            <View className="flex flex-row items-center">
+              <SendIcon />
+              <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <Loading />
+      )}
+    </View>
   );
 }
 

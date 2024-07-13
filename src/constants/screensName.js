@@ -6,6 +6,7 @@ export const notification = "Thông báo";
 export const leaveRequest = "Xin nghỉ";
 export const leaveRequestDetail = "Chi tiết";
 export const addLeaveRequest = "Thêm xin nghỉ";
+export const addPickDrop = "Thêm đưa đón";
 export const add = " ";
 export const login = "Login";
 export const changePassword = "Đổi mật khẩu";

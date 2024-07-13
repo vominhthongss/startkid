@@ -20,6 +20,8 @@ export const screenChildOption = (title, headerLeft) => {
     headerLeft: headerLeft,
     headerStyle: {
       backgroundColor: COLORS.main,
+      shadowColor: "transparent", // this covers iOS
+      elevation: 0, // this covers Android
     },
     headerTintColor: COLORS.none,
   };

@@ -25,8 +25,9 @@ function PickDropScreen() {
   }, [pickDrops]);
   const navigation = useNavigation();
   const handleGoToAddScreen = () => {
-    navigation.navigate(SCREEN_NAMES.addLeaveRequest);
+    navigation.navigate(SCREEN_NAMES.addPickDrop);
   };
+
   return (
     <View className="flex flex-row justify-center bg-white h-full">
       {pickDrops ? (
@@ -38,7 +39,7 @@ function PickDropScreen() {
           </ScrollView>
           <TouchableOpacity
             onPress={handleGoToAddScreen}
-            className="bottom-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]">
+            className="z-10 mb-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]">
             <View className="flex flex-row items-center">
               <SendIcon />
               <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>

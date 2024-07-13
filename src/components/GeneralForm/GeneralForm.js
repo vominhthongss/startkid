@@ -6,6 +6,7 @@ import CustomizeButton from "../CustomizeButton/CustomizeButton";
 import ErrorText from "../ErrorText/ErrorText";
 import CustomizeRadio from "../CustomizeRadio/CustomizeRadio";
 import CustomizeTextInput from "../CustomizeTextInput/CustomizeTextInput";
+import CustomizeTextField from "../CustomizeTextField/CustomizeTextField";
 
 function GeneralForm({
   fields,
@@ -56,6 +57,23 @@ function GeneralForm({
         element = (
           <View className="relative">
             <CustomizeTextInput
+              key={key}
+              label={field.label}
+              placeholder={field.placeholder}
+              value={values[field.name]}
+              onChangeText={handleChange(field.name)}
+              type={field.type}
+            />
+            <View className="absolute top-0 right-0">
+              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+            </View>
+          </View>
+        );
+        break;
+      case "textfield":
+        element = (
+          <View className="relative">
+            <CustomizeTextField
               key={key}
               label={field.label}
               placeholder={field.placeholder}

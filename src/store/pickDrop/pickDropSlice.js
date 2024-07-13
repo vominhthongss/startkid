@@ -26,8 +26,14 @@ export const addPickDrops = createAsyncThunk(
   "pickDrops/addPickDrops",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await api.post(URLS.PICK_DROP, data);
-      return response.data;
+      const userId = await LOCAL_STORAGE.getItem("userId");
+      if (userId) {
+        const response = await api.post(URLS.PICK_DROP, {
+          userId: userId,
+          ...data,
+        });
+        return response.data;
+      }
     } catch (error) {
       if (error.response && error.response.data) {
         return rejectWithValue(error.response.data);

@@ -17,6 +17,7 @@ import FeedBackScreen from "../screens/FeedBack/FeedBackScreen";
 import FeedBackDetailScreen from "../screens/FeedBack/FeedBackDetailScreen";
 import AddRemindMedicineScreen from "../screens/RemindMedicine/AddRemindMedicineScreen";
 import AddFeedBackScreen from "../screens/FeedBack/AddFeedBackScreen";
+import AddPickDropScreen from "../screens/PickDrop/AddPickDrop";
 
 export const mainTab = {
   name: SCREENS_NAME.mainTab,
@@ -96,6 +97,11 @@ export const pickDrop = {
   name: SCREENS_NAME.pickDrop,
   component: PickDropScreen,
   options: screenChildOption(SCREENS_NAME.pickDrop),
+};
+export const addPickDrop = {
+  name: SCREENS_NAME.addPickDrop,
+  component: AddPickDropScreen,
+  options: screenChildOption(SCREENS_NAME.addPickDrop),
 };
 export const changePasswordScreen = {
   name: SCREENS_NAME.changePassword,

@@ -126,11 +126,11 @@ function AccountScreen() {
       const resultAction = await dispatch(updateUser(data));
       if (resultAction.payload.status_code === 200) {
         Alert.alert(STRINGS.alertTitle, resultAction.payload.message);
-        navigation.goBack();
       } else {
         Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
       }
     } catch (error) {
+      console.log("error :", error);
       Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
     }
   };

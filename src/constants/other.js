@@ -22,5 +22,4 @@ export const other = [
     text: STRINGS.logoutString,
     screen: SCREENS_NAME.login,
   },
-
 ];

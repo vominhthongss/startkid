@@ -52,7 +52,7 @@ export const updateUser = createAsyncThunk(
     try {
       const userId = await LOCAL_STORAGE.getItem("userId");
       if (userId) {
-        const response = await api.put(`${URL.USER}/${userId}`, {
+        const response = await api.put(`${URL.USER_UPDATE}/${userId}`, {
           phoneNumber: data.phoneNumber,
           email: data.email,
           name: data.name,

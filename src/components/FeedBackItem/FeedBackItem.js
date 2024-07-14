@@ -4,6 +4,7 @@ import MediaIcon from "../../../assets/svg/MediaIcon";
 import * as STRINGS from "../../constants/strings";
 import formatDateTime from "../../utils/formatDateTime";
 import { hhmmddmm } from "../../constants/dateTimeFormat";
+import ThumbFeedBackIcon from "../../../assets/svg/ThumbFeedBackIcon";
 
 function FeedBackItem({ feedBackItem, onSelected }) {
   const format = "DD/MM";
@@ -17,7 +18,7 @@ function FeedBackItem({ feedBackItem, onSelected }) {
       onPress={onSelected}
       className="flex flex-row ml-7 mt-4 pr-7 w-[73%] bg-white">
       <View className="bg-[#E3FFF4] rounded-full h-[70] w-[70] flex justify-center items-center">
-        <CalendarClockIcon />
+        <ThumbFeedBackIcon />
         <View className="bg-[#EA3637] h-3 w-3 rounded-full absolute bottom-[4] right-[4]" />
       </View>
       <View className="ml-5 w-full border-b border-solid border-[#0A68431A]">

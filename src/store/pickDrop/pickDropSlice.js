@@ -15,8 +15,12 @@ export const fetchPickDrops = createAsyncThunk(
   async () => {
     try {
       const response = await api.get(URLS.PICK_DROP);
-      if (response.data) {
-        return response.data.data;
+      const userId = await LOCAL_STORAGE.getItem("userId");
+
+      if (response.data && userId) {
+        return response.data.data.filter(
+          (x) => x.userId.toString() === userId.toString()
+        );
       }
     } catch (error) {
       throw error;

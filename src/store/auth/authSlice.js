@@ -3,6 +3,7 @@ import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
 import * as LOCAL_STORAGE from "../../utils/localStorage";
 import * as URLS from "../../constants/url";
+import * as AUTH from "../../constants/auth";
 
 const initialState = {
   userInfo: undefined,
@@ -34,7 +35,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.token = null;
-      AsyncStorage.removeItem("token");
+      LOCAL_STORAGE.removeItem(AUTH.TOKEN);
     },
   },
   extraReducers: (builder) => {

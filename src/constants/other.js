@@ -19,7 +19,8 @@ export const other = [
   },
   {
     icon: <ICONS.LogOutIconn size={60} color={COLORS.mainRgba} />,
-    text: STRINGS.logout,
+    text: STRINGS.logoutString,
+    screen: SCREENS_NAME.login,
   },
 
 ];

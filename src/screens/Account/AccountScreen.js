@@ -21,13 +21,25 @@ import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
 import GeneralForm from "../../components/GeneralForm/GeneralForm";
 import { fetchUser, updateUser } from "../../store/user/userSlice";
 import { useEffect } from "react";
+import { pickMedia } from "../../utils/pickMedia";
+import * as LOCAL_STORAGE from "../../utils/localStorage";
+import { openModal } from "../../store/modalSlice/modalSlice";
+import CustomModal from "../../components/CustomModal/CustomModal";
+import { changeAvatar } from "../../store/account/accountSlice";
+import { MODAL_TYPE } from "../../constants/common";
+import { noImage } from "../../constants/images";
+import * as URL from "../../constants/url";
+import { logout } from "../../store/auth/authSlice";
+import * as SCREENS_NAME from "../../constants/screensName";
 
 function AccountScreen() {
   const { user } = useSelector((state) => state.user);
+  const [avatarUri, setAvatarUri] = useState("");
   useEffect(() => {
     if (!user) {
       dispatch(fetchUser());
     }
+    setAvatarUri(`${URL.GET_AVATAR}/${user?.avatar}?${new Date().getTime()}`);
   }, [user, dispatch]);
   const fields = [
     {
@@ -118,6 +130,9 @@ function AccountScreen() {
   const handleGoToScreen = (screen) => {
     if (!screen) {
       return;
+    }
+    if (screen == SCREENS_NAME.login){
+      logout();
     }
     navigation.navigate(screen);
   };
@@ -239,19 +254,58 @@ function AccountScreen() {
     </View>
   ));
 
+  const handlePickMedia = (type) => {
+    let params = {
+      mediaType: type, 
+      width: 200, 
+      height: 200
+    }
+    pickMedia(params, async (media) => {
+      let data = {};
+      let userId = await LOCAL_STORAGE.getItem("userId");
+      data.userId = userId;
+      data.avatar = media.base64
+
+      try {
+        let resultAction = await dispatch(changeAvatar(data));
+        if (changeAvatar.fulfilled.match(resultAction)) {
+          handleOpenModal(MODAL_TYPE.NORMAL, {title: STRINGS.notification, content: resultAction.payload.message});
+          let avatar = resultAction.payload.avatar;
+          setAvatarUri(`${URL.GET_AVATAR}/${avatar}?${new Date().getTime()}`);
+        } else {
+          handleOpenModal(MODAL_TYPE.NORMAL, {title: STRINGS.notification, content: STRINGS.fileTooLarge});
+        }
+      } catch (error) {
+        console.log("error :", error);
+        Alert.alert(STRINGS.alertTitle, STRINGS.alertFail);
+      }
+    });
+  };
+
+  const handleOpenModal = (modalType, params) => {
+    dispatch(
+      openModal({
+        modalType: modalType,
+        params: params,
+      })
+    );
+  };
+
   return (
     user && (
       <ScrollView className="bg-white h-full">
         <View
           style={{ backgroundColor: COLORS.main }}
           className="h-20 w-full relative">
-          <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
+          <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 rounded-full w-20 h-20 bg-white">
             <Image
-              source={require("../../../assets/img/diversity_1.png")}
-              style={{ margin: 15 }}
-            />
+              className="rounded-full w-20 h-20"
+                source={{ uri: avatarUri || noImage}}
+              />
             <View style={{ right: 5, bottom: -5, position: "absolute" }}>
-              <CameraAvatarIcon></CameraAvatarIcon>
+              <TouchableOpacity onPress={()=>handlePickMedia("photo")}>
+                <CameraAvatarIcon></CameraAvatarIcon>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -275,6 +329,7 @@ function AccountScreen() {
             </TouchableOpacity>
           ))}
         </View>
+        <CustomModal />
       </ScrollView>
     )
   );

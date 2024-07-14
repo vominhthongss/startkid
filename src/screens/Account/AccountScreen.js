@@ -35,6 +35,7 @@ import * as SCREENS_NAME from "../../constants/screensName";
 function AccountScreen() {
   const { user } = useSelector((state) => state.user);
   const [avatarUri, setAvatarUri] = useState("");
+  console.log("avatarUri :", avatarUri);
   useEffect(() => {
     if (!user) {
       dispatch(fetchUser());
@@ -131,7 +132,7 @@ function AccountScreen() {
     if (!screen) {
       return;
     }
-    if (screen == SCREENS_NAME.login){
+    if (screen == SCREENS_NAME.login) {
       logout();
     }
     navigation.navigate(screen);
@@ -256,24 +257,30 @@ function AccountScreen() {
 
   const handlePickMedia = (type) => {
     let params = {
-      mediaType: type, 
-      width: 200, 
-      height: 200
-    }
+      mediaType: type,
+      width: 200,
+      height: 200,
+    };
     pickMedia(params, async (media) => {
       let data = {};
       let userId = await LOCAL_STORAGE.getItem("userId");
       data.userId = userId;
-      data.avatar = media.base64
+      data.avatar = media.base64;
 
       try {
         let resultAction = await dispatch(changeAvatar(data));
         if (changeAvatar.fulfilled.match(resultAction)) {
-          handleOpenModal(MODAL_TYPE.NORMAL, {title: STRINGS.notification, content: resultAction.payload.message});
+          handleOpenModal(MODAL_TYPE.NORMAL, {
+            title: STRINGS.notification,
+            content: resultAction.payload.message,
+          });
           let avatar = resultAction.payload.avatar;
           setAvatarUri(`${URL.GET_AVATAR}/${avatar}?${new Date().getTime()}`);
         } else {
-          handleOpenModal(MODAL_TYPE.NORMAL, {title: STRINGS.notification, content: STRINGS.fileTooLarge});
+          handleOpenModal(MODAL_TYPE.NORMAL, {
+            title: STRINGS.notification,
+            content: STRINGS.fileTooLarge,
+          });
         }
       } catch (error) {
         console.log("error :", error);
@@ -300,10 +307,10 @@ function AccountScreen() {
           <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 rounded-full w-20 h-20 bg-white">
             <Image
               className="rounded-full w-20 h-20"
-                source={{ uri: avatarUri || noImage}}
-              />
+              source={{ uri: avatarUri || noImage }}
+            />
             <View style={{ right: 5, bottom: -5, position: "absolute" }}>
-              <TouchableOpacity onPress={()=>handlePickMedia("photo")}>
+              <TouchableOpacity onPress={() => handlePickMedia("photo")}>
                 <CameraAvatarIcon></CameraAvatarIcon>
               </TouchableOpacity>
             </View>

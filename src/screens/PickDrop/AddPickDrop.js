@@ -11,6 +11,7 @@ import { BASE_URL } from "../../constants/url";
 import { addPickDrops } from "../../store/pickDrop/pickDropSlice";
 import { fetchUser } from "../../store/user/userSlice";
 import { useNavigation } from "@react-navigation/native";
+import { noImage } from "../../constants/images";
 
 function AddPickDropScreen() {
   const { user } = useSelector((state) => state.user);
@@ -92,17 +93,12 @@ function AddPickDropScreen() {
         style={{ backgroundColor: COLORS.main }}
         className="h-20 w-full relative">
         <View className="absolute -ml-11 top-9 left-1/2 transform -translate-x-1/2 border rounded-full w-20 h-20 bg-white">
-          {user?.avatar ? (
-            <Image
-              source={{ uri: BASE_URL + "/" + user?.avatar }}
-              style={{ margin: 15, width: 20, height: 20 }}
-            />
-          ) : (
-            <Image
-              source={require("../../../assets/img/diversity_1.png")}
-              style={{ margin: 15 }}
-            />
-          )}
+          <Image
+            className="rounded-full w-20 h-20"
+            source={{
+              uri: BASE_URL + "/api/user/avatar/" + user?.avatar || noImage,
+            }}
+          />
         </View>
       </View>
       <View className="px-4 mt-14">

@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Text } from "react-native";
-import { View, Animated, Image, FlatList } from "react-native";
+import { View, Animated, Image, FlatList, TouchableOpacity } from "react-native";
 import OutsidePressHandler from "react-native-outside-press";
 import { toggleContentDrawer } from "../../store/contentDrawer/contentDrawerSlice";
 import { useDispatch } from "react-redux";
 import { drawerItemList } from "../../constants/drawerItem";
-import { admissions, logout } from "../../constants/strings";
+import { admissions, logoutString } from "../../constants/strings";
 import { LogoutIcon } from "../../../assets/svg/LogoutIcon";
+import { logout } from "../../store/auth/authSlice";
+import { useNavigation } from "@react-navigation/native";
+import * as SCREENS_NAME from "../../constants/screensName";
 
 function ContentDrawer() {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [slideAnim] = useState(new Animated.Value(-256));
   useEffect(() => {
     Animated.timing(slideAnim, {
@@ -26,6 +30,11 @@ function ContentDrawer() {
     }).start(() => {
       dispatch(toggleContentDrawer());
     });
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigation.navigate(SCREENS_NAME.login);
   };
 
   const DrawerItem = ({ icon, text }) => (
@@ -87,10 +96,10 @@ function ContentDrawer() {
                   </View>
               </View>
               {drawerItemListView}
-              <View className="flex-row justify-end items-center">
-                <LogoutIcon />
-                <Text className="ml-2">{logout}</Text>
-              </View>
+              <TouchableOpacity className="flex-row justify-end items-center" onPress={handleLogout}>
+                <LogoutIcon color="#5F5F5F"/>
+                <Text className="ml-2">{logoutString}</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </OutsidePressHandler>

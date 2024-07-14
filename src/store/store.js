@@ -12,6 +12,7 @@ import messageSlice from "./message/messageSlice";
 import remindMedicineSlice from "./remindMedicine/remindMedicineSlice";
 import feedBackSlice from "./feedBack/feedBackSlice";
 import pickDropSlice from "./pickDrop/pickDropSlice";
+import accountSlice from "./account/accountSlice";
 const store = configureStore({
   reducer: {
     modal: modalReducer,
@@ -27,6 +28,7 @@ const store = configureStore({
     remindMedicines: remindMedicineSlice,
     feedBacks: feedBackSlice,
     pickDrops: pickDropSlice,
+    account: accountSlice
   },
 });
 

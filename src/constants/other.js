@@ -21,5 +21,4 @@ export const other = [
     icon: <ICONS.LogOutIconn size={60} color={COLORS.mainRgba} />,
     text: STRINGS.logout,
   },
-
 ];

@@ -39,7 +39,7 @@ function AccountScreen() {
       isRequired: true,
     },
     {
-      name: "fullName",
+      name: "name",
       placeholder: "Tên tài khoản",
       value: user?.name,
       type: "text",
@@ -212,7 +212,7 @@ function AccountScreen() {
           <GeneralForm
             handleData={handleAccountForm}
             fields={fields}
-            titleSubmitBtn={"Lưu"}
+            titleSubmitBtn={STRINGS.save}
           />
         </View>
       ),

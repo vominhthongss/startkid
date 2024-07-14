@@ -107,3 +107,4 @@ export const alertSuccess = "Thành công";
 export const alertFail = "Thất bại, hãy thử lại";
 export const loginAgain = "Vui lòng đăng nhập lại";
 export const updatePickDrop = "Cập nhật thông tin";
+export const save = "Lưu";

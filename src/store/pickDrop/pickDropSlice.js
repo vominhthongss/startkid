@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FAILED, LOADING, SUCCEEDED } from "../../constants/store";
 import api from "../../services/api";
 import * as URLS from "../../constants/url";
+import * as LOCAL_STORAGE from "../../../src/utils/localStorage";
 
 const initialState = {
   pickDrops: undefined,
@@ -28,10 +29,8 @@ export const addPickDrops = createAsyncThunk(
     try {
       const userId = await LOCAL_STORAGE.getItem("userId");
       if (userId) {
-        const response = await api.post(URLS.PICK_DROP, {
-          userId: userId,
-          ...data,
-        });
+        data.userId = userId;
+        const response = await api.post(URLS.PICK_DROP, data);
         return response.data;
       }
     } catch (error) {

@@ -1,12 +1,10 @@
 import { Alert, Image, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import CameraAvatarIcon from "../../../assets/svg/CameraAvatarIcon";
 import * as COLORS from "../../constants/colors";
 import GeneralForm from "../../components/GeneralForm/GeneralForm";
 import * as STRINGS from "../../constants/strings";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import api from "../../services/api";
 import { BASE_URL } from "../../constants/url";
 import { addPickDrops } from "../../store/pickDrop/pickDropSlice";
 import { fetchUser } from "../../store/user/userSlice";

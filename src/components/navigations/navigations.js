@@ -32,13 +32,15 @@ export const home = {
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
     headerRight: () => <Alert size={25} color={COLORS.noneSecondary} />,
-    tabBarIcon: ({ color, size }) => {
+    tabBarIcon: ({ color }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
         <View className="pt-3">
-          <HomeIcon size={size} color={iconColor} />
-          <Text style={{ color: iconColor }}>{SCREENS_NAME.home}</Text>
+          <HomeIcon size={20} color={iconColor} />
+          <Text style={{ color: iconColor, fontSize: 12 }}>
+            {SCREENS_NAME.home}
+          </Text>
         </View>
       );
     },
@@ -60,13 +62,15 @@ export const contact = {
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
 
-    tabBarIcon: ({ color, size }) => {
+    tabBarIcon: ({ color }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
         <View className={`pt-3 -ml-[32px]`}>
-          <ContactIcon size={size} color={iconColor} />
-          <Text style={{ color: iconColor }}>{SCREENS_NAME.contact}</Text>
+          <ContactIcon size={20} color={iconColor} />
+          <Text style={{ color: iconColor, fontSize: 12 }}>
+            {SCREENS_NAME.contact}
+          </Text>
         </View>
       );
     },
@@ -88,13 +92,15 @@ export const notification = {
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
 
-    tabBarIcon: ({ color, size }) => {
+    tabBarIcon: ({ color }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
         <View className={`pt-3 ml-[32px]`}>
-          <NotificationIcon size={size} color={iconColor} />
-          <Text style={{ color: iconColor }}>{SCREENS_NAME.notification}</Text>
+          <NotificationIcon size={20} color={iconColor} />
+          <Text style={{ color: iconColor, fontSize: 12 }}>
+            {SCREENS_NAME.notification}
+          </Text>
         </View>
       );
     },
@@ -117,13 +123,15 @@ export const account = {
       </Text>
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.noneBasic} />,
-    tabBarIcon: ({ color, size }) => {
+    tabBarIcon: ({ color }) => {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
         <View className="pt-3">
-          <AccountIcon size={size} color={iconColor} />
-          <Text style={{ color: iconColor }}>{SCREENS_NAME.account}</Text>
+          <AccountIcon size={20} color={iconColor} />
+          <Text style={{ color: iconColor, fontSize: 12 }}>
+            {SCREENS_NAME.account}
+          </Text>
         </View>
       );
     },

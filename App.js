@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as ROUTES from "./src/routes/routes";
@@ -8,14 +8,13 @@ import { EventProvider } from "react-native-outside-press";
 const Stack = createStackNavigator();
 import Loader from "./src/components/Loader/Loader";
 import useAuth from "./src/hook/useAuth";
+import { StatusBar } from "expo-status-bar";
 
 function App() {
   const { loading, isAuthenticated } = useAuth();
 
   if (loading) {
-    return (
-      <Loader />
-    );
+    return <Loader />;
   }
 
   const screens = Object.values(ROUTES).map((screen, index) => (
@@ -30,8 +29,12 @@ function App() {
   return (
     <EventProvider>
       <Provider store={store}>
+        <StatusBar hidden={true} />
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={isAuthenticated ? ROUTES.mainTab.name : ROUTES.login.name}>
+          <Stack.Navigator
+            initialRouteName={
+              isAuthenticated ? ROUTES.mainTab.name : ROUTES.login.name
+            }>
             {screens}
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Text } from "react-native";
-import { View, Animated, Image, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Animated,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import OutsidePressHandler from "react-native-outside-press";
 import { toggleContentDrawer } from "../../store/contentDrawer/contentDrawerSlice";
 import { useDispatch } from "react-redux";
@@ -10,6 +16,7 @@ import { LogoutIcon } from "../../../assets/svg/LogoutIcon";
 import { logout } from "../../store/auth/authSlice";
 import { useNavigation } from "@react-navigation/native";
 import * as SCREENS_NAME from "../../constants/screensName";
+import { ScrollView } from "react-native-gesture-handler";
 
 function ContentDrawer() {
   const dispatch = useDispatch();
@@ -40,7 +47,9 @@ function ContentDrawer() {
   const DrawerItem = ({ icon, text }) => (
     <View className="flex-row items-center p-[2%]">
       {icon}
-      <Text style={{color: "#333333"}} className="ml-4">{text}</Text>
+      <Text style={{ color: "#333333" }} className="ml-4">
+        {text}
+      </Text>
     </View>
   );
 
@@ -58,10 +67,13 @@ function ContentDrawer() {
   };
 
   const drawerItemListView = drawerItemList.map((drawerItem, index) => (
-      <View key={index} className="w-[100%] border-t pt-3" style={{borderTopColor: "#0A6843"}}>
-        <Text style={{color: "#333333"}}>{drawerItem.drawerItemTitle}</Text>
-        <DrawerItemDetailList items={drawerItem.drawerItemDetailList}/>
-      </View>
+    <View
+      key={index}
+      className="w-[100%] border-t pt-3"
+      style={{ borderTopColor: "#0A6843" }}>
+      <Text style={{ color: "#333333" }}>{drawerItem.drawerItemTitle}</Text>
+      <DrawerItemDetailList items={drawerItem.drawerItemDetailList} />
+    </View>
   ));
 
   return (
@@ -77,31 +89,35 @@ function ContentDrawer() {
           },
         ]}>
         <OutsidePressHandler
-          className="h-full w-72 flex flex-col justify-end"
+          className="h-full w-72 flex flex-col justify-end py-3"
           onOutsidePress={() => {
             handlePressOutside();
           }}>
-          <View className="bg-white w-full h-[95%] rounded-r-3xl">
+          <ScrollView className="bg-white w-full h-[100%] rounded-r-3xl">
             <View className="w-[85%] self-center">
-                <View className="flex-row pt-3 pb-3" style={{}}>
-                  <Image
-                      source={require('../../../assets/img/face.png')}
-                      className=""
-                      onLoad={() => {}}
-                      onError={() => {}}
-                  />
-                  <View className="self-center pl-5">
-                    <Text className="text-lg font-medium">Nguyễn Văn A</Text>
-                    <Text style={{color: "#999999"}} className="text-sm">{admissions}</Text>
-                  </View>
+              <View className="flex-row pt-3 pb-3" style={{}}>
+                <Image
+                  source={require("../../../assets/img/face.png")}
+                  className=""
+                  onLoad={() => {}}
+                  onError={() => {}}
+                />
+                <View className="self-center pl-5">
+                  <Text className="text-lg font-medium">Nguyễn Văn A</Text>
+                  <Text style={{ color: "#999999" }} className="text-sm">
+                    {admissions}
+                  </Text>
+                </View>
               </View>
               {drawerItemListView}
-              <TouchableOpacity className="flex-row justify-end items-center" onPress={handleLogout}>
-                <LogoutIcon color="#5F5F5F"/>
+              <TouchableOpacity
+                className="flex-row justify-end items-center"
+                onPress={handleLogout}>
+                <LogoutIcon color="#5F5F5F" />
                 <Text className="ml-2">{logoutString}</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </ScrollView>
         </OutsidePressHandler>
       </Animated.View>
     </View>

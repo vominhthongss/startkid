@@ -1,6 +1,7 @@
 import * as STRINGS from "./strings";
 import ICONS from "../../assets/svg/export/ExportSVG";
 import * as COLORS from "../constants/colors";
+import * as SCREENS_NAME from "../constants/screensName";
 export const centerButtons = [
   {
     icon: (
@@ -11,6 +12,7 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.message,
+    screen: SCREENS_NAME.message,
   },
   {
     icon: (
@@ -21,6 +23,7 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.remindMedicine,
+    screen: SCREENS_NAME.remindMedicine,
   },
   {
     icon: (
@@ -31,5 +34,6 @@ export const centerButtons = [
       />
     ),
     text: STRINGS.leaveRequest,
+    screen: SCREENS_NAME.leaveRequest,
   },
 ];

@@ -36,7 +36,7 @@ export const home = {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className="pt-3">
+        <View className="pt-1">
           <HomeIcon size={20} color={iconColor} />
           <Text style={{ color: iconColor, fontSize: 12 }}>
             {SCREENS_NAME.home}
@@ -66,7 +66,7 @@ export const contact = {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className={`pt-3 -ml-[32px]`}>
+        <View className={`pt-1 -ml-[32px]`}>
           <ContactIcon size={20} color={iconColor} />
           <Text style={{ color: iconColor, fontSize: 12 }}>
             {SCREENS_NAME.contact}
@@ -96,7 +96,7 @@ export const notification = {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className={`pt-3 ml-[32px]`}>
+        <View className={`pt-1 ml-[32px]`}>
           <NotificationIcon size={20} color={iconColor} />
           <Text style={{ color: iconColor, fontSize: 12 }}>
             {SCREENS_NAME.notification}
@@ -127,7 +127,7 @@ export const account = {
       const isFocused = useIsFocused();
       const iconColor = isFocused ? COLORS.nav : color;
       return (
-        <View className="pt-3">
+        <View className="pt-1">
           <AccountIcon size={20} color={iconColor} />
           <Text style={{ color: iconColor, fontSize: 12 }}>
             {SCREENS_NAME.account}

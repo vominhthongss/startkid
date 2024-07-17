@@ -2,7 +2,15 @@ import { View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Text } from "react-native";
 import { centerButtons } from "../../constants/centerButtons";
+import { useNavigation } from "@react-navigation/native";
 function CenterButton() {
+  const navigation = useNavigation();
+  const handleGoToScreen = (screen) => {
+    if (!screen) {
+      return;
+    }
+    navigation.navigate(screen);
+  };
   return (
     <View className="absolute z-10 h-full w-full">
       <View
@@ -15,6 +23,7 @@ function CenterButton() {
                 <TouchableOpacity
                   key={index}
                   style={{ marginBottom: index === 1 ? 70 : 0 }}
+                  onPress={() => handleGoToScreen(item.screen)}
                   className="w-[70px]">
                   <View className="flex flex-col items-center">
                     {item.icon}

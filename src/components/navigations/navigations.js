@@ -26,7 +26,7 @@ export const home = {
       elevation: 0, // this covers Android
     },
     headerTitle: () => (
-      <Text className="text-xl font-semibold" style={{ color: COLORS.main }}>
+      <Text className="text-lg font-semibold" style={{ color: COLORS.main }}>
         {STRINGS.homeDes}
       </Text>
     ),
@@ -58,7 +58,7 @@ export const contact = {
       elevation: 0, // this covers Android
     },
     headerTitle: () => (
-      <Text className="text-xl font-semibold">{STRINGS.contactDes}</Text>
+      <Text className="text-lg font-semibold">{STRINGS.contactDes}</Text>
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
 
@@ -88,7 +88,7 @@ export const notification = {
       elevation: 0, // this covers Android
     },
     headerTitle: () => (
-      <Text className="text-xl font-semibold">{STRINGS.notification}</Text>
+      <Text className="text-lg font-semibold">{STRINGS.notification}</Text>
     ),
     headerLeft: () => <Drawer size={25} color={COLORS.nonePrimary} />,
 
@@ -118,7 +118,7 @@ export const account = {
       elevation: 0, // this covers Android
     },
     headerTitle: () => (
-      <Text className="text-xl font-semibold text-white">
+      <Text className="text-lg font-semibold text-white">
         {STRINGS.account}
       </Text>
     ),

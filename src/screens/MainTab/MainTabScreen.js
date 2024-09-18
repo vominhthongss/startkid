@@ -38,7 +38,7 @@ function MainTabScreen() {
           onPress={handleShowMenuCenter}
           style={{ transform: [{ rotate: showMenuCenter ? "45deg" : "0deg" }] }}
           className=" w-[55px] h-[55px] rounded-full z-50 pt-2">
-          <View className="w-[55px] h-[55px] rounded-full bg-white border-[1px] border-gray-50">
+          <View className="w-[55px] h-[55px] -mt-4 rounded-full bg-white border-[1px] border-gray-50">
             <AddIcon color={COLORS.main} />
           </View>
         </TouchableOpacity>

@@ -164,10 +164,10 @@ function AccountScreen() {
               style={styles.image}
             />
             <View className="ml-8 mt-2">
-              <Text>
-                {STRINGS.father}
-                {user?.father?.name}
-              </Text>
+              <View className="flex flex-row">
+                <Text className="text-red-500">{STRINGS.father}</Text>
+                <Text>{user?.father?.name}</Text>
+              </View>
               <View className="flex flex-row items-center">
                 <TelephoneIcon />
                 <Text> {user?.father?.phoneNumber}</Text>
@@ -183,10 +183,10 @@ function AccountScreen() {
           </View>
           <View className="flex flex-row" style={styles.item}>
             <View className="ml-8 mt-2">
-              <Text>
-                {STRINGS.mother}
-                {user?.mother?.name}
-              </Text>
+              <View className="flex flex-row">
+                <Text className="text-red-500">{STRINGS.mother}</Text>
+                <Text>{user?.mother?.name}</Text>
+              </View>
               <View className="flex flex-row items-center">
                 <TelephoneIcon />
                 <Text> {user?.mother?.phoneNumber}</Text>

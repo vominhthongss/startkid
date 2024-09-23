@@ -7,65 +7,43 @@ import ErrorText from "../ErrorText/ErrorText";
 import CustomizeRadio from "../CustomizeRadio/CustomizeRadio";
 import CustomizeTextInput from "../CustomizeTextInput/CustomizeTextInput";
 import CustomizeTextField from "../CustomizeTextField/CustomizeTextField";
+import * as STRINGS from "../../constants/strings";
 
 function GeneralForm({
   fields,
   handleData,
   titleSubmitBtn,
   customStyleButton = "",
+  isReadOnly = false,
 }) {
+  const handleUnread = () => {
+    isReadOnly = false;
+  };
   const fieldRender = (field, key, { handleChange, values, errors }) => {
     let element = null;
+    const commonProps = {
+      key: key,
+      label: field.label,
+      placeholder: field.placeholder,
+      value: values[field.name],
+      onChangeText: handleChange(field.name),
+      type: field.type,
+      editable: !isReadOnly,
+    };
+
     switch (field.type) {
       case "number":
-        element = (
-          <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              secureTextEntry={false}
-              type={field.type}
-            />
-            <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
-            </View>
-          </View>
-        );
-        break;
       case "time":
-        element = (
-          <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              secureTextEntry={false}
-              type={field.type}
-            />
-            <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
-            </View>
-          </View>
-        );
-        break;
       case "text":
+      case "email":
+      case "password":
         element = (
           <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              type={field.type}
-            />
+            <CustomizeTextInput {...commonProps} />
             <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+              {!isReadOnly && errors[field.name] && (
+                <ErrorText content={errors[field.name]} />
+              )}
             </View>
           </View>
         );
@@ -73,51 +51,11 @@ function GeneralForm({
       case "textfield":
         element = (
           <View className="relative">
-            <CustomizeTextField
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              type={field.type}
-            />
+            <CustomizeTextField {...commonProps} editable={!isReadOnly} />
             <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
-            </View>
-          </View>
-        );
-        break;
-      case "email":
-        element = (
-          <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              type={field.type}
-            />
-            <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
-            </View>
-          </View>
-        );
-        break;
-      case "password":
-        element = (
-          <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              secureTextEntry={true}
-              type={field.type}
-            />
-            <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+              {!isReadOnly && errors[field.name] && (
+                <ErrorText content={errors[field.name]} />
+              )}
             </View>
           </View>
         );
@@ -131,9 +69,12 @@ function GeneralForm({
               value={values[field.name]}
               options={field.options}
               onChangeText={handleChange(field.name)}
+              editable={isReadOnly}
             />
             <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+              {!isReadOnly && errors[field.name] && (
+                <ErrorText content={errors[field.name]} />
+              )}
             </View>
           </View>
         );
@@ -141,16 +82,11 @@ function GeneralForm({
       default:
         element = (
           <View className="relative">
-            <CustomizeTextInput
-              key={key}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={values[field.name]}
-              onChangeText={handleChange(field.name)}
-              secureTextEntry={false}
-            />
+            <CustomizeTextInput {...commonProps} />
             <View className="absolute top-0 right-0">
-              {errors[field.name] && <ErrorText content={errors[field.name]} />}
+              {!isReadOnly && errors[field.name] && (
+                <ErrorText content={errors[field.name]} />
+              )}
             </View>
           </View>
         );
@@ -168,8 +104,8 @@ function GeneralForm({
       validateOnBlur={false}
       validate={(values) => {
         const errors = {};
-        fields.map((field) => {
-          if (!values[field.name] && field.isRequired) {
+        fields.forEach((field) => {
+          if (!values[field.name] && field.isRequired && !isReadOnly) {
             errors[field.name] = `Phải có ${field.label.toLowerCase()} !`;
           } else if (
             field.type === "email" &&
@@ -184,14 +120,12 @@ function GeneralForm({
               field.name
             ] = `${field.label} phải có ít nhất ${field.minLength} ký tự!`;
           }
-          // check fields have field have name is rePassword and newPassword different rePassword
           if (
             field.name === "rePassword" &&
             values["rePassword"] !== values["newPassword"]
           ) {
             errors[field.name] = "Mật khẩu không khớp nhau !";
           }
-          return;
         });
         return errors;
       }}>
@@ -202,17 +136,19 @@ function GeneralForm({
               {fieldRender(field, key, { handleChange, values, errors })}
             </View>
           ))}
-          <View className={"mt-6 mb-3"}>
-            <View className={"w-full"}>
+          {!isReadOnly && (
+            <View className={"mt-6 mb-3"}>
               <View className={"w-full"}>
-                <CustomizeButton
-                  styleButton={customStyleButton}
-                  title={titleSubmitBtn}
-                  onPress={handleSubmit}
-                />
+                <View className={"w-full"}>
+                  <CustomizeButton
+                    styleButton={customStyleButton}
+                    title={titleSubmitBtn}
+                    onPress={handleSubmit}
+                  />
+                </View>
               </View>
             </View>
-          </View>
+          )}
         </View>
       )}
     </Formik>

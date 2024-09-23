@@ -31,6 +31,7 @@ import { noImage } from "../../constants/images";
 import * as URL from "../../constants/url";
 import { logout } from "../../store/auth/authSlice";
 import * as SCREENS_NAME from "../../constants/screensName";
+import CustomizeButton from "../../components/CustomizeButton/CustomizeButton";
 
 function AccountScreen() {
   const { user } = useSelector((state) => state.user);
@@ -128,6 +129,7 @@ function AccountScreen() {
   const handleOpenSwipeUp = () => {
     dispatch(turnOnSwipeUpDrawer());
   };
+  const [isReadOnly, setIsReadOnly] = useState(true);
   const handleGoToScreen = (screen) => {
     if (!screen) {
       return;
@@ -233,7 +235,16 @@ function AccountScreen() {
             handleData={handleAccountForm}
             fields={fields}
             titleSubmitBtn={STRINGS.save}
+            isReadOnly={isReadOnly}
           />
+          {isReadOnly && (
+            <View className="my-5">
+              <CustomizeButton
+                title={STRINGS.unRead}
+                onPress={() => setIsReadOnly(false)}
+              />
+            </View>
+          )}
         </View>
       ),
     },

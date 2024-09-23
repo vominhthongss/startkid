@@ -10,6 +10,7 @@ function CustomizeTextInput({
   onChangeText,
   type,
   secureTextEntry,
+  editable,
 }) {
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
 
@@ -42,6 +43,7 @@ function CustomizeTextInput({
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         onFocus={() => type === "time" && showTimePicker()}
+        editable={editable}
       />
 
       {type === "time" && (

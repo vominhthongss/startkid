@@ -19,9 +19,7 @@ function PickDropScreen() {
   const { pickDrops } = useSelector((state) => state.pickDrops);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!pickDrops) {
-      dispatch(fetchPickDrops());
-    }
+    dispatch(fetchPickDrops());
   }, [pickDrops]);
   const navigation = useNavigation();
   const handleGoToAddScreen = () => {
@@ -42,7 +40,7 @@ function PickDropScreen() {
             className="z-10 mb-5 self-center px-4 py-2 rounded-3xl bg-[#0A6843]">
             <View className="flex flex-row items-center">
               <SendIcon />
-              <Text className="text-white ml-2">{STRINGS.createLeaveRq}</Text>
+              <Text className="text-white ml-2">{STRINGS.createPickDrop}</Text>
             </View>
           </TouchableOpacity>
         </View>

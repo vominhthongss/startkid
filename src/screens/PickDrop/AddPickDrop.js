@@ -104,6 +104,7 @@ function AddPickDropScreen() {
           handleData={handlePickDrop}
           fields={fields}
           titleSubmitBtn={STRINGS.updatePickDrop}
+          customStyleButton="w-[100%] h-[50px]"
         />
       </View>
     </ScrollView>

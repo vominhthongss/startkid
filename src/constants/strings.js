@@ -97,6 +97,7 @@ export const feedBackTitle = "Tiêu đề";
 export const feedBackPlaceholder = "Nhập tiêu đề";
 
 export const createFeedBack = "Tạo góp ý";
+export const createPickDrop = "Tạo đưa đón";
 export const sendFeedBack = "Gửi góp ý";
 export const createMessage = "Tạo lời nhắn";
 export const sendMessage = "Gửi lời nhắn";

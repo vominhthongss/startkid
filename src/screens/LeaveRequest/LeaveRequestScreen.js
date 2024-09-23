@@ -20,9 +20,7 @@ function LeaveRequestScreen() {
   const dispatch = useDispatch();
   const { leaveRequests } = useSelector((state) => state.leaveRequests);
   useEffect(() => {
-    if (!leaveRequests) {
-      dispatch(fetchLeaveRquests());
-    }
+    dispatch(fetchLeaveRquests());
   }, [leaveRequests, dispatch]);
 
   const handleGoToDetailScreen = (leaveRequest) => {

@@ -205,12 +205,19 @@ const AddRemindMedicineScreen = ({}) => {
       if (resultAction.payload.status_code > 0) {
         data = {
           ...data,
+          title: "Thông báo",
           isFooterConfirm: true,
           isError: resultAction.payload.status_code !== 200,
           handleConfirm: () =>
             resultAction.payload.status_code === 200 && handleGoback(),
         };
-        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, {
+          ...data,
+          content:
+            resultAction.payload.status_code !== 200
+              ? "Tạo dặn thuốc không thành công"
+              : "Tạo dặn thuốc thành công",
+        });
       }
     } catch (error) {}
   };

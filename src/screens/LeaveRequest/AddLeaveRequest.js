@@ -323,7 +323,13 @@ const AddLeaveRequestScreen = ({}) => {
           handleConfirm: () =>
             resultAction.payload.status_code === 200 && handleGoback(),
         };
-        handleOpenModal(MODAL_TYPE.LARGE_HEADER, data);
+        handleOpenModal(MODAL_TYPE.LARGE_HEADER, {
+          ...data,
+          content:
+            resultAction.payload.status_code !== 200
+              ? "Tạo xin nghỉ không thành công"
+              : "Tạo xin nghỉ thành công",
+        });
       }
     } catch (error) {}
   };

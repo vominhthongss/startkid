@@ -15,9 +15,7 @@ function MessageScreen() {
   const dispatch = useDispatch();
   const { messages } = useSelector((state) => state.messages);
   useEffect(() => {
-    if (!messages) {
-      dispatch(fetchMessages());
-    }
+    dispatch(fetchMessages());
   }, [messages, dispatch]);
 
   const handleGoToDetailScreen = (message) => {

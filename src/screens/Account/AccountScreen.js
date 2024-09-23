@@ -174,7 +174,9 @@ function AccountScreen() {
               </View>
               <View className="flex flex-row items-center">
                 <MailIcon></MailIcon>
-                <Text> {user?.father?.email}</Text>
+                <View className="w-3/4">
+                  <Text> {user?.father?.email}</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -193,7 +195,9 @@ function AccountScreen() {
               </View>
               <View className="flex flex-row items-center">
                 <MailIcon></MailIcon>
-                <Text> {user?.mother?.email}</Text>
+                <View className="w-3/4">
+                  <Text> {user?.mother?.email}</Text>
+                </View>
               </View>
             </View>
             <Image
@@ -207,13 +211,13 @@ function AccountScreen() {
           <View style={styles.container}>
             <View style={styles.line}></View>
           </View>
-          <View
-            className="flex flex-row"
-            style={[styles.item, { paddingBottom: 70 }]}>
+          <View className="flex flex-row" style={[styles.item]}>
             <View className="ml-8 mt-2">
-              <View className="flex flex-row items-center">
+              <View className="flex flex-row items-start">
                 <HomePinIcon></HomePinIcon>
-                <Text>{user?.address}</Text>
+                <ScrollView className="w-[85%] max-h-[60px]">
+                  <Text>{user?.address}</Text>
+                </ScrollView>
               </View>
             </View>
           </View>

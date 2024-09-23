@@ -3,7 +3,7 @@ import { Dimensions, Text, View } from "react-native";
 import BottomSheet from "react-native-simple-bottom-sheet";
 import { useDispatch, useSelector } from "react-redux";
 import { turnOffSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { learnMore } from "../../constants/learnMore";
 import { turnOnSwipeUpDrawer } from "../../store/swipeUpDrawer/swipeUpDrawerSlice";
 import { useNavigation } from "@react-navigation/native";
@@ -43,24 +43,25 @@ function SwipeUpDrawer() {
         sliderMinHeight={0}
         isOpen={false}
         ref={(ref) => (panelRef.current = ref)}>
-        <View className="flex flex-row flex-wrap my-5 justify-between">
-          {learnMore.map((item, key) => (
-            <TouchableOpacity
-              key={key}
-              style={{ width: -5 + Dimensions.get("window").width / 4 }}
-              // onPress={item.showSwipeUpDrawer ? handleOpenSwipeUp : null
-              onPress={() =>
-                item.showSwipeUpDrawer
-                  ? handleOpenSwipeUp()
-                  : handleGoToScreen(item.screen)
-              }>
-              <View className="flex flex-col items-center">
-                {item.icon}
-                <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <ScrollView>
+          <View className="flex flex-row flex-wrap my-5 justify-between">
+            {learnMore.map((item, key) => (
+              <TouchableOpacity
+                key={key}
+                style={{ width: -5 + Dimensions.get("window").width / 4 }}
+                onPress={() =>
+                  item.showSwipeUpDrawer
+                    ? handleOpenSwipeUp()
+                    : handleGoToScreen(item.screen)
+                }>
+                <View className="flex flex-col items-center">
+                  {item.icon}
+                  <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
       </BottomSheet>
     </View>
   );

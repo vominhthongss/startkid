@@ -2,6 +2,15 @@ import { Image, Text, View } from "react-native";
 import MediaIcon from "../../../assets/svg/MediaIcon";
 
 function NotificationItem({ title, content, dateTime, image }) {
+  const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    return `${hours}:${minutes} - ${day}/${month}`;
+  };
+
   return (
     <View className="flex flex-row items-center">
       <Image
@@ -25,7 +34,7 @@ function NotificationItem({ title, content, dateTime, image }) {
           ) : (
             <Text></Text>
           )}
-          <Text className="text-[#84b3a1]">{dateTime}</Text>
+          <Text className="text-[#84b3a1]">{formatDateTime(dateTime)}</Text>
         </View>
       </View>
     </View>

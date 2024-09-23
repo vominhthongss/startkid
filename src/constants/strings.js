@@ -111,3 +111,4 @@ export const updatePickDrop = "Cập nhật thông tin";
 export const fileTooLarge = "Dung lượng tệp quá lớn";
 export const save = "Lưu";
 export const unRead = "Chỉnh sửa";
+export const addMedicinePlaceHolder = "Phụ huynh thêm lời nhắn dặn thuốc";

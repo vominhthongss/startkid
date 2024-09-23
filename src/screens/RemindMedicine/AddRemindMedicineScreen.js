@@ -291,7 +291,7 @@ const AddRemindMedicineScreen = ({}) => {
             style={{ textAlignVertical: "top" }}
             multiline={true}
             numberOfLines={4}
-            placeholder={STRINGS.leavePlaceholder}
+            placeholder={STRINGS.addMedicinePlaceHolder}
             onChangeText={setContent}
             value={content}
           />

@@ -15,9 +15,7 @@ function RemindMedicineScreen() {
   const dispatch = useDispatch();
   const { remindMedicines } = useSelector((state) => state.remindMedicines);
   useEffect(() => {
-    if (!remindMedicines) {
-      dispatch(fetchRemindMedicines());
-    }
+    dispatch(fetchRemindMedicines());
   }, [remindMedicines, dispatch]);
 
   const handleGoToDetailScreen = (remindMedicine) => {

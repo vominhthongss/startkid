@@ -25,7 +25,7 @@ function CustomizeRadio({ label, options, value, onChangeText, editable }) {
     onChangeText(data);
   };
   const renderLabel = (id) => {
-    return options?.find((o) => (o.id = id))?.label || "Chưa rõ";
+    return options?.find((o) => (o.id = id))?.label;
   };
   return (
     <View className="border-b pt-5 pb-1 border-b-[#999999] w-full">

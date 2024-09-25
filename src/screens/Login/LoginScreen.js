@@ -1,5 +1,4 @@
-// LoginScreen.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -21,13 +20,13 @@ import { EyeIcon } from "../../../assets/svg/EyeIcon";
 import * as COLORS from "../../constants/colors";
 import * as STRINGS from "../../constants/strings";
 import RadioButton from "../../components/RadioButton/RadioButton";
-import { savedPasswords } from "../../mock/savedPassword";
 import OutsidePressHandler from "react-native-outside-press";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../store/modalSlice/modalSlice";
 import CustomModal from "../../components/CustomModal/CustomModal";
 import { MODAL_TYPE } from "../../constants/common";
 import { login } from "../../store/auth/authSlice";
+import { getItem, setItem, removeItem } from "../../utils/localStorage";
 
 const SavedPasswordModal = ({
   isVisible,
@@ -60,7 +59,7 @@ const SavedPasswordModal = ({
               <View className="h-16">
                 <FlatList
                   data={savedPasswordList}
-                  keyExtractor={(item, index) => index}
+                  keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item }) => (
                     <View className="w-[95%] flex-row justify-between items-center pl-4 pb-2 pt-3">
                       <TouchableOpacity
@@ -84,7 +83,8 @@ const SavedPasswordModal = ({
                         </TouchableOpacity>
                       </View>
                     </View>
-                  )}></FlatList>
+                  )}
+                />
               </View>
             </View>
           </View>
@@ -100,17 +100,26 @@ const LoginScreen = () => {
   const [selectedOption, setSelectedOption] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
-  const [savedPasswordList, setSavedPasswordList] = useState(savedPasswords);
+  const [savedPasswordList, setSavedPasswordList] = useState([]);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const loadSavedPasswords = async () => {
+      const savedData = await getItem("savedPasswords");
+      if (savedData) {
+        setSavedPasswordList(JSON.parse(savedData));
+      }
+    };
+    loadSavedPasswords();
+  }, []);
 
   const handleForgotPasswordOpenModal = () => {
     const params = {
       title: STRINGS.forgotPassword,
       content: STRINGS.forgotPasswordDes,
     };
-
     handleOpenModal(MODAL_TYPE.NORMAL, params);
   };
 
@@ -119,7 +128,6 @@ const LoginScreen = () => {
       title: STRINGS.unSuccessfulLogin,
       content: STRINGS.unSuccessfulLoginDes,
     };
-
     handleOpenModal(MODAL_TYPE.NORMAL, params);
   };
 
@@ -142,6 +150,14 @@ const LoginScreen = () => {
       setLoading(true);
       let resultAction = await dispatch(login(userData));
       if (login.fulfilled.match(resultAction)) {
+        if (selectedOption) {
+          const updatedSavedPasswordList = [...savedPasswordList, userData];
+          setSavedPasswordList(updatedSavedPasswordList);
+          await setItem(
+            "savedPasswords",
+            JSON.stringify(updatedSavedPasswordList)
+          );
+        }
         navigation.navigate(SCREENS_NAME.mainTab);
       } else {
         handleUnSuccessLoginOpenModal();
@@ -167,11 +183,12 @@ const LoginScreen = () => {
     handleClose();
   };
 
-  const handleDeletePhoneNumberAndPassword = (phoneNumber) => {
+  const handleDeletePhoneNumberAndPassword = async (phoneNumber) => {
     const updatedSavedPasswordList = savedPasswordList.filter(
       (savedPassword) => savedPassword.phoneNumber !== phoneNumber
     );
     setSavedPasswordList(updatedSavedPasswordList);
+    await setItem("savedPasswords", JSON.stringify(updatedSavedPasswordList));
   };
 
   const handleClose = () => {

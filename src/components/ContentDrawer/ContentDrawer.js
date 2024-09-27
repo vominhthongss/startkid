@@ -44,14 +44,23 @@ function ContentDrawer() {
     navigation.navigate(SCREENS_NAME.login);
   };
 
-  const DrawerItem = ({ icon, text }) => (
-    <View className="flex-row items-center p-[2%]">
+  const DrawerItem = ({ icon, text, onPress }) => (
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row items-center p-[2%]">
       {icon}
       <Text style={{ color: "#333333" }} className="ml-4">
         {text}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
+
+  const handleGoToScreen = (screen) => {
+    if (!screen) {
+      return;
+    }
+    navigation.navigate(screen);
+  };
 
   const DrawerItemDetailList = ({ items }) => {
     return (
@@ -60,7 +69,13 @@ function ContentDrawer() {
         data={items}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <DrawerItem icon={item.icon} text={item.text} />
+          <DrawerItem
+            icon={item.icon}
+            text={item.text}
+            onPress={() =>
+              item.screen !== "" ? handleGoToScreen(item.screen) : {}
+            }
+          />
         )}
       />
     );

@@ -7,10 +7,12 @@ export const learnMore = [
   {
     icon: <ICONS.MessageIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.message,
+    screen: SCREENS_NAME.message,
   },
   {
     icon: <ICONS.RemindMedicineIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.remindMedicine,
+    screen: SCREENS_NAME.remindMedicine,
   },
   {
     icon: <ICONS.LeaveRequestIcon size={60} color={COLORS.mainRgba} />,
@@ -24,6 +26,7 @@ export const learnMore = [
   {
     icon: <ICONS.CommentIcon size={60} color={COLORS.mainRgba} />,
     text: STRINGS.com,
+    screen: SCREENS_NAME.feedBack,
   },
   {
     icon: <ICONS.AttendIcon size={60} color={COLORS.mainRgba} />,

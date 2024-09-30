@@ -55,7 +55,7 @@ function SwipeUpDrawer() {
                     : handleGoToScreen(item.screen)
                 }>
                 <View className="flex flex-col items-center">
-                  {item.icon}
+                  {item.icon} 
                   <Text className="text-[#5F5F5F] mb-1 mt-3">{item.text}</Text>
                 </View>
               </TouchableOpacity>

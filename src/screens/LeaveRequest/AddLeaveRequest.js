@@ -28,6 +28,7 @@ import { DATE_TYPE } from "../../constants/common";
 import { SESSION_TYPE } from "../../constants/common";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { addLeaveRquests } from "../../store/leaveRequest/leaveRequestSlice";
+import * as LOCAL_STORAGE from "../../utils/localStorage";
 
 const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
   return (
@@ -40,7 +41,8 @@ const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
         shadowOpacity: 0.1,
         shadowRadius: 10,
         elevation: 5,
-      }}>
+      }}
+    >
       <View>
         <Text className="text-[#999999]">{STRINGS.startDate}</Text>
         <View className="flex flex-row ml-5">
@@ -49,7 +51,8 @@ const DateTimePicker = ({ startDate, endDate, showDatePicker }) => {
           </Text>
           <View>
             <TouchableOpacity
-              onPress={() => showDatePicker(DATE_TYPE.START_DATE)}>
+              onPress={() => showDatePicker(DATE_TYPE.START_DATE)}
+            >
               <CalendarIcon />
             </TouchableOpacity>
           </View>
@@ -87,15 +90,18 @@ const DetailLeaveRequest = ({
       transparent={true}
       visible={isVisible}
       animationType="fade"
-      onRequestClose={onClose}>
+      onRequestClose={onClose}
+    >
       <View
         className="h-full flex justify-center items-center"
-        style={{ backgroundColor: "#D9D9D980" }}>
+        style={{ backgroundColor: "#D9D9D980" }}
+      >
         <OutsidePressHandler onOutsidePress={onClose}>
           <View className="w-80 rounded-2xl bg-white">
             <View
               className="rounded-t-2xl pt-2 pb-2 pl-6"
-              style={{ backgroundColor: COLORS.main }}>
+              style={{ backgroundColor: COLORS.main }}
+            >
               <View className="flex-row items-center justify-between">
                 <Text className="text-lg text-white">
                   {STRINGS.detailLeave}
@@ -168,7 +174,8 @@ const DetailLeaveRequest = ({
                         </View>
                       </View>
                     </View>
-                  )}></FlatList>
+                  )}
+                ></FlatList>
               </View>
             </View>
           </View>
@@ -306,12 +313,15 @@ const AddLeaveRequestScreen = ({}) => {
   };
 
   const handleSendLeaveRequest = async () => {
+    let userId = await LOCAL_STORAGE.getItem("userId");
     var data = {
+      user_id:userId.toString(),
       content: content,
       startDate: startDate.toString(),
       endDate: endDate.toString(),
       dateRangeList: dateRangeList,
       createdDate: new Date().toString(),
+      status:"Chưa xác nhận"
     };
     try {
       const resultAction = await dispatch(addLeaveRquests(data));
@@ -373,7 +383,8 @@ const AddLeaveRequestScreen = ({}) => {
           <Text className="text-base text-[#0A6843]">{STRINGS.content}</Text>
           <TouchableOpacity
             className="flex flex-row items-center"
-            onPress={() => handleDetailLeave(startDate, endDate)}>
+            onPress={() => handleDetailLeave(startDate, endDate)}
+          >
             <Text className="text-base text-[#0A6843]">
               {STRINGS.detailLeave}
             </Text>
@@ -390,7 +401,8 @@ const AddLeaveRequestScreen = ({}) => {
             shadowOpacity: 0.1,
             shadowRadius: 0,
             elevation: 5,
-          }}>
+          }}
+        >
           <TextInput
             className="h-[95%] text-xs"
             style={{ textAlignVertical: "top" }}
@@ -412,7 +424,8 @@ const AddLeaveRequestScreen = ({}) => {
       </View>
       <TouchableOpacity
         className="absolute bottom-8 self-center px-4 py-2 rounded-3xl bg-[#0A6843]"
-        onPress={handleSendLeaveRequest}>
+        onPress={handleSendLeaveRequest}
+      >
         <View className="flex flex-row items-center">
           <Text className="text-white ml-2">{STRINGS.sendLeaveRq}</Text>
         </View>
